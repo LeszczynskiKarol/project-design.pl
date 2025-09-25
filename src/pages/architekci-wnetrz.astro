@@ -1,0 +1,391 @@
+---
+// src/pages/architekci-wnetrz.astro
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Team from '../components/Team.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Architekci Wnętrz Toruń - Architektura Wnętrz',
+  description: 'Doświadczeni architekci wnętrz w Toruniu. Profesjonalna architektura wnętrz mieszkalnych i komercyjnych. Kompleksowe projekty od koncepcji do realizacji.',
+  keywords: 'architekci wnętrz Toruń, architektura wnętrz Toruń, architekt wnętrz, projektowanie wnętrz, Project Design',
+  canonical: 'https://project-design.pl/architekci-wnetrz'
+};
+
+const expertise = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+    </svg>`,
+    title: 'Analiza przestrzeni',
+    description: 'Kompleksowa ocena możliwości aranżacyjnych z uwzględnieniem ergonomii i funkcjonalności.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+    </svg>`,
+    title: 'Koncepcje kreatywne',
+    description: 'Autorskie projekty łączące najnowsze trendy z indywidualnym charakterem wnętrza.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+    </svg>`,
+    title: 'Kompleksowe rozwiązania',
+    description: 'Od pierwszego szkicu po finalną realizację - pełne wsparcie na każdym etapie.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+    </svg>`,
+    title: 'Dobór materiałów',
+    description: 'Profesjonalne doradztwo w wyborze materiałów wykończeniowych i wyposażenia.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+    </svg>`,
+    title: 'Dokumentacja techniczna',
+    description: 'Szczegółowe rysunki wykonawcze, specyfikacje i kosztorysy.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+    </svg>`,
+    title: 'Nadzór autorski',
+    description: 'Kontrola jakości wykonania i zgodności realizacji z projektem.'
+  }
+];
+
+const projectTypes = [
+  {
+    title: 'Mieszkania',
+    projects: '200+',
+    description: 'Od kawalerek po luksusowe apartamenty'
+  },
+  {
+    title: 'Domy',
+    projects: '150+',
+    description: 'Rezydencje i domy jednorodzinne'
+  },
+  {
+    title: 'Biura',
+    projects: '80+',
+    description: 'Przestrzenie biurowe i coworkingowe'
+  },
+  {
+    title: 'Lokale usługowe',
+    projects: '70+',
+    description: 'Sklepy, restauracje, gabinety'
+  }
+];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="/api/placeholder/1920/1080" 
+        alt="Architekci wnętrz Toruń"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/50 to-slate-900/70"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+      <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+        Architekci <span class="text-amber-500">wnętrz</span> Toruń
+      </h1>
+      <p class="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+        Profesjonalna architektura wnętrz to sztuka tworzenia przestrzeni, które inspirują, 
+        funkcjonują bezbłędnie i odzwierciedlają osobowość użytkowników.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#zespol" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl inline-block">
+          Poznaj architektów
+        </a>
+        <a href="#portfolio" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all inline-block">
+          Zobacz portfolio
+        </a>
+      </div>
+      
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+        {projectTypes.map(type => (
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl font-bold text-amber-500">{type.projects}</div>
+            <div class="text-white font-medium">{type.title}</div>
+            <div class="text-white/60 text-xs">{type.description}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Architektura wnętrz to <span class="text-amber-500">sztuka życia</span>
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Jako architekci wnętrz w Toruniu, wierzymy że przestrzeń ma moc transformacji. 
+            Nasze projekty to więcej niż estetyka - to środowiska wspierające dobre samopoczucie, 
+            produktywność i harmonię.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="fade-in-observe">
+            <h3 class="font-display text-3xl font-bold text-slate-900 mb-6">
+              Nasza filozofia projektowa
+            </h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              Architektura wnętrz w naszym wykonaniu to harmonijna synteza formy i funkcji. 
+              Każdy projekt rozpoczynamy od głębokiego zrozumienia kontekstu - kim są użytkownicy, 
+              jak żyją, pracują, odpoczywają.
+            </p>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              Stosujemy holistyczne podejście, łącząc wiedzę z zakresu psychologii przestrzeni, 
+              ergonomii, zrównoważonego projektowania i najnowszych trendów. Rezultatem są 
+              wnętrza, które nie tylko zachwycają wizualnie, ale przede wszystkim służą ludziom.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-slate-600">Przestrzenie transformowalne reagujące na potrzeby</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-slate-600">Projektowanie sensoryczne angażujące wszystkie zmysły</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-slate-600">Rozwiązania wspierające wellbeing i work-life balance</span>
+              </li>
+            </ul>
+          </div>
+          <div class="fade-in-observe">
+            <img 
+              src="/api/placeholder/600/700" 
+              alt="Architektura wnętrz"
+              class="rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Nasza <span class="text-amber-500">ekspertyza</span>
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Kompleksowe usługi architektury wnętrz - od koncepcji po realizację
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {expertise.map((item, index) => (
+          <div 
+            class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 fade-in-observe"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="text-amber-500 mb-4" set:html={item.icon} />
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+            <p class="text-slate-600">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <div id="zespol">
+    <Team />
+  </div>
+
+  <!-- Approach Section -->
+  <section class="py-20 bg-gradient-to-br from-amber-50 to-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6 text-center">
+          Nasze podejście do <span class="text-amber-500">architektury wnętrz</span>
+        </h2>
+        <p class="text-lg text-slate-600 text-center mb-12">
+          Każdy projekt to unikalna podróż, którą przechodzimy razem z klientem
+        </p>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-amber-500 font-bold text-xl">01</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Słuchamy i obserwujemy</h3>
+            <p class="text-slate-600 mb-4">
+              Każde zlecenie rozpoczynamy od dokładnego poznania klienta. Analizujemy styl życia, 
+              codzienne rytuały, marzenia i oczekiwania. To fundament każdego dobrego projektu.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Wywiad projektowy
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Analiza potrzeb
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Badanie przestrzeni
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-amber-500 font-bold text-xl">02</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Kreujemy i inspirujemy</h3>
+            <p class="text-slate-600 mb-4">
+              Tworzymy koncepcje, które łączą funkcjonalność z estetyką. Prezentujemy różnorodne 
+              rozwiązania, inspirujemy nowymi możliwościami, zawsze pozostając w dialogu z klientem.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Moodboardy i inspiracje
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Wizualizacje 3D
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Warianty rozwiązań
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-amber-500 font-bold text-xl">03</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Projektujemy szczegółowo</h3>
+            <p class="text-slate-600 mb-4">
+              Opracowujemy kompletną dokumentację projektową. Każdy detal jest przemyślany, 
+              każde rozwiązanie dokładnie zwymiarowane i opisane.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Rysunki techniczne
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Specyfikacje materiałów
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Kosztorysy
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-6">
+              <span class="text-amber-500 font-bold text-xl">04</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Realizujemy z pasją</h3>
+            <p class="text-slate-600 mb-4">
+              Nadzorujemy proces realizacji, współpracujemy z najlepszymi wykonawcami, 
+              dbamy o każdy szczegół. Projekt ożywa dokładnie tak, jak zaplanowaliśmy.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Nadzór autorski
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Koordynacja wykonawców
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Kontrola jakości
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <Testimonials />
+
+  <!-- Portfolio CTA -->
+  <section id="portfolio" class="py-20 bg-slate-900">
+    <div class="container mx-auto px-4 lg:px-8 text-center">
+      <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-6">
+        Zobacz nasze <span class="text-amber-500">portfolio</span>
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        Ponad 500 zrealizowanych projektów architektury wnętrz w Toruniu i regionie. 
+        Każde wnętrze to unikalna historia i spełnione marzenie naszych klientów.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl inline-block">
+          Zobacz realizacje
+        </a>
+        <a href="#kontakt" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all inline-block">
+          Rozpocznij projekt
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <Contact />
+</BaseLayout>

@@ -1,0 +1,311 @@
+---
+// src/pages/aranzacje-wnetrz.astro
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Aranżacje Wnętrz Toruń - Aranżacje Mieszkań i Domów',
+  description: 'Profesjonalne aranżacje wnętrz w Toruniu. Kompleksowe aranżacje mieszkań i domów. Indywidualne projekty dostosowane do Twojego stylu życia.',
+  keywords: 'aranżacje wnętrz Toruń, aranżacje mieszkań Toruń, aranżacje domów Toruń, projektowanie wnętrz, Project Design',
+  canonical: 'https://www.project-design.pl/arazacje-wnetrz'
+};
+
+const realizacje = [
+  {
+    title: 'Minimalistyczne mieszkanie',
+    type: 'Mieszkanie 75m²',
+    description: 'Przestronna aranżacja w stylu minimalistycznym z dominacją bieli i naturalnego drewna.',
+    features: ['Otwarta kuchnia', 'Przestronna sypialnia', 'Home office'],
+    image: '/api/placeholder/800/600'
+  },
+  {
+    title: 'Dom rodzinny Rubinkowo',
+    type: 'Dom 200m²',
+    description: 'Ciepłe, rodzinne wnętrze z dużą ilością naturalnego światła i przestrzennym salonem.',
+    features: ['5 sypialni', 'Strefa dzienna', 'Ogród zimowy'],
+    image: '/api/placeholder/800/600'
+  },
+  {
+    title: 'Loft industrialny',
+    type: 'Mieszkanie 120m²',
+    description: 'Surowy charakter połączony z nowoczesnymi elementami i wysokimi sufitami.',
+    features: ['Antresola', 'Cegła i beton', 'Duże przeszklenia'],
+    image: '/api/placeholder/800/600'
+  }
+];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img 
+        src="/api/placeholder/1920/1080" 
+        alt="Aranżacje wnętrz Toruń"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+      <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+        Aranżacje <span class="text-amber-500">wnętrz</span> Toruń
+      </h1>
+      <p class="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+        Tworzymy wyjątkowe aranżacje mieszkań i domów, które łączą funkcjonalność z estetyką. 
+        Każdy projekt to unikalna historia dostosowana do Twojego stylu życia.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#realizacje" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl">
+          Zobacz realizacje
+        </a>
+        <a href="#kontakt" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all">
+          Darmowa konsultacja
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Kompleksowe aranżacje <span class="text-amber-500">przestrzeni</span>
+        </h2>
+        <p class="text-lg text-slate-600">
+          Specjalizujemy się w tworzeniu aranżacji mieszkań i domów w Toruniu. Nasze projekty to harmonijna 
+          kombinacja Twoich potrzeb, dostępnej przestrzeni i najnowszych trendów.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Aranżacje mieszkań</h3>
+          <p class="text-slate-600 mb-6">
+            Od kawalerek po przestronne apartamenty - tworzymy funkcjonalne i piękne przestrzenie mieszkalne.
+          </p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Optymalizacja małych przestrzeni
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Strefy funkcjonalne
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Inteligentne systemy przechowywania
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Aranżacje domów</h3>
+          <p class="text-slate-600 mb-6">
+            Kompleksowe projekty domów jednorodzinnych z uwzględnieniem potrzeb wszystkich domowników.
+          </p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Planowanie całego domu
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Integracja z ogrodem
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Przestrzenie wielofunkcyjne
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Style i trendy</h3>
+          <p class="text-slate-600 mb-6">
+            Projektujemy w różnorodnych stylach - od minimalizmu po klasyczną elegancję.
+          </p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Skandynawski minimalizm
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Nowoczesny industrial
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Klasyczna elegancja
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="realizacje" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Nasze <span class="text-amber-500">realizacje</span>
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Zobacz przykłady naszych aranżacji wnętrz w Toruniu. Każdy projekt to indywidualna historia.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        {realizacje.map((projekt) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group">
+            <div class="relative h-64 overflow-hidden">
+              <img 
+                src={projekt.image} 
+                alt={projekt.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div class="absolute top-4 left-4 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                {projekt.type}
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="font-display text-2xl font-bold text-slate-900 mb-3">{projekt.title}</h3>
+              <p class="text-slate-600 mb-4">{projekt.description}</p>
+              <ul class="space-y-2 mb-6">
+                {projekt.features.map(feature => (
+                  <li class="flex items-center text-sm text-slate-500">
+                    <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a href="#" class="inline-flex items-center text-amber-500 font-medium hover:text-amber-600 transition-colors">
+                Zobacz szczegóły
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6 text-center">
+          Proces tworzenia <span class="text-amber-500">aranżacji</span>
+        </h2>
+        <p class="text-lg text-slate-600 text-center mb-12">
+          Nasz sprawdzony proces gwarantuje sukces każdego projektu
+        </p>
+
+        <div class="space-y-8">
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
+                1
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Analiza potrzeb</h3>
+              <p class="text-slate-600">
+                Rozpoczynamy od dokładnego poznania Twoich potrzeb, stylu życia i oczekiwań. 
+                Analizujemy przestrzeń, światło, akustykę i przepływ ruchu.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
+                2
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Koncepcja i wizualizacje</h3>
+              <p class="text-slate-600">
+                Tworzymy koncepcję aranżacji wraz z moodboardami i wizualizacjami 3D. 
+                Prezentujetajemy różne warianty rozwiązań.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
+                3
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Dokumentacja projektowa</h3>
+              <p class="text-slate-600">
+                Przygotowujemy kompletną dokumentację z rysunkami technicznymi, listą materiałów 
+                i szczegółowym kosztorysem.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
+                4
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Realizacja i nadzór</h3>
+              <p class="text-slate-600">
+                Nadzorujemy realizację projektu, współpracujemy z wykonawcami i dbamy 
+                o zgodność z projektem i terminowość prac.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <Contact />
+</BaseLayout>

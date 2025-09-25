@@ -1,0 +1,279 @@
+---
+
+// src/pages/studio-projektowania-wnetrz.astro
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Team from '../components/Team.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Studio Projektowania Wnętrz Toruń - Biuro Projektowania',
+  description: 'Profesjonalne studio projektowania wnętrz w Toruniu. Doświadczeni projektanci wnętrz, nowoczesne biuro projektowe, indywidualne podejście do każdego klienta.',
+  keywords: 'studio projektowania wnętrz Toruń, biuro projektowania wnętrz Toruń, projektanci wnętrz Toruń, Project Design studio',
+  canonical: 'https://project-design.pl/studio-projektowania-wnetrz'
+};
+
+const values = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+    </svg>`,
+    title: 'Kreatywność',
+    description: 'Każdy projekt to nowa historia, którą opowiadamy językiem designu i architektury.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+    </svg>`,
+    title: 'Współpraca',
+    description: 'Wierzymy w siłę zespołu i partnerską relację z klientem na każdym etapie projektu.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+    </svg>`,
+    title: 'Innowacja',
+    description: 'Wykorzystujemy najnowsze technologie i trendy, tworząc przestrzenie wyprzedzające czas.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+    </svg>`,
+    title: 'Pasja',
+    description: 'Projektowanie to nie tylko nasza praca, ale przede wszystkim pasja i sposób na życie.'
+  }
+];
+
+const capabilities = [
+  'Projektowanie mieszkań i domów',
+  'Aranżacje przestrzeni komercyjnych',
+  'Projekty biur i coworkingów',
+  'Hotele i restauracje',
+  'Sklepy i showroomy',
+  'Przestrzenie publiczne',
+  'Konsultacje projektowe',
+  'Home staging'
+];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="/api/placeholder/1920/1080" 
+        alt="Studio projektowania wnętrz Toruń"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/50"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
+      <div class="max-w-4xl">
+        <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+          Studio projektowania <span class="text-amber-500">wnętrz</span>
+        </h1>
+        <p class="text-xl text-white/90 mb-8 leading-relaxed">
+          Nasze biuro projektowania wnętrz w Toruniu to miejsce, gdzie rodzą się wyjątkowe koncepcje. 
+          Zespół doświadczonych projektantów wnętrz tworzy przestrzenie, które inspirują i zmieniają życie.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#zespol" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl inline-block text-center">
+            Poznaj nasz zespół
+          </a>
+          <a href="#kontakt" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all inline-block text-center">
+            Umów spotkanie
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Studio Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-in-observe">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            O naszym <span class="text-amber-500">studio</span>
+          </h2>
+          <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+            Project Design to więcej niż studio projektowania wnętrz - to kreatywna przestrzeń, 
+            gdzie łączymy doświadczenie z innowacyjnym podejściem do designu.
+          </p>
+          <p class="text-slate-600 mb-8 leading-relaxed">
+            Nasze biuro projektowania wnętrz w Toruniu specjalizuje się w tworzeniu kompleksowych 
+            aranżacji przestrzeni mieszkalnych i komercyjnych. Wierzymy, że dobre projektowanie 
+            to połączenie funkcjonalności, estetyki i głębokiego zrozumienia potrzeb użytkowników.
+          </p>
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div>
+              <div class="text-3xl font-bold text-amber-500 mb-2">10+</div>
+              <div class="text-slate-600">Lat doświadczenia</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-amber-500 mb-2">500+</div>
+              <div class="text-slate-600">Zrealizowanych projektów</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-amber-500 mb-2">2</div>
+              <div class="text-slate-600">Ekspertów w zespole</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-amber-500 mb-2">98%</div>
+              <div class="text-slate-600">Zadowolonych klientów</div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-in-observe">
+          <div class="relative">
+            <img 
+              src="/api/placeholder/600/800" 
+              alt="Wnętrze studia Project Design"
+              class="rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
+            <div class="absolute -bottom-6 -right-6 bg-amber-500 text-white p-6 rounded-2xl shadow-xl">
+              <div class="font-display text-2xl font-bold mb-2">Project Design</div>
+              <div class="text-sm">Studio Projektowania Wnętrz</div>
+              <div class="text-xs mt-1">Toruń, ul. Przykładowa 123</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Nasze <span class="text-amber-500">wartości</span>
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Wartości, które kierują naszym studiem i definiują sposób, w jaki pracujemy
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {values.map((value, index) => (
+          <div 
+            class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 fade-in-observe"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="text-amber-500 mb-4" set:html={value.icon} />
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-3">{value.title}</h3>
+            <p class="text-slate-600 text-sm">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Zakres naszych <span class="text-amber-500">możliwości</span>
+          </h2>
+          <p class="text-lg text-slate-600">
+            Kompleksowe usługi projektowania wnętrz dla każdego typu przestrzeni
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          {capabilities.map((capability) => (
+            <div class="flex items-center space-x-3 bg-slate-50 p-4 rounded-xl hover:bg-amber-50 transition-colors">
+              <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-slate-700 font-medium">{capability}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <div id="zespol">
+    <Team />
+  </div>
+
+  <!-- Process Section -->
+  <section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6 text-center">
+          Jak pracują nasi <span class="text-amber-500">projektanci</span>
+        </h2>
+        <p class="text-lg text-slate-600 text-center mb-12">
+          Sprawdzony proces projektowy gwarantuje sukces każdej realizacji
+        </p>
+
+        <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-12">
+          <div class="space-y-8">
+            <div class="flex items-start space-x-6">
+              <div class="flex-shrink-0 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center">
+                <span class="text-amber-500 font-bold text-xl">01</span>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Briefing i analiza</h3>
+                <p class="text-slate-600">
+                  Szczegółowe poznanie potrzeb klienta, analiza przestrzeni, określenie budżetu i harmonogramu. 
+                  Pierwszy etap to fundament całego projektu.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-6">
+              <div class="flex-shrink-0 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center">
+                <span class="text-amber-500 font-bold text-xl">02</span>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Koncepcja kreatywna</h3>
+                <p class="text-slate-600">
+                  Tworzenie moodboardów, szkiców, pierwszych wizualizacji. Prezentacja różnych wariantów 
+                  i wspólne dopracowywanie wybranego kierunku.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-6">
+              <div class="flex-shrink-0 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center">
+                <span class="text-amber-500 font-bold text-xl">03</span>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Projekt wykonawczy</h3>
+                <p class="text-slate-600">
+                  Szczegółowa dokumentacja techniczna, dobór materiałów, specyfikacja wyposażenia, 
+                  kosztorysy i harmonogram realizacji.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-6">
+              <div class="flex-shrink-0 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center">
+                <span class="text-amber-500 font-bold text-xl">04</span>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Nadzór autorski</h3>
+                <p class="text-slate-600">
+                  Kontrola realizacji, współpraca z wykonawcami, rozwiązywanie bieżących problemów, 
+                  dbałość o zgodność z projektem.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <Contact />
+</BaseLayout>

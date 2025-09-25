@@ -1,0 +1,99 @@
+---
+// src/components/Services.astro
+
+const services = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+    </svg>`,
+    title: 'Projektowanie mieszkań',
+    description: 'Kompleksowe aranżacje mieszkań dostosowane do Twojego stylu życia i budżetu.',
+    features: ['Optymalizacja przestrzeni', 'Dobór kolorystyki', 'Projekt oświetlenia']
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+    </svg>`,
+    title: 'Aranżacje domów',
+    description: 'Projekty domów jednorodzinnych z uwzględnieniem potrzeb całej rodziny.',
+    features: ['Strefy funkcjonalne', 'Ergonomia przestrzeni', 'Integracja z ogrodem']
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+    </svg>`,
+    title: 'Przestrzenie komercyjne',
+    description: 'Profesjonalne projekty biur, sklepów i lokali usługowych.',
+    features: ['Branding przestrzenny', 'Akustyka biurowa', 'Strefy spotkań']
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+    </svg>`,
+    title: 'Meble na wymiar',
+    description: 'Projektowanie i realizacja mebli idealnie dopasowanych do wnętrza.',
+    features: ['Indywidualne projekty', 'Wysokiej jakości materiały', 'Montaż w cenie']
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+    </svg>`,
+    title: 'Konsultacje projektowe',
+    description: 'Profesjonalne doradztwo w zakresie aranżacji i wyboru materiałów.',
+    features: ['Analiza potrzeb', 'Koncepcja aranżacji', 'Dobór materiałów']
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+    </svg>`,
+    title: 'Nadzór autorski',
+    description: 'Kontrola realizacji projektu zgodnie z założeniami i standardami.',
+    features: ['Koordynacja prac', 'Kontrola jakości', 'Wsparcie wykonawców']
+  }
+];
+---
+
+<section id="uslugi" class="py-20 bg-slate-50">
+  <div class="container mx-auto px-4 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16 fade-in-observe">
+      <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+        Nasze <span class="text-amber-500">usługi</span>
+      </h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        Oferujemy kompleksowe usługi projektowania wnętrz w Toruniu. Od pierwszej koncepcji po finalną realizację.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <div 
+          class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 fade-in-observe group"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <div class="text-amber-500 mb-4 group-hover:scale-110 transition-transform" set:html={service.icon} />
+          <h3 class="font-display text-2xl font-bold text-slate-900 mb-3">{service.title}</h3>
+          <p class="text-slate-600 mb-4">{service.description}</p>
+          <ul class="space-y-2">
+            {service.features.map(feature => (
+              <li class="flex items-center text-sm text-slate-500">
+                <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a href="#kontakt" class="inline-flex items-center text-amber-500 font-medium mt-6 group-hover:text-amber-600 transition-colors">
+            Dowiedz się więcej
+            <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

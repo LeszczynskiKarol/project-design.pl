@@ -1,0 +1,149 @@
+---
+// src/components/Navigation.astro
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: 'Strona główna' },
+  { href: '/arazacje-wnetrz', label: 'Aranżacje wnętrz' },
+  { href: '/studio-projektowania-wnetrz', label: 'Studio' },
+  { href: '/projektowanie-mebli', label: 'Meble na wymiar' },
+  { href: '/architekci-wnetrz', label: 'Architekci' }
+];
+---
+
+<header class="fixed top-0 w-full bg-white/95 backdrop-blur-lg z-50 shadow-sm">
+  <nav class="container mx-auto px-4 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-3 group">
+        <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform">
+          <span class="text-white font-bold text-xl">PD</span>
+        </div>
+        <div>
+          <span class="font-display text-2xl font-bold text-slate-900">Project Design</span>
+          <span class="block text-xs text-slate-500 -mt-1">Projektowanie Wnętrz Toruń</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden lg:flex items-center space-x-8">
+        {navItems.map(item => (
+          <li>
+            <a 
+              href={item.href} 
+              class={`text-sm font-medium transition-all hover:text-amber-500 relative py-2 ${
+                currentPath === item.href ? 'text-amber-500' : 'text-slate-700'
+              }`}
+            >
+              {item.label}
+              {currentPath === item.href && (
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-500"></span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA Button -->
+      <div class="hidden lg:block">
+        <a 
+          href="#kontakt" 
+          class="bg-amber-500 text-white px-6 py-3 rounded-full font-medium hover:bg-amber-600 transition-all hover:shadow-lg transform hover:scale-105"
+        >
+          Darmowa wycena
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-btn"
+        class="lg:hidden w-10 h-10 flex flex-col justify-center items-center space-y-1.5"
+        aria-label="Menu"
+      >
+        <span class="block w-6 h-0.5 bg-slate-900 transition-all"></span>
+        <span class="block w-6 h-0.5 bg-slate-900 transition-all"></span>
+        <span class="block w-6 h-0.5 bg-slate-900 transition-all"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-white transform translate-x-full transition-transform z-40">
+      <div class="flex flex-col h-full pt-20 px-8">
+        <ul class="space-y-6 mt-8">
+          {navItems.map(item => (
+            <li>
+              <a 
+                href={item.href} 
+                class={`text-lg font-medium block py-2 ${
+                  currentPath === item.href ? 'text-amber-500' : 'text-slate-700'
+                }`}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a 
+            href="#kontakt" 
+            class="bg-amber-500 text-white px-6 py-3 rounded-full font-medium inline-block hover:bg-amber-600 transition-all"
+          >
+            Darmowa wycena
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-20"></div>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let isOpen = false;
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      mobileMenu?.classList.remove('translate-x-full');
+      mobileMenu?.classList.add('translate-x-0');
+      document.body.style.overflow = 'hidden';
+      
+      // Animate hamburger to X
+      const spans = mobileMenuBtn.querySelectorAll('span');
+      spans[0].style.transform = 'rotate(45deg) translateY(6px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translateY(-6px)';
+    } else {
+      mobileMenu?.classList.remove('translate-x-0');
+      mobileMenu?.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+      
+      // Animate X back to hamburger
+      const spans = mobileMenuBtn.querySelectorAll('span');
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = '';
+    }
+  });
+
+  // Close menu when clicking on a link
+  const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+  mobileMenuLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      mobileMenu?.classList.remove('translate-x-0');
+      mobileMenu?.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+      
+      const spans = mobileMenuBtn?.querySelectorAll('span');
+      if (spans) {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = '';
+      }
+    });
+  });
+</script>

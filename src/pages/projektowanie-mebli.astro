@@ -1,0 +1,352 @@
+---
+
+// src/pages/projektowanie-mebli.astro
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Projektowanie Mebli Toruń - Meble na Wymiar',
+  description: 'Projektowanie mebli na wymiar w Toruniu. Indywidualne projekty mebli dopasowane do Twojego wnętrza. Szafy, kuchnie, garderoby, meble biurowe.',
+  keywords: 'projektowanie mebli Toruń, projektowanie mebli na wymiar Toruń, projekty mebli Toruń, meble na wymiar, Project Design',
+  canonical: 'https://project-design.pl/projektowanie-mebli'
+};
+
+const furnitureTypes = [
+  {
+    title: 'Kuchnie na wymiar',
+    description: 'Funkcjonalne i estetyczne kuchnie dopasowane do przestrzeni i stylu życia.',
+    features: ['Ergonomiczne rozplanowanie', 'Wysokiej jakości materiały', 'Nowoczesne systemy'],
+    image: '/api/placeholder/600/400'
+  },
+  {
+    title: 'Szafy i garderoby',
+    description: 'Pojemne systemy przechowywania wykorzystujące każdy centymetr przestrzeni.',
+    features: ['Systemy przesuwne', 'Organizery wewnętrzne', 'Oświetlenie LED'],
+    image: '/api/placeholder/600/400'
+  },
+  {
+    title: 'Meble łazienkowe',
+    description: 'Eleganckie i praktyczne rozwiązania do łazienek każdej wielkości.',
+    features: ['Materiały wodoodporne', 'Szuflady z cichym domykiem', 'Blaty na wymiar'],
+    image: '/api/placeholder/600/400'
+  },
+  {
+    title: 'Meble biurowe',
+    description: 'Ergonomiczne stanowiska pracy wspierające produktywność i komfort.',
+    features: ['Biurka regulowane', 'Systemy kablowe', 'Przestrzeń na dokumenty'],
+    image: '/api/placeholder/600/400'
+  },
+  {
+    title: 'Biblioteki i regały',
+    description: 'Kreatywne rozwiązania do przechowywania książek i eksponowania kolekcji.',
+    features: ['Konstrukcje modułowe', 'Półki regulowane', 'Podświetlenie ekspozycyjne'],
+    image: '/api/placeholder/600/400'
+  },
+  {
+    title: 'Zabudowy wnęk',
+    description: 'Optymalne wykorzystanie trudnych przestrzeni i nietypowych wymiarów.',
+    features: ['Dopasowanie milimetrowe', 'Maksymalizacja przestrzeni', 'Estetyczne wykończenie'],
+    image: '/api/placeholder/600/400'
+  }
+];
+
+const process = [
+  {
+    title: 'Pomiary i konsultacja',
+    description: 'Dokładne pomiary przestrzeni i analiza potrzeb użytkowania.'
+  },
+  {
+    title: 'Projekt koncepcyjny',
+    description: 'Tworzenie projektu 3D z uwzględnieniem ergonomii i estetyki.'
+  },
+  {
+    title: 'Dobór materiałów',
+    description: 'Wybór najlepszych materiałów i okuć w ramach budżetu.'
+  },
+  {
+    title: 'Produkcja',
+    description: 'Precyzyjna produkcja w lokalnych warsztatach stolarskich.'
+  },
+  {
+    title: 'Montaż',
+    description: 'Profesjonalny montaż przez doświadczonych specjalistów.'
+  }
+];
+
+const materials = [
+  'Płyty laminowane wysokiej jakości',
+  'Forniry naturalne',
+  'Drewno lite',
+  'MDF lakierowany',
+  'Szkło i lustra',
+  'Metal i stal nierdzewna',
+  'Kamień naturalny',
+  'Kompozyty'
+];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-50 to-white">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 bg-pattern-triangles"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-fade-in">
+          <h1 class="font-display text-5xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
+            Projektowanie <span class="text-amber-500">mebli</span> na wymiar
+          </h1>
+          <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+            Tworzymy unikalne projekty mebli idealnie dopasowane do Twojego wnętrza. 
+            Każdy mebel to połączenie funkcjonalności, estetyki i najwyższej jakości wykonania.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#realizacje" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl inline-block text-center">
+              Zobacz realizacje
+            </a>
+            <a href="#kontakt" class="border-2 border-slate-900 text-slate-900 px-8 py-4 rounded-full font-medium text-lg hover:bg-slate-900 hover:text-white transition-all inline-block text-center">
+              Darmowa wycena
+            </a>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-6 mt-12">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-amber-500">100%</div>
+              <div class="text-sm text-slate-600">Na wymiar</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-amber-500">5 lat</div>
+              <div class="text-sm text-slate-600">Gwarancji</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-amber-500">500+</div>
+              <div class="text-sm text-slate-600">Realizacji</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative animate-slide-left">
+          <img 
+            src="/api/placeholder/700/800" 
+            alt="Meble na wymiar Toruń"
+            class="rounded-2xl shadow-2xl"
+            loading="eager"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-bold text-slate-900">Projekt + Realizacja</div>
+                <div class="text-sm text-slate-500">Kompleksowa obsługa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Custom Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Dlaczego meble <span class="text-amber-500">na wymiar</span>?
+        </h2>
+        <p class="text-lg text-slate-600">
+          Meble na wymiar to inwestycja w komfort, funkcjonalność i unikalny charakter wnętrza
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-slate-50 p-6 rounded-2xl hover:shadow-lg transition-all">
+          <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-2">Idealne dopasowanie</h3>
+          <p class="text-sm text-slate-600">Każdy centymetr przestrzeni wykorzystany optymalnie</p>
+        </div>
+        
+        <div class="bg-slate-50 p-6 rounded-2xl hover:shadow-lg transition-all">
+          <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-2">Unikalny design</h3>
+          <p class="text-sm text-slate-600">Projekt dostosowany do Twojego stylu i potrzeb</p>
+        </div>
+        
+        <div class="bg-slate-50 p-6 rounded-2xl hover:shadow-lg transition-all">
+          <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-2">Najwyższa jakość</h3>
+          <p class="text-sm text-slate-600">Wybrane materiały i precyzyjne wykonanie</p>
+        </div>
+        
+        <div class="bg-slate-50 p-6 rounded-2xl hover:shadow-lg transition-all">
+          <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-2">Opłacalność</h3>
+          <p class="text-sm text-slate-600">Trwała inwestycja na lata użytkowania</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Furniture Types Section -->
+  <section id="realizacje" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Rodzaje <span class="text-amber-500">mebli</span> na wymiar
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Projektujemy i realizujemy wszystkie typy mebli dostosowanych do indywidualnych potrzeb
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {furnitureTypes.map((type, index) => (
+          <div 
+            class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all fade-in-observe group"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src={type.image} 
+                alt={type.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold text-slate-900 mb-3">{type.title}</h3>
+              <p class="text-slate-600 mb-4">{type.description}</p>
+              <ul class="space-y-2">
+                {type.features.map(feature => (
+                  <li class="flex items-center text-sm text-slate-500">
+                    <svg class="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Proces projektowania <span class="text-amber-500">mebli</span>
+          </h2>
+          <p class="text-lg text-slate-600">
+            Od pomysłu do realizacji - sprawdzony proces gwarantujący satysfakcję
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-6">
+          {process.map((step, index) => (
+            <div class="text-center fade-in-observe" style={`animation-delay: ${index * 100}ms`}>
+              <div class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
+                {index + 1}
+              </div>
+              <h3 class="font-semibold text-slate-900 mb-2">{step.title}</h3>
+              <p class="text-sm text-slate-600">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materials Section -->
+  <section class="py-20 bg-gradient-to-br from-slate-900 to-slate-800">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-6">
+          Materiały najwyższej <span class="text-amber-500">jakości</span>
+        </h2>
+        <p class="text-lg text-white/80 mb-12">
+          Współpracujemy tylko ze sprawdzonymi dostawcami, gwarantując trwałość i estetykę
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {materials.map((material) => (
+            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 hover:bg-white/20 transition-all">
+              <span class="text-white font-medium">{material}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#kontakt" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl inline-block">
+            Zapytaj o wycenę
+          </a>
+          <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all inline-block">
+            Zobacz próbki materiałów
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee Section -->
+  <section class="py-20 bg-amber-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Gwarancja <span class="text-amber-500">satysfakcji</span>
+        </h2>
+        <p class="text-lg text-slate-600 mb-12">
+          Zapewniamy kompleksową obsługę od projektu po montaż
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="text-4xl font-bold text-amber-500 mb-4">5 lat</div>
+            <h3 class="font-semibold text-slate-900 mb-2">Gwarancja</h3>
+            <p class="text-sm text-slate-600">Na wszystkie produkowane meble</p>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="text-4xl font-bold text-amber-500 mb-4">0 zł</div>
+            <h3 class="font-semibold text-slate-900 mb-2">Projekt i wycena</h3>
+            <p class="text-sm text-slate-600">Bezpłatne konsultacje i kosztorys</p>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="text-4xl font-bold text-amber-500 mb-4">100%</div>
+            <h3 class="font-semibold text-slate-900 mb-2">Zadowolenia</h3>
+            <p class="text-sm text-slate-600">Gwarantujemy pełną satysfakcję</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <Contact />
+</BaseLayout>

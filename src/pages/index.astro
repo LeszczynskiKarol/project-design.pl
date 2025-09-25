@@ -1,0 +1,112 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Process from '../components/Process.astro';
+import Team from '../components/Team.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Projektowanie Wnętrz Toruń - Projekty Wnętrz',
+  description: 'Profesjonalne projektowanie wnętrz w Toruniu. Tworzymy unikalne projekty wnętrz mieszkań, domów i biur. Doświadczeni projektanci, indywidualne podejście. Darmowa wycena.',
+  keywords: 'projektowanie wnętrz Toruń, projekty wnętrz Toruń, projektant wnętrz Toruń, aranżacja wnętrz Toruń, Project Design'
+};
+---
+
+<BaseLayout {...seoData}>
+  <Hero />
+  
+  <!-- About Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-in-observe">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Przestrzeń stworzona <span class="text-amber-500">wokół Ciebie</span>
+          </h2>
+          <p class="text-slate-600 mb-6 leading-relaxed">
+            Każde zlecenie projektowania wnętrz traktujemy jak fascynującą podróż odkrywania osobowości klienta. Słuchamy, obserwujemy, zadajemy pytania – bo tylko tak powstają aranżacje, które naprawdę zmieniają życie.
+          </p>
+          <p class="text-slate-600 mb-8 leading-relaxed">
+            Specjalizujemy się w tworzeniu wyjątkowych aranżacji domów i mieszkań w Toruniu. Dokładamy wszelkich starań, aby każdy projekt był unikalną historią opowiedzianą językiem architektury.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="text-slate-600">Analiza codziennych rytuałów i nawyków mieszkańców</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="text-slate-600">Odkrywanie ukrytych potrzeb przestrzennych</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="text-slate-600">Projektowanie z myślą o przyszłości i ewolucji potrzeb</span>
+            </li>
+          </ul>
+        </div>
+        <div class="fade-in-observe relative">
+          <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+            <img 
+              src="/api/placeholder/600/700" 
+              alt="Nowoczesne wnętrze zaprojektowane przez Project Design"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-amber-500 text-white p-6 rounded-2xl shadow-xl">
+            <div class="text-4xl font-bold">10+</div>
+            <div class="text-sm">Lat doświadczenia</div>
+          </div>
+          <div class="absolute -top-6 -right-6 bg-slate-900 text-white p-6 rounded-2xl shadow-xl">
+            <div class="text-4xl font-bold">500+</div>
+            <div class="text-sm">Zrealizowanych projektów</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Services />
+  <Process />
+  <Portfolio />
+  <Team />
+  <Testimonials />
+  
+  <!-- Stats Section -->
+  <section class="py-20 bg-gradient-to-br from-slate-900 to-slate-800">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center fade-in-observe">
+          <div class="text-4xl lg:text-5xl font-bold text-amber-500 mb-2">500+</div>
+          <div class="text-white">Projektów</div>
+        </div>
+        <div class="text-center fade-in-observe">
+          <div class="text-4xl lg:text-5xl font-bold text-amber-500 mb-2">98%</div>
+          <div class="text-white">Zadowolonych klientów</div>
+        </div>
+        <div class="text-center fade-in-observe">
+          <div class="text-4xl lg:text-5xl font-bold text-amber-500 mb-2">10+</div>
+          <div class="text-white">Lat doświadczenia</div>
+        </div>
+        <div class="text-center fade-in-observe">
+          <div class="text-4xl lg:text-5xl font-bold text-amber-500 mb-2">2</div>
+          <div class="text-white">Ekspertów</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <Contact />
+</BaseLayout>
