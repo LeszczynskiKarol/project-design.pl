@@ -1,6 +1,0 @@
-{
-    "RedirectAllRequestsTo": {
-        "HostName": "www.project-design.pl",
-        "Protocol": "https"
-    }
-}
