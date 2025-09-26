@@ -1,8 +1,34 @@
 ---
 // src/components/Testimonials.astro
 
+// Definicje typów
+interface GoogleReview {
+  id: string;
+  author: string;
+  verified: boolean;
+  text: string;
+  rating: number;
+  date: string;
+}
+
+interface Testimonial {
+  id?: string;
+  name: string;
+  role: string;
+  content: string;
+  contentTruncated?: string;
+  rating: number;
+  project: string;
+}
+
+interface GoogleApiResponse {
+  reviews: GoogleReview[];
+  rating: number;
+  totalReviews: number;
+}
+
 // Fallback testimonials (używane gdy API nie odpowiada)
-const fallbackTestimonials = [
+const fallbackTestimonials: Testimonial[] = [
   {
     name: 'Anna Kowalska',
     role: 'Właścicielka apartamentu',
@@ -27,14 +53,14 @@ const fallbackTestimonials = [
 ];
 
 // Funkcja do skracania tekstu
-function truncateText(text, maxLength = 300) {
+function truncateText(text: string, maxLength: number = 300): string {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength).trim() + '...';
 }
 
 // Funkcja do mapowania opinii z Google na format używany w komponencie
-function formatGoogleReviews(googleReviews) {
-  return googleReviews.map((review) => ({
+function formatGoogleReviews(googleReviews: GoogleReview[]): Testimonial[] {
+  return googleReviews.map((review: GoogleReview) => ({
     id: review.id,
     name: review.author,
     role: review.verified ? 'Zweryfikowany klient' : 'Klient',
@@ -46,9 +72,12 @@ function formatGoogleReviews(googleReviews) {
 }
 
 // Pobieranie opinii z Google API
-let allTestimonials = fallbackTestimonials;
-let totalRating = 5.0;
-let totalReviews = 500;
+let allTestimonials: Testimonial[] = fallbackTestimonials.map(t => ({
+  ...t,
+  contentTruncated: truncateText(t.content)
+}));
+let totalRating: number = 5.0;
+let totalReviews: number = 500;
 
 // Pobierz opinie z Google API
 const apiEndpoint = import.meta.env.PUBLIC_REVIEWS_API_ENDPOINT;
@@ -58,7 +87,7 @@ if (apiEndpoint) {
     const response = await fetch(apiEndpoint);
     
     if (response.ok) {
-      const data = await response.json();
+      const data: GoogleApiResponse = await response.json();
       
       // Jeśli mamy opinie z Google, użyj ich
       if (data.reviews && data.reviews.length > 0) {
@@ -78,12 +107,10 @@ const initialTestimonials = allTestimonials.slice(0, 3);
 const additionalTestimonials = allTestimonials.slice(3, 5);
 
 // Funkcja do wyświetlania gwiazdek
-function getStarsArray(rating) {
+function getStarsArray(rating: number): boolean[] {
   return Array(5).fill(0).map((_, i) => i < Math.floor(rating));
 }
 
-// Link do wszystkich opinii Google
-const googleReviewsLink = "https://www.google.com/search?q=project+design+toruń+opinie#lrd=0x47124cf1e8cb5c17:0x929206374ca70583,1,,,,";
 ---
 
 <section class="py-20 bg-slate-50" id="testimonials-section">
@@ -271,32 +298,37 @@ const googleReviewsLink = "https://www.google.com/search?q=project+design+toruń
 
 <script>
   // Toggle individual testimonial text
-  document.querySelectorAll('.toggle-text').forEach(button => {
-    button.addEventListener('click', function() {
-      const card = this.closest('.testimonial-card');
-      const truncated = card.querySelector('.truncated-text');
-      const full = card.querySelector('.full-text');
+  document.querySelectorAll<HTMLButtonElement>('.toggle-text').forEach(button => {
+    button.addEventListener('click', function(event) {
+      const target = event.currentTarget as HTMLButtonElement;
+      const card = target.closest('.testimonial-card');
+      if (!card) return;
+      
+      const truncated = card.querySelector<HTMLElement>('.truncated-text');
+      const full = card.querySelector<HTMLElement>('.full-text');
+      
+      if (!truncated || !full) return;
       
       if (full.classList.contains('hidden')) {
         truncated.classList.add('hidden');
         full.classList.remove('hidden');
-        this.textContent = 'Ukryj';
+        target.textContent = 'Ukryj';
       } else {
         truncated.classList.remove('hidden');
         full.classList.add('hidden');
-        this.textContent = 'Zobacz więcej';
+        target.textContent = 'Zobacz więcej';
       }
     });
   });
 
   // Load more testimonials
-  const loadMoreBtn = document.getElementById('load-more-testimonials');
+  const loadMoreBtn = document.getElementById('load-more-testimonials') as HTMLButtonElement | null;
   if (loadMoreBtn) {
     let moreLoaded = false;
     
-    loadMoreBtn.addEventListener('click', function() {
-      const additionalCards = document.querySelectorAll('.additional-testimonial');
-      const grid = document.getElementById('testimonials-grid');
+    loadMoreBtn.addEventListener('click', function(event) {
+      const target = event.currentTarget as HTMLButtonElement;
+      const additionalCards = document.querySelectorAll<HTMLElement>('.additional-testimonial');
       
       if (!moreLoaded) {
         // Show additional testimonials
@@ -310,7 +342,7 @@ const googleReviewsLink = "https://www.google.com/search?q=project+design+toruń
         });
         
         // Change button to "Zobacz wszystkie opinie"
-        this.innerHTML = `
+        target.innerHTML = `
           <span>Zobacz wszystkie opinie</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
