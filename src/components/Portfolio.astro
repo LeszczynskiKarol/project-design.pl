@@ -1,48 +1,77 @@
 ---
 // src/components/Portfolio.astro
 
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  description?: string;
+  location?: string;
+  area?: string;
+  year?: string;
+}
+
+const projects: Project[] = [
   {
-    title: 'Apartament Starówka',
-    category: 'Mieszkanie',
-    area: '120 m²',
-    style: 'Nowoczesny minimalizm',
-    image: '/api/placeholder/600/400'
-  },
-  {
-    title: 'Dom nad Wisłą',
-    category: 'Dom jednorodzinny',
-    area: '250 m²',
-    style: 'Skandynawski',
-    image: '/api/placeholder/600/400'
-  },
-  {
-    title: 'Biuro Kreatywne',
-    category: 'Przestrzeń komercyjna',
-    area: '180 m²',
-    style: 'Industrial',
-    image: '/api/placeholder/600/400'
-  },
-  {
-    title: 'Loft Bydgoskie',
-    category: 'Mieszkanie',
+    id: 1,
+    title: 'Pokój dziecięcy',
+    category: 'Mieszkanie',    
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+    description: 'Praktyczny i zaprojektowany z myślą o najmłodszych pokój dziecięcy',
+    location: 'Toruń',
     area: '85 m²',
-    style: 'Loftowy',
-    image: '/api/placeholder/600/400'
+    year: '2024'
   },
   {
-    title: 'Willa Rubinkowo',
-    category: 'Dom jednorodzinny',
-    area: '320 m²',
-    style: 'Klasyczny elegancki',
-    image: '/api/placeholder/600/400'
+    id: 2,
+    title: 'Rosette Residence',
+    category: 'Mieszkanie',    
+    image: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+    description: 'Nowoczesny apartament w sercu toruńskiej starówki',
+    location: 'Toruń',
+    area: '33 m²',
+    year: '2024'
   },
   {
-    title: 'Kawiarnia Centrum',
-    category: 'Przestrzeń komercyjna',
-    area: '95 m²',
-    style: 'Boho',
-    image: '/api/placeholder/600/400'
+    id: 3,
+    title: 'Restauracja Panorama',
+    category: 'Przestrzeń komercyjna',    
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+    description: 'Przytulne i inspirujące wnętrze Restauracji Panorama',
+    location: 'Toruń',
+    area: '120 m²',
+    year: '2023'
+  },
+  {
+    id: 4,
+    title: 'Salon z aneksem',
+    category: 'Mieszkanie',    
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+    description: 'Nowoczesny i funkcjonalny salon z aneksem',
+    location: 'Toruń',
+    area: '55 m²',
+    year: '2024'
+  },
+  {
+    id: 5,
+    title: 'Rezydencja Jaskółcza',
+    category: 'Dom jednorodzinny',    
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+    description: 'Elegancka willa w spokojnej dzielnicy',
+    location: 'Toruń',
+    area: '250 m²',
+    year: '2023'
+  },
+  {
+    id: 6,
+    title: 'Bi mii open space',
+    category: 'Przestrzeń komercyjna',    
+    image: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+    description: 'Nowoczesna przestrzeń biurowa',
+    location: 'Toruń',
+    area: '180 m²',
+    year: '2022'
   }
 ];
 ---
@@ -61,25 +90,27 @@ const projects = [
 
     <!-- Filter Buttons -->
     <div class="flex flex-wrap justify-center gap-4 mb-12">
-      <button class="px-6 py-2 rounded-full bg-amber-500 text-white font-medium transition-all hover:bg-amber-600">
+      <button data-filter="all" class="filter-btn active px-6 py-2 rounded-full bg-amber-500 text-white font-medium transition-all hover:bg-amber-600">
         Wszystkie
       </button>
-      <button class="px-6 py-2 rounded-full border-2 border-slate-200 text-slate-700 font-medium transition-all hover:border-amber-500 hover:text-amber-500">
+      <button data-filter="Mieszkanie" class="filter-btn px-6 py-2 rounded-full border-2 border-slate-200 text-slate-700 font-medium transition-all hover:border-amber-500 hover:text-amber-500">
         Mieszkania
       </button>
-      <button class="px-6 py-2 rounded-full border-2 border-slate-200 text-slate-700 font-medium transition-all hover:border-amber-500 hover:text-amber-500">
+      <button data-filter="Dom jednorodzinny" class="filter-btn px-6 py-2 rounded-full border-2 border-slate-200 text-slate-700 font-medium transition-all hover:border-amber-500 hover:text-amber-500">
         Domy
       </button>
-      <button class="px-6 py-2 rounded-full border-2 border-slate-200 text-slate-700 font-medium transition-all hover:border-amber-500 hover:text-amber-500">
+      <button data-filter="Przestrzeń komercyjna" class="filter-btn px-6 py-2 rounded-full border-2 border-slate-200 text-slate-700 font-medium transition-all hover:border-amber-500 hover:text-amber-500">
         Komercyjne
       </button>
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
       {projects.map((project, index) => (
         <div 
-          class="group cursor-pointer fade-in-observe"
+          class="portfolio-item group cursor-pointer fade-in-observe"
+          data-category={project.category}
+          data-project-id={project.id}
           style={`animation-delay: ${index * 100}ms`}
         >
           <div class="relative overflow-hidden rounded-2xl shadow-lg group-hover:shadow-2xl transition-all">
@@ -91,22 +122,15 @@ const projects = [
             />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <div class="flex items-center space-x-4 text-white/80 text-sm mb-2">
-                  <span class="flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-                    </svg>
-                    {project.area}
-                  </span>
-                  <span>•</span>
-                  <span>{project.style}</span>
-                </div>
-                <a href="#" class="inline-flex items-center text-white font-medium hover:text-amber-400 transition-colors">
-                  Zobacz projekt
-                  <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                <button 
+                  class="open-modal inline-flex items-center text-white font-medium hover:text-amber-400 transition-colors"
+                  data-project-index={index}
+                >
+                  <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
                   </svg>
-                </a>
+                  Zobacz projekt
+                </button>
               </div>
             </div>
           </div>
@@ -129,3 +153,478 @@ const projects = [
     </div>
   </div>
 </section>
+
+<!-- Image Preview Modal -->
+<div id="imageModal" class="image-modal fixed inset-0 z-[9999] hidden">
+  <!-- Backdrop -->
+  <div class="modal-backdrop absolute inset-0 bg-black/95 backdrop-blur-md"></div>
+  
+  <!-- Modal Content -->
+  <div class="relative h-full w-full flex flex-col">
+    <!-- Header -->
+    <div class="modal-header absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/50 to-transparent">
+      <div class="flex items-center justify-between p-4 lg:p-6">
+        <div class="text-white">
+          <h3 id="modalTitle" class="text-xl lg:text-2xl font-bold mb-1"></h3>
+          <div class="flex items-center gap-4 text-sm text-white/80">
+            <span id="modalCategory"></span>
+            <span id="modalCounter"></span>
+          </div>
+        </div>
+        <button 
+          id="closeModal" 
+          class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
+          aria-label="Zamknij"
+        >
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Image Container -->
+    <div class="flex-1 flex items-center justify-center p-4 lg:p-12 min-h-0">
+      <div class="relative w-full h-full flex items-center justify-center">
+        <img 
+          id="modalImage" 
+          src="" 
+          alt=""
+          class="w-auto h-auto max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+          style="max-height: calc(100vh - 200px);"
+        />
+        
+        <!-- Loading Spinner -->
+        <div id="imageLoader" class="absolute inset-0 flex items-center justify-center" style="display: none;">
+          <div class="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <button 
+      id="prevImage" 
+      class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
+      aria-label="Poprzednie zdjęcie"
+    >
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    
+    <button 
+      id="nextImage" 
+      class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm"
+      aria-label="Następne zdjęcie"
+    >
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+
+    <!-- Footer Info -->
+    <div class="modal-footer absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent">
+      <div class="p-4 lg:p-6">
+        <div class="max-w-4xl mx-auto">
+          <p id="modalDescription" class="text-white/90 text-sm lg:text-base mb-2"></p>
+          <div class="flex flex-wrap gap-4 text-sm text-white/70">
+            <span id="modalLocation" class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </span>
+            <span id="modalArea" class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+              </svg>
+            </span>
+            <span id="modalYear" class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thumbnail Strip -->
+    <div class="absolute bottom-20 left-1/2 -translate-x-1/2 hidden lg:flex gap-2 p-2 bg-black/30 rounded-lg backdrop-blur-sm">
+      {projects.map((project, index) => (
+        <button 
+          class="thumbnail-btn w-16 h-16 rounded overflow-hidden opacity-60 hover:opacity-100 transition-opacity"
+          data-index={index}
+        >
+          <img 
+            src={project.image} 
+            alt={project.title}
+            class="w-full h-full object-cover"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .filter-btn.active {
+    @apply bg-amber-500 text-white border-amber-500;
+  }
+
+  .portfolio-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .portfolio-item.hidden {
+    display: none;
+  }
+
+  .portfolio-item.filtering {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .image-modal {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-modal.show {
+    opacity: 1;
+  }
+
+  .image-modal.hidden {
+    display: none;
+  }
+
+  #modalImage {
+    transition: opacity 0.3s ease;
+  }
+
+  #modalImage.loading {
+    opacity: 0;
+  }
+
+  .thumbnail-btn.active {
+    @apply opacity-100 ring-2 ring-amber-500;
+  }
+
+  @media (max-width: 768px) {
+    .swipe-left {
+      animation: swipeLeft 0.3s ease;
+    }
+
+    .swipe-right {
+      animation: swipeRight 0.3s ease;
+    }
+
+    @keyframes swipeLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    @keyframes swipeRight {
+      from { transform: translateX(0); }
+      to { transform: translateX(100%); }
+    }
+  }
+</style>
+
+<script>
+  // TypeScript interfaces
+  interface Project {
+    id: number;
+    title: string;
+    category: string;
+    image: string;
+    description?: string;
+    location?: string;
+    area?: string;
+    year?: string;
+  }
+
+  // Store projects data globally - PRAWDZIWE DANE
+  const projectsData: Project[] = [
+    {
+      id: 1,
+      title: 'Pokój dziecięcy',
+      category: 'Mieszkanie',    
+      image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+      description: 'Praktyczny i zaprojektowany z myślą o najmłodszych pokój dziecięcy',
+      location: 'Toruń',
+      area: '85 m²',
+      year: '2024'
+    },
+    {
+      id: 2,
+      title: 'Rosette Residence',
+      category: 'Mieszkanie',    
+      image: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+      description: 'Nowoczesny apartament w sercu toruńskiej starówki',
+      location: 'Toruń',
+      area: '33 m²',
+      year: '2024'
+    },
+    {
+      id: 3,
+      title: 'Restauracja Panorama',
+      category: 'Przestrzeń komercyjna',    
+      image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+      description: 'Przytulne i inspirujące wnętrze Restauracji Panorama',
+      location: 'Toruń',
+      area: '120 m²',
+      year: '2023'
+    },
+    {
+      id: 4,
+      title: 'Salon z aneksem',
+      category: 'Mieszkanie',    
+      image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+      description: 'Nowoczesny i funkcjonalny salon z aneksem',
+      location: 'Toruń',
+      area: '55 m²',
+      year: '2024'
+    },
+    {
+      id: 5,
+      title: 'Rezydencja Jaskółcza',
+      category: 'Dom jednorodzinny',    
+      image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+      description: 'Elegancka willa w spokojnej dzielnicy',
+      location: 'Toruń',
+      area: '250 m²',
+      year: '2023'
+    },
+    {
+      id: 6,
+      title: 'Bi mii open space',
+      category: 'Przestrzeń komercyjna',    
+      image: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+      description: 'Nowoczesna przestrzeń biurowa',
+      location: 'Toruń',
+      area: '180 m²',
+      year: '2022'
+    }
+  ];
+
+  let currentImageIndex: number = 0;
+  let filteredProjects: Project[] = [...projectsData];
+  let touchStartX: number = 0;
+  let touchEndX: number = 0;
+
+  // Filter functionality
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const portfolioItems = document.querySelectorAll<HTMLElement>('.portfolio-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      if (!filter) return;
+
+      // Filter items
+      portfolioItems.forEach(item => {
+        const itemCategory = item.dataset.category;
+        if (filter === 'all' || itemCategory === filter) {
+          item.classList.remove('hidden', 'filtering');
+        } else {
+          item.classList.add('filtering');
+          setTimeout(() => {
+            item.classList.add('hidden');
+          }, 300);
+        }
+      });
+
+      // Update filtered projects for modal
+      if (filter === 'all') {
+        filteredProjects = [...projectsData];
+      } else {
+        filteredProjects = projectsData.filter(p => p.category === filter);
+      }
+    });
+  });
+
+  // Modal functionality
+  const modal = document.getElementById('imageModal') as HTMLElement | null;
+  const modalImage = document.getElementById('modalImage') as HTMLImageElement | null;
+  const modalTitle = document.getElementById('modalTitle') as HTMLElement | null;
+  const modalCategory = document.getElementById('modalCategory') as HTMLElement | null;
+  const modalCounter = document.getElementById('modalCounter') as HTMLElement | null;
+  const modalDescription = document.getElementById('modalDescription') as HTMLElement | null;
+  const modalLocation = document.getElementById('modalLocation') as HTMLElement | null;
+  const modalArea = document.getElementById('modalArea') as HTMLElement | null;
+  const modalYear = document.getElementById('modalYear') as HTMLElement | null;
+  const imageLoader = document.getElementById('imageLoader') as HTMLElement | null;
+  const closeModalBtn = document.getElementById('closeModal') as HTMLButtonElement | null;
+  const prevBtn = document.getElementById('prevImage') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('nextImage') as HTMLButtonElement | null;
+  const openModalBtns = document.querySelectorAll<HTMLButtonElement>('.open-modal');
+  const thumbnailBtns = document.querySelectorAll<HTMLButtonElement>('.thumbnail-btn');
+
+  function updateModalContent(index: number): void {
+    const project = filteredProjects[index];
+    if (!project || !modalImage || !imageLoader || !modalTitle || !modalCategory || 
+        !modalCounter || !modalDescription || !modalLocation || !modalArea || !modalYear) return;
+
+    // Show loader
+    modalImage.classList.add('loading');
+    imageLoader.style.display = 'flex';
+
+    // Preload image
+    const img = new Image();
+    img.onload = () => {
+      modalImage.src = project.image;
+      modalImage.alt = project.title;
+      modalImage.classList.remove('loading');
+      imageLoader.style.display = 'none';
+    };
+    img.src = project.image;
+
+    // Update text content
+    modalTitle.textContent = project.title;
+    modalCategory.textContent = project.category;
+    modalCounter.textContent = `${index + 1} / ${filteredProjects.length}`;
+    modalDescription.textContent = project.description || '';
+    modalLocation.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> ${project.location || ''}`;
+    modalArea.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg> ${project.area || ''}`;
+    modalYear.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> ${project.year || ''}`;
+
+    // Update thumbnail active state
+    thumbnailBtns.forEach((btn, i) => {
+      if (i === index) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  function openModal(index: number): void {
+  console.log('Opening modal for index:', index);
+    if (!modal) {
+      console.error('Modal not found!');
+      return;
+    }
+    currentImageIndex = index;
+    updateModalContent(currentImageIndex);
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(): void {
+    if (!modal) return;
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+    document.body.style.overflow = '';
+  }
+
+  function nextImage(): void {
+    currentImageIndex = (currentImageIndex + 1) % filteredProjects.length;
+    updateModalContent(currentImageIndex);
+  }
+
+  function prevImage(): void {
+    currentImageIndex = (currentImageIndex - 1 + filteredProjects.length) % filteredProjects.length;
+    updateModalContent(currentImageIndex);
+  }
+
+  // Event listeners
+  portfolioItems.forEach((item, index) => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal(index);
+    });
+  });
+
+
+
+  thumbnailBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const indexStr = btn.dataset.index;
+      if (indexStr !== undefined) {
+        const index = parseInt(indexStr);
+        currentImageIndex = index;
+        updateModalContent(currentImageIndex);
+      }
+    });
+  });
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', prevImage);
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', nextImage);
+  }
+
+  // Close on backdrop click
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target === modal || target.classList.contains('modal-backdrop')) {
+        closeModal();
+      }
+    });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (modal && !modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    }
+  });
+
+  // Touch gestures for mobile
+  if (modal) {
+    modal.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    modal.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+  }
+
+  function handleSwipe(): void {
+    if (touchEndX < touchStartX - 50) {
+      nextImage(); // Swipe left
+    }
+    if (touchEndX > touchStartX + 50) {
+      prevImage(); // Swipe right
+    }
+  }
+
+  // Preload adjacent images for smooth navigation
+  function preloadAdjacentImages(): void {
+    if (filteredProjects.length > 1) {
+      const nextIndex = (currentImageIndex + 1) % filteredProjects.length;
+      const prevIndex = (currentImageIndex - 1 + filteredProjects.length) % filteredProjects.length;
+      
+      new Image().src = filteredProjects[nextIndex].image;
+      new Image().src = filteredProjects[prevIndex].image;
+    }
+  }
+
+  // Call preload when modal opens
+  openModalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTimeout(preloadAdjacentImages, 100);
+    });
+  });
+</script>
