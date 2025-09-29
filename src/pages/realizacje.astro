@@ -1,0 +1,1528 @@
+---
+// src/pages/realizacje.astro
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Realizacje - Portfolio Projektów Wnętrz | Project Design Toruń',
+  description: 'Zobacz nasze realizacje projektów wnętrz w Toruniu. Portfolio mieszkań, domów, biur i przestrzeni komercyjnych. Inspirujące aranżacje wnętrz od Project Design.',
+  keywords: 'realizacje wnętrz Toruń, portfolio projektów, aranżacje wnętrz, projekty mieszkań Toruń, projekty domów Toruń',
+  canonical: 'https://project-design.pl/realizacje'
+};
+
+// Rozbudowana lista projektów - możesz tu dodać swoje własne zdjęcia
+const projects = [
+  {
+    id: 1,
+    title: 'Apartament Stare Miasto',
+    category: 'Mieszkanie',
+    style: 'Nowoczesny minimalizm',
+    images: [
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+    ],
+    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+    description: 'Elegancki apartament w sercu toruńskiej starówki. Projekt łączy historyczny charakter kamienicy z nowoczesnym designem.',
+    location: 'Toruń, Stare Miasto',
+    area: '85 m²',
+    year: '2024',
+    completionTime: '3 miesiące',
+    budget: 'Premium',
+    features: ['Otwarta przestrzeń', 'Naturalne materiały', 'Smart home', 'Designerskie meble'],
+    testimonial: {
+      text: 'Projekt przekroczył nasze najśmielsze oczekiwania. Przestrzeń jest funkcjonalna i piękna.',
+      author: 'Anna i Piotr K.'
+    }
+  },
+  {
+    id: 2,
+    title: 'Rosette Residence',
+    category: 'Mieszkanie',
+    style: 'Industrialny loft',
+    images: [
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+    ],
+    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+    description: 'Kompaktowe mieszkanie z maksymalnym wykorzystaniem przestrzeni. Każdy metr kwadratowy został zaprojektowany z myślą o funkcjonalności.',
+    location: 'Toruń, Centrum',
+    area: '33 m²',
+    year: '2024',
+    completionTime: '2 miesiące',
+    budget: 'Standard',
+    features: ['Przestrzeń wielofunkcyjna', 'Zabudowa na wymiar', 'Optymalizacja przestrzeni', 'Jasna kolorystyka'],
+    testimonial: {
+      text: 'Małe mieszkanie, wielkie możliwości! Projekt idealnie odpowiada na nasze potrzeby.',
+      author: 'Michał R.'
+    }
+  },
+  {
+    id: 3,
+    title: 'Rezydencja Jaskółcza',
+    category: 'Dom jednorodzinny',
+    style: 'Klasyczna elegancja',
+    images: [
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp',
+    ],
+    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+    description: 'Ekskluzywna rezydencja łącząca ponadczasową elegancję z nowoczesnymi rozwiązaniami. Wnętrza emanują luksusem i harmonią.',
+    location: 'Toruń, Jaskółcza',
+    area: '250 m²',
+    year: '2023',
+    completionTime: '6 miesięcy',
+    budget: 'Luxury',
+    features: ['Przestronny salon', 'Kuchnia na wymiar', 'Home cinema', 'Strefa spa', 'Garderoba'],
+    testimonial: {
+      text: 'Dom naszych marzeń stał się rzeczywistością dzięki Project Design.',
+      author: 'Rodzina Nowaków'
+    }
+  },
+  {
+    id: 4,
+    title: 'Restauracja Panorama',
+    category: 'Przestrzeń komercyjna',
+    style: 'Modern rustic',
+    images: [
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+    ],
+    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+    description: 'Przytulne wnętrze restauracji z panoramicznym widokiem. Projekt łączy ciepło drewna z industrialnymi akcentami.',
+    location: 'Toruń, Centrum',
+    area: '180 m²',
+    year: '2023',
+    completionTime: '4 miesiące',
+    budget: 'Premium',
+    features: ['Strefa baru', 'VIP room', 'Taras widokowy', 'Akustyka przestrzeni', 'Oświetlenie nastrojowe'],
+    testimonial: {
+      text: 'Goście są zachwyceni atmosferą wnętrza. To był strzał w dziesiątkę!',
+      author: 'Właściciel Restauracji Panorama'
+    }
+  },
+  {
+    id: 5,
+    title: 'Salon z aneksem kuchennym',
+    category: 'Mieszkanie',
+    style: 'Skandynawski',
+    images: [
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+    ],
+    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+    description: 'Jasne, przestronne wnętrze w stylu skandynawskim. Minimalistyczna forma połączona z ciepłymi akcentami.',
+    location: 'Toruń, Rubinkowo',
+    area: '55 m²',
+    year: '2024',
+    completionTime: '2.5 miesiąca',
+    budget: 'Standard',
+    features: ['Otwarta kuchnia', 'Wyspa kuchenna', 'Dużo światła', 'Naturalne materiały'],
+    testimonial: {
+      text: 'Mieszkanie jest teraz jasne, przestronne i bardzo funkcjonalne.',
+      author: 'Katarzyna S.'
+    }
+  },
+  {
+    id: 6,
+    title: 'Pokój dziecięcy Marzenie',
+    category: 'Pokój dziecięcy',
+    style: 'Kreatywny i kolorowy',
+    images: [
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+    ],
+    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+    description: 'Barwny świat dziecięcej wyobraźni. Pokój zaprojektowany z myślą o zabawie, nauce i odpoczynku.',
+    location: 'Toruń, Bielawy',
+    area: '18 m²',
+    year: '2024',
+    completionTime: '3 tygodnie',
+    budget: 'Standard',
+    features: ['Strefa nauki', 'Strefa zabawy', 'Pojemna szafa', 'Bezpieczne materiały', 'Regulowane meble'],
+    testimonial: {
+      text: 'Córka jest zachwycona swoim nowym królestwem!',
+      author: 'Rodzice Mai'
+    }
+  },
+  {
+    id: 7,
+    title: 'Biuro Open Space Bi Mii',
+    category: 'Przestrzeń komercyjna',
+    style: 'Corporate modern',
+    images: [
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+    ],
+    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+    description: 'Nowoczesna przestrzeń biurowa sprzyjająca kreatywności i współpracy. Design wspierający produktywność zespołu.',
+    location: 'Toruń, Miasto',
+    area: '220 m²',
+    year: '2022',
+    completionTime: '5 miesięcy',
+    budget: 'Premium',
+    features: ['Hot desk', 'Sala konferencyjna', 'Strefa relaksu', 'Phone booths', 'Kuchnia biurowa'],
+    testimonial: {
+      text: 'Przestrzeń biurowa, która naprawdę wspiera nasz zespół.',
+      author: 'CEO Bi Mii'
+    }
+  },
+  {
+    id: 8,
+    title: 'Luksusowy Penthouse',
+    category: 'Mieszkanie',
+    style: 'Glamour',
+    images: [
+      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+    ],
+    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+    location: 'Ciechocinek',
+    area: '150 m²',
+    year: '2023',
+    completionTime: '5 miesięcy',
+    budget: 'Luxury',
+    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
+    testimonial: {
+      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+      author: 'Investor prywatny'
+    }
+  }
+];
+
+// Unikalne kategorie
+const categories = [...new Set(projects.map(p => p.category))];
+
+// Style projektów
+const styles = [...new Set(projects.map(p => p.style))];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero Section z parallax -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/90"></div>
+      <img 
+        src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp" 
+        alt="Portfolio realizacji Project Design"
+        class="w-full h-full object-cover parallax-bg"
+      />
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+      <div class="animate-fade-in">
+        
+        <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6">
+          Nasze <span class="text-amber-500">Realizacje</span>
+        </h1>
+        
+      </div>      
+      
+    </div>
+
+    <!-- Animated scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Advanced Filter Section -->
+  <section class="sticky top-0 z-40 bg-white/95 backdrop-blur-lg border-b border-slate-200">
+    <div class="container mx-auto px-4 lg:px-8 py-4">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+        <!-- Category filters -->
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2">
+          <button 
+            data-filter="all" 
+            class="filter-btn active px-5 py-2 rounded-full bg-amber-500 text-white font-medium transition-all hover:bg-amber-600 hover:shadow-lg"
+          >
+            Wszystkie ({projects.length})
+          </button>
+          {categories.map(category => (
+            <button 
+              data-filter={category}
+              class="filter-btn px-5 py-2 rounded-full border-2 border-slate-200 text-slate-700 font-medium transition-all hover:border-amber-500 hover:text-amber-500 hover:shadow-md"
+            >
+              {category} ({projects.filter(p => p.category === category).length})
+            </button>
+          ))}
+        </div>       
+      </div>      
+    </div>
+  </section>
+
+  <!-- Main Portfolio Grid -->
+  <section class="py-10 bg-gradient-to-b from-white to-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <!-- Projects Grid/List -->
+      <div id="projects-container" class="grid-view">
+        <!-- Grid View -->
+        <div class="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <article 
+              class="portfolio-item group cursor-pointer fade-in-observe"
+              data-category={project.category}
+              data-style={project.style}
+              data-year={project.year}
+              data-area={parseInt(project.area)}
+              style={`animation-delay: ${index * 50}ms`}
+            >
+              <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <!-- Image Container -->
+                <div class="relative h-64 overflow-hidden">
+                  <img 
+                    src={project.mainImage} 
+                    alt={project.title}
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  <!-- Quick View Button -->
+                  <button 
+                    class="absolute top-4 right-4 p-3 bg-white/90 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 hover:bg-white hover:shadow-lg"
+                    data-project-id={project.id}
+                    aria-label="Szybki podgląd"
+                  >
+                    <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                  </button>
+
+                  <!-- Category Badge -->
+                  <div class="absolute bottom-4 left-4">
+                    <span class="inline-block px-3 py-1 bg-amber-500 text-white text-xs font-medium rounded-full">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6">
+                  <h3 class="font-display text-2xl font-bold text-slate-900 mb-2 group-hover:text-amber-500 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p class="text-sm text-slate-500 mb-3">{project.style}</p>
+                  <p class="text-slate-600 mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+                  
+                  <!-- Meta Info -->
+                  <div class="flex flex-wrap gap-4 text-sm text-slate-500 mb-4">
+                    <div class="flex items-center gap-1">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      </svg>
+                      <span>{project.location}</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                      </svg>
+                      <span>{project.area}</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                      <span>{project.year}</span>
+                    </div>
+                  </div>
+
+                  <!-- CTA Button -->
+                  <button 
+                    class="open-project-modal w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-slate-800 transition-all hover:shadow-lg flex items-center justify-center gap-2 group/btn"
+                    data-project-index={index}
+                  >
+                    <span>Zobacz szczegóły</span>
+                    <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- List View (hidden by default) -->
+        <div class="projects-list hidden space-y-6">
+          {projects.map((project, index) => (
+            <article 
+              class="portfolio-item list-item bg-white rounded-xl shadow-lg hover:shadow-xl transition-all fade-in-observe"
+              data-category={project.category}
+              data-style={project.style}
+              data-year={project.year}
+              data-area={parseInt(project.area)}
+            >
+              <div class="flex flex-col lg:flex-row">
+                <!-- Image -->
+                <div class="lg:w-1/3 h-64 lg:h-auto relative overflow-hidden rounded-t-xl lg:rounded-l-xl lg:rounded-tr-none">
+                  <img 
+                    src={project.mainImage} 
+                    alt={project.title}
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-4 left-4">
+                    <span class="inline-block px-3 py-1 bg-amber-500 text-white text-xs font-medium rounded-full">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 p-6 lg:p-8">
+                  <div class="flex flex-col lg:flex-row lg:items-start justify-between mb-4">
+                    <div>
+                      <h3 class="font-display text-2xl lg:text-3xl font-bold text-slate-900 mb-2">
+                        {project.title}
+                      </h3>
+                      <p class="text-slate-500">{project.style}</p>
+                    </div>
+                    <div class="mt-2 lg:mt-0">
+                      <span class="inline-block px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">
+                        {project.budget}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p class="text-slate-600 mb-4">
+                    {project.description}
+                  </p>
+
+                  <!-- Features -->
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {project.features.slice(0, 3).map(feature => (
+                      <span class="px-3 py-1 bg-amber-50 text-amber-700 text-sm rounded-full">
+                        {feature}
+                      </span>
+                    ))}
+                    {project.features.length > 3 && (
+                      <span class="px-3 py-1 bg-slate-100 text-slate-600 text-sm rounded-full">
+                        +{project.features.length - 3} więcej
+                      </span>
+                    )}
+                  </div>
+
+                  <!-- Meta Info -->
+                  <div class="flex flex-wrap gap-6 text-sm text-slate-500 border-t border-slate-100 pt-4">
+                    <div class="flex items-center gap-2">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      </svg>
+                      <span>{project.location}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                      </svg>
+                      <span>{project.area}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <span>{project.completionTime}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                      <span>{project.year}</span>
+                    </div>
+                  </div>
+
+                  <!-- CTA -->
+                  <div class="flex gap-4 mt-6">
+                    <button 
+                      class="open-project-modal flex-1 lg:flex-none px-6 py-3 bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-all hover:shadow-lg flex items-center justify-center gap-2"
+                      data-project-index={index}
+                    >
+                      <span>Zobacz projekt</span>
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- No results message -->
+      <div id="no-results" class="hidden text-center py-20">
+        <svg class="w-24 h-24 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3 class="font-display text-2xl font-bold text-slate-900 mb-2">Brak projektów</h3>
+        <p class="text-slate-600">Nie znaleziono projektów spełniających wybrane kryteria.</p>
+        <button id="reset-filters" class="mt-4 px-6 py-2 bg-amber-500 text-white rounded-full font-medium hover:bg-amber-600 transition-all">
+          Resetuj filtry
+        </button>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center mt-12">
+        <button id="load-more" class="inline-flex items-center bg-white border-2 border-slate-900 text-slate-900 px-8 py-4 rounded-full font-medium hover:bg-slate-900 hover:text-white transition-all hover:shadow-xl transform hover:scale-105">
+          <span>Pokaż więcej projektów</span>
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Detail Modal -->
+  <div id="projectModal" class="project-modal fixed inset-0 z-[9999] hidden">
+    <!-- Backdrop -->
+    <div class="modal-backdrop absolute inset-0 bg-black/95 backdrop-blur-xl"></div>
+    
+    <!-- Modal Content -->
+    <div class="relative h-full w-full flex items-start justify-center overflow-y-auto p-4 lg:p-8">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-6xl">
+          <!-- Modal Header -->
+          <div class="relative z-10 bg-white border-b border-slate-200 rounded-t-2xl">
+
+            <div class="flex items-center justify-between p-6">
+              <div>
+                <h2 id="modalTitle" class="font-display text-2xl lg:text-3xl font-bold text-slate-900"></h2>
+                <div class="flex items-center gap-4 mt-2 text-sm text-slate-600">
+                  <span id="modalCategory" class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full"></span>
+                  <span id="modalStyle"></span>
+                </div>
+              </div>
+              <button 
+                id="closeModal" 
+                class="p-3 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+                aria-label="Zamknij"
+              >
+                <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="p-6 lg:p-8">
+            <!-- Main Image Gallery -->
+            <div class="mb-8">
+              <div class="relative rounded-xl overflow-hidden mb-4">
+                <img 
+                  id="modalMainImage" 
+                  src="" 
+                  alt=""
+                  class="w-full h-[500px] object-cover"
+                />
+                <!-- Navigation Arrows -->
+                <button 
+                  id="prevImage" 
+                  class="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all shadow-lg"
+                  aria-label="Poprzednie zdjęcie"
+                >
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                  </svg>
+                </button>
+                <button 
+                  id="nextImage" 
+                  class="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all shadow-lg"
+                  aria-label="Następne zdjęcie"
+                >
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Thumbnail Gallery -->
+              <div id="thumbnailGallery" class="flex gap-2 overflow-x-auto pb-2">
+                <!-- Thumbnails will be inserted here -->
+              </div>
+            </div>
+
+            <!-- Project Details Grid -->
+            <div class="grid lg:grid-cols-3 gap-8">
+              <!-- Left Column - Description -->
+              <div class="lg:col-span-2 space-y-6">
+                <div>
+                  <h3 class="font-display text-xl font-bold text-slate-900 mb-3">O projekcie</h3>
+                  <p id="modalDescription" class="text-slate-600 leading-relaxed"></p>
+                </div>
+
+                <!-- Features -->
+                <div>
+                  <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Kluczowe elementy</h3>
+                  <div id="modalFeatures" class="grid grid-cols-2 gap-3">
+                    <!-- Features will be inserted here -->
+                  </div>
+                </div>
+
+                <!-- Testimonial -->
+                <div id="modalTestimonial" class="bg-amber-50 rounded-xl p-6 border-l-4 border-amber-500">
+                  <svg class="w-8 h-8 text-amber-500 mb-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  </svg>
+                  <p id="testimonialText" class="text-slate-700 italic mb-3"></p>
+                  <p id="testimonialAuthor" class="text-sm text-slate-600 font-medium"></p>
+                </div>
+              </div>
+
+              <!-- Right Column - Meta Info -->
+              <div class="space-y-6">
+                <!-- Project Info Card -->
+                <div class="bg-slate-50 rounded-xl p-6">
+                  <h3 class="font-display text-xl font-bold text-slate-900 mb-4">Szczegóły projektu</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      </svg>
+                      <div>
+                        <p class="text-xs text-slate-500">Lokalizacja</p>
+                        <p id="modalLocation" class="text-slate-900 font-medium"></p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                      </svg>
+                      <div>
+                        <p class="text-xs text-slate-500">Powierzchnia</p>
+                        <p id="modalArea" class="text-slate-900 font-medium"></p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                      <div>
+                        <p class="text-xs text-slate-500">Rok realizacji</p>
+                        <p id="modalYear" class="text-slate-900 font-medium"></p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <div>
+                        <p class="text-xs text-slate-500">Czas realizacji</p>
+                        <p id="modalTime" class="text-slate-900 font-medium"></p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <div>
+                        <p class="text-xs text-slate-500">Budżet</p>
+                        <p id="modalBudget" class="text-slate-900 font-medium"></p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- CTA Card -->
+                <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-6 text-white">
+                  <h3 class="font-display text-xl font-bold mb-3">Zrealizujmy Twój projekt!</h3>
+                  <p class="text-white/90 mb-4 text-sm">
+                    Podobają Ci się nasze realizacje? Skontaktuj się z nami i stwórzmy razem Twoją wymarzoną przestrzeń.
+                  </p>
+                  <a href="#kontakt" class="inline-flex items-center bg-white text-amber-600 px-5 py-2 rounded-full font-medium hover:shadow-lg transition-all">
+                    <span>Zapytaj o wycenę</span>
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                  </a>
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="flex gap-2">
+                  <button class="flex-1 py-2 px-4 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                    </svg>
+                    <span class="text-sm">Udostępnij</span>
+                  </button>
+                  <button class="flex-1 py-2 px-4 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                    </svg>
+                    <span class="text-sm">LinkedIn</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Footer -->
+            <div class="flex justify-between items-center mt-8 pt-8 border-t border-slate-200">
+              <button id="prevProject" class="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                <span>Poprzedni projekt</span>
+              </button>
+              <button id="nextProject" class="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
+                <span>Następny projekt</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            Często zadawane <span class="text-amber-500">pytania</span>
+          </h2>
+          <p class="text-lg text-slate-600">
+            Odpowiedzi na najczęstsze pytania dotyczące naszych realizacji
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Jak długo trwa realizacja typowego projektu?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Czas realizacji zależy od zakresu projektu. Typowe mieszkanie (50-80m²) zajmuje 2-3 miesiące, dom jednorodzinny 4-6 miesięcy, a przestrzenie komercyjne 3-5 miesięcy. Dokładny harmonogram ustalamy indywidualnie.</p>
+            </div>
+          </details>
+
+          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Czy mogę zobaczyć więcej zdjęć z realizacji?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Oczywiście! Podczas spotkania prezentujemy pełne portfolio z setkami zdjęć. Możemy też umówić wizytę w wybranych, zrealizowanych przez nas wnętrzach (za zgodą właścicieli).</p>
+            </div>
+          </details>
+
+          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Jaki jest koszt realizacji projektu?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Koszt zależy od powierzchni, zakresu prac i standardu wykończenia. Przygotowujemy projekty w różnych budżetach - od ekonomicznych po luksusowe. Pierwsza konsultacja i wycena są bezpłatne.</p>
+            </div>
+          </details>
+
+          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Czy zajmujecie się także realizacją projektu?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Tak, oferujemy kompleksową realizację projektów "pod klucz". Współpracujemy ze sprawdzonymi wykonawcami i dostawcami, nadzorujemy wszystkie etapy prac i gwarantujemy najwyższą jakość wykonania.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <Contact />
+</BaseLayout>
+
+<style>
+  /* Custom animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .portfolio-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .portfolio-item.visible {
+    opacity: 1;
+  }
+
+  /* Parallax effect */
+  .parallax-bg {
+    transform: translateY(0);
+    transition: transform 0.5s ease-out;
+  }
+
+  
+  /* Modal animations */
+    .project-modal {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    overflow-y: auto; /* Dodane */
+    }
+
+    .project-modal.show {
+    opacity: 1;
+    }
+
+    .modal-content {
+    transform: translateY(50px) scale(0.95);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 2rem auto; /* Dodane margines */
+    max-height: 90vh; /* Dodane max-height */
+    overflow-y: auto; /* Dodane */
+    }
+
+    .project-modal.show .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    }
+
+  /* Grid/List view transitions */
+  #projects-container {
+    transition: all 0.3s ease-out;
+  }
+
+  #projects-container.list-view .projects-grid {
+    display: none;
+  }
+
+  #projects-container.list-view .projects-list {
+    display: block;
+  }
+
+  #projects-container.grid-view .projects-list {
+    display: none;
+  }
+
+  /* Filter animation */
+  .portfolio-item.filtering {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s ease-out;
+  }
+
+  /* View button active states */
+  .view-btn.active {
+    background-color: #f59e0b;
+    color: white;
+  }
+
+  /* Style filter active state */
+  .style-filter-btn.active {
+    background-color: #fbbf24;
+    color: #92400e;
+  }
+
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Thumbnail gallery scrollbar */
+  #thumbnailGallery::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  #thumbnailGallery::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+  }
+
+  #thumbnailGallery::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+
+  #thumbnailGallery::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  /* Details element animation */
+  details[open] summary ~ * {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Projects data
+  const projectsData = [
+    {
+      id: 1,
+      title: 'Apartament Stare Miasto',
+      category: 'Mieszkanie',
+      style: 'Nowoczesny minimalizm',
+      images: [
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+      ],
+      mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+      description: 'Elegancki apartament w sercu toruńskiej starówki. Projekt łączy historyczny charakter kamienicy z nowoczesnym designem.',
+      location: 'Toruń, Stare Miasto',
+      area: '85 m²',
+      year: '2024',
+      completionTime: '3 miesiące',
+      budget: 'Premium',
+      features: ['Otwarta przestrzeń', 'Naturalne materiały', 'Smart home', 'Designerskie meble'],
+      testimonial: {
+        text: 'Projekt przekroczył nasze najśmielsze oczekiwania. Przestrzeń jest funkcjonalna i piękna.',
+        author: 'Anna i Piotr K.'
+      }
+    },
+    {
+      id: 2,
+      title: 'Rosette Residence',
+      category: 'Mieszkanie',
+      style: 'Industrialny loft',
+      images: [
+        'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+      ],
+      mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+      description: 'Kompaktowe mieszkanie z maksymalnym wykorzystaniem przestrzeni. Każdy metr kwadratowy został zaprojektowany z myślą o funkcjonalności.',
+      location: 'Toruń, Centrum',
+      area: '33 m²',
+      year: '2024',
+      completionTime: '2 miesiące',
+      budget: 'Standard',
+      features: ['Przestrzeń wielofunkcyjna', 'Zabudowa na wymiar', 'Optymalizacja przestrzeni', 'Jasna kolorystyka'],
+      testimonial: {
+        text: 'Małe mieszkanie, wielkie możliwości! Projekt idealnie odpowiada na nasze potrzeby.',
+        author: 'Michał R.'
+      }
+    },
+    {
+      id: 3,
+      title: 'Rezydencja Jaskółcza',
+      category: 'Dom jednorodzinny',
+      style: 'Klasyczna elegancja',
+      images: [
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp',
+      ],
+      mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+      description: 'Ekskluzywna rezydencja łącząca ponadczasową elegancję z nowoczesnymi rozwiązaniami. Wnętrza emanują luksusem i harmonią.',
+      location: 'Toruń, Jaskółcza',
+      area: '250 m²',
+      year: '2023',
+      completionTime: '6 miesięcy',
+      budget: 'Luxury',
+      features: ['Przestronny salon', 'Kuchnia na wymiar', 'Home cinema', 'Strefa spa', 'Garderoba'],
+      testimonial: {
+        text: 'Dom naszych marzeń stał się rzeczywistością dzięki Project Design.',
+        author: 'Rodzina Nowaków'
+      }
+    },
+    {
+      id: 4,
+      title: 'Restauracja Panorama',
+      category: 'Przestrzeń komercyjna',
+      style: 'Modern rustic',
+      images: [
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+      ],
+      mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+      description: 'Przytulne wnętrze restauracji z panoramicznym widokiem. Projekt łączy ciepło drewna z industrialnymi akcentami.',
+      location: 'Toruń, Centrum',
+      area: '180 m²',
+      year: '2023',
+      completionTime: '4 miesiące',
+      budget: 'Premium',
+      features: ['Strefa baru', 'VIP room', 'Taras widokowy', 'Akustyka przestrzeni', 'Oświetlenie nastrojowe'],
+      testimonial: {
+        text: 'Goście są zachwyceni atmosferą wnętrza. To był strzał w dziesiątkę!',
+        author: 'Właściciel Restauracji Panorama'
+      }
+    },
+    {
+      id: 5,
+      title: 'Salon z aneksem kuchennym',
+      category: 'Mieszkanie',
+      style: 'Skandynawski',
+      images: [
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+      ],
+      mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+      description: 'Jasne, przestronne wnętrze w stylu skandynawskim. Minimalistyczna forma połączona z ciepłymi akcentami.',
+      location: 'Toruń, Rubinkowo',
+      area: '55 m²',
+      year: '2024',
+      completionTime: '2.5 miesiąca',
+      budget: 'Standard',
+      features: ['Otwarta kuchnia', 'Wyspa kuchenna', 'Dużo światła', 'Naturalne materiały'],
+      testimonial: {
+        text: 'Mieszkanie jest teraz jasne, przestronne i bardzo funkcjonalne.',
+        author: 'Katarzyna S.'
+      }
+    },
+    {
+      id: 6,
+      title: 'Pokój dziecięcy Marzenie',
+      category: 'Pokój dziecięcy',
+      style: 'Kreatywny i kolorowy',
+      images: [
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+      ],
+      mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+      description: 'Barwny świat dziecięcej wyobraźni. Pokój zaprojektowany z myślą o zabawie, nauce i odpoczynku.',
+      location: 'Toruń, Bielawy',
+      area: '18 m²',
+      year: '2024',
+      completionTime: '3 tygodnie',
+      budget: 'Standard',
+      features: ['Strefa nauki', 'Strefa zabawy', 'Pojemna szafa', 'Bezpieczne materiały', 'Regulowane meble'],
+      testimonial: {
+        text: 'Córka jest zachwycona swoim nowym królestwem!',
+        author: 'Rodzice Mai'
+      }
+    },
+    {
+      id: 7,
+      title: 'Biuro Open Space Bi Mii',
+      category: 'Przestrzeń komercyjna',
+      style: 'Corporate modern',
+      images: [
+        'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+      ],
+      mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+      description: 'Nowoczesna przestrzeń biurowa sprzyjająca kreatywności i współpracy. Design wspierający produktywność zespołu.',
+      location: 'Toruń, Miasto',
+      area: '220 m²',
+      year: '2022',
+      completionTime: '5 miesięcy',
+      budget: 'Premium',
+      features: ['Hot desk', 'Sala konferencyjna', 'Strefa relaksu', 'Phone booths', 'Kuchnia biurowa'],
+      testimonial: {
+        text: 'Przestrzeń biurowa, która naprawdę wspiera nasz zespół.',
+        author: 'CEO Bi Mii'
+      }
+    },
+    {
+      id: 8,
+      title: 'Luksusowy Penthouse',
+      category: 'Mieszkanie',
+      style: 'Glamour',
+      images: [
+        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+      ],
+      mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+      description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+      location: 'Ciechocinek',
+      area: '150 m²',
+      year: '2023',
+      completionTime: '5 miesięcy',
+      budget: 'Luxury',
+      features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
+      testimonial: {
+        text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+        author: 'Investor prywatny'
+      }
+    }
+  ];
+
+  // State
+  let currentFilter: string = 'all';
+  let currentStyleFilter: string | null = null;
+  let currentSort: string = 'newest';
+  let currentView: string = 'grid';
+  let filteredProjects = [...projectsData];
+  let currentProjectIndex: number = 0;
+  let currentImageIndex: number = 0;
+
+  // DOM Elements with proper typing
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const styleFilterBtns = document.querySelectorAll<HTMLButtonElement>('.style-filter-btn');
+  const portfolioItems = document.querySelectorAll<HTMLElement>('.portfolio-item');
+  const sortSelect = document.getElementById('sort-select') as HTMLSelectElement | null;
+  const gridViewBtn = document.getElementById('grid-view') as HTMLButtonElement | null;
+  const listViewBtn = document.getElementById('list-view') as HTMLButtonElement | null;
+  const projectsContainer = document.getElementById('projects-container') as HTMLElement | null;
+  const noResults = document.getElementById('no-results') as HTMLElement | null;
+  const resetFiltersBtn = document.getElementById('reset-filters') as HTMLButtonElement | null;
+  const loadMoreBtn = document.getElementById('load-more') as HTMLButtonElement | null;
+
+  // Modal Elements with proper typing
+  const modal = document.getElementById('projectModal') as HTMLElement | null;
+  const closeModalBtn = document.getElementById('closeModal') as HTMLButtonElement | null;
+  const modalTitle = document.getElementById('modalTitle') as HTMLElement | null;
+  const modalCategory = document.getElementById('modalCategory') as HTMLElement | null;
+  const modalStyle = document.getElementById('modalStyle') as HTMLElement | null;
+  const modalDescription = document.getElementById('modalDescription') as HTMLElement | null;
+  const modalLocation = document.getElementById('modalLocation') as HTMLElement | null;
+  const modalArea = document.getElementById('modalArea') as HTMLElement | null;
+  const modalYear = document.getElementById('modalYear') as HTMLElement | null;
+  const modalTime = document.getElementById('modalTime') as HTMLElement | null;
+  const modalBudget = document.getElementById('modalBudget') as HTMLElement | null;
+  const modalFeatures = document.getElementById('modalFeatures') as HTMLElement | null;
+  const modalTestimonial = document.getElementById('modalTestimonial') as HTMLElement | null;
+  const testimonialText = document.getElementById('testimonialText') as HTMLElement | null;
+  const testimonialAuthor = document.getElementById('testimonialAuthor') as HTMLElement | null;
+  const modalMainImage = document.getElementById('modalMainImage') as HTMLImageElement | null;
+  const thumbnailGallery = document.getElementById('thumbnailGallery') as HTMLElement | null;
+  const prevImageBtn = document.getElementById('prevImage') as HTMLButtonElement | null;
+  const nextImageBtn = document.getElementById('nextImage') as HTMLButtonElement | null;
+  const prevProjectBtn = document.getElementById('prevProject') as HTMLButtonElement | null;
+  const nextProjectBtn = document.getElementById('nextProject') as HTMLButtonElement | null;
+  const openModalBtns = document.querySelectorAll<HTMLButtonElement>('.open-project-modal');
+
+  // Filter functionality
+  function applyFilters(): void {
+    let itemsToShow = [...portfolioItems];
+    let hasVisibleItems = false;
+
+    itemsToShow.forEach((item) => {
+      const category = item.dataset.category;
+      const style = item.dataset.style;
+      
+      let shouldShow = true;
+      
+      if (currentFilter !== 'all' && category !== currentFilter) {
+        shouldShow = false;
+      }
+      
+      if (currentStyleFilter && style !== currentStyleFilter) {
+        shouldShow = false;
+      }
+      
+      if (shouldShow) {
+        item.classList.remove('hidden', 'filtering');
+        hasVisibleItems = true;
+      } else {
+        item.classList.add('filtering');
+        setTimeout(() => {
+          item.classList.add('hidden');
+        }, 300);
+      }
+    });
+
+    // Show/hide no results message
+    if (noResults) {
+      if (hasVisibleItems) {
+        noResults.classList.add('hidden');
+      } else {
+        noResults.classList.remove('hidden');
+      }
+    }
+
+    // Update filtered projects for modal navigation
+    filteredProjects = projectsData.filter(project => {
+      let shouldInclude = true;
+      
+      if (currentFilter !== 'all' && project.category !== currentFilter) {
+        shouldInclude = false;
+      }
+      
+      if (currentStyleFilter && project.style !== currentStyleFilter) {
+        shouldInclude = false;
+      }
+      
+      return shouldInclude;
+    });
+
+    // Apply sorting
+    applySorting();
+  }
+
+  // Sorting functionality
+  function applySorting(): void {
+    const container = currentView === 'grid' 
+      ? document.querySelector<HTMLElement>('.projects-grid')
+      : document.querySelector<HTMLElement>('.projects-list');
+    
+    if (!container) return;
+
+    const items = [...container.querySelectorAll<HTMLElement>('.portfolio-item:not(.hidden)')];
+    
+    items.sort((a, b) => {
+      switch(currentSort) {
+        case 'newest':
+          return parseInt(b.dataset.year || '0') - parseInt(a.dataset.year || '0');
+        case 'oldest':
+          return parseInt(a.dataset.year || '0') - parseInt(b.dataset.year || '0');
+        case 'area-asc':
+          return parseInt(a.dataset.area || '0') - parseInt(b.dataset.area || '0');
+        case 'area-desc':
+          return parseInt(b.dataset.area || '0') - parseInt(a.dataset.area || '0');
+        default:
+          return 0;
+      }
+    });
+
+    items.forEach(item => {
+      container.appendChild(item);
+    });
+  }
+
+  // Category filter buttons
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active', 'bg-amber-500', 'text-white'));
+      btn.classList.add('active', 'bg-amber-500', 'text-white');
+      
+      currentFilter = btn.dataset.filter || 'all';
+      applyFilters();
+    });
+  });
+
+  // Style filter buttons
+  styleFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const style = btn.dataset.styleFilter;
+      
+      if (currentStyleFilter === style) {
+        btn.classList.remove('active');
+        currentStyleFilter = null;
+      } else {
+        styleFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentStyleFilter = style || null;
+      }
+      
+      applyFilters();
+    });
+  });
+
+  // Sort select
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+      currentSort = (e.target as HTMLSelectElement).value;
+      applySorting();
+    });
+  }
+
+  // View toggle
+  if (gridViewBtn && listViewBtn && projectsContainer) {
+    gridViewBtn.addEventListener('click', () => {
+      currentView = 'grid';
+      projectsContainer.classList.add('grid-view');
+      projectsContainer.classList.remove('list-view');
+      gridViewBtn.classList.add('active');
+      listViewBtn.classList.remove('active');
+    });
+
+    listViewBtn.addEventListener('click', () => {
+      currentView = 'list';
+      projectsContainer.classList.add('list-view');
+      projectsContainer.classList.remove('grid-view');
+      listViewBtn.classList.add('active');
+      gridViewBtn.classList.remove('active');
+    });
+  }
+
+  // Reset filters
+  if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', () => {
+      currentFilter = 'all';
+      currentStyleFilter = null;
+      
+      filterBtns.forEach(btn => {
+        btn.classList.remove('active', 'bg-amber-500', 'text-white');
+        if (btn.dataset.filter === 'all') {
+          btn.classList.add('active', 'bg-amber-500', 'text-white');
+        }
+      });
+      
+      styleFilterBtns.forEach(btn => btn.classList.remove('active'));
+      
+      applyFilters();
+    });
+  }
+
+  // Modal functionality
+  function openModal(index: number): void {
+    if (!modal) return;
+    
+    currentProjectIndex = index;
+    const project = filteredProjects[index];
+    if (!project) return;
+    
+    currentImageIndex = 0;
+
+    // Update modal content with null checks
+    if (modalTitle) modalTitle.textContent = project.title;
+    if (modalCategory) modalCategory.textContent = project.category;
+    if (modalStyle) modalStyle.textContent = project.style;
+    if (modalDescription) modalDescription.textContent = project.description;
+    if (modalLocation) modalLocation.textContent = project.location;
+    if (modalArea) modalArea.textContent = project.area;
+    if (modalYear) modalYear.textContent = project.year;
+    if (modalTime) modalTime.textContent = project.completionTime;
+    if (modalBudget) modalBudget.textContent = project.budget;
+
+    // Update main image
+    if (modalMainImage) {
+      modalMainImage.src = project.images?.[0] || project.mainImage;
+    }
+
+    // Update thumbnails
+    if (thumbnailGallery) {
+      thumbnailGallery.innerHTML = '';
+      if (project.images && project.images.length > 1) {
+        project.images.forEach((image: string, idx: number) => {
+          const thumb = document.createElement('button');
+          thumb.className = `thumbnail-btn flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-amber-500' : 'border-transparent'} hover:border-amber-500 transition-colors`;
+          thumb.innerHTML = `<img src="${image}" alt="" class="w-full h-full object-cover">`;
+          thumb.addEventListener('click', () => selectImage(idx));
+          thumbnailGallery.appendChild(thumb);
+        });
+
+        // Show/hide navigation
+        if (prevImageBtn) prevImageBtn.style.display = 'flex';
+        if (nextImageBtn) nextImageBtn.style.display = 'flex';
+      } else {
+        if (prevImageBtn) prevImageBtn.style.display = 'none';
+        if (nextImageBtn) nextImageBtn.style.display = 'none';
+      }
+    }
+
+    // Update features
+    if (modalFeatures) {
+      modalFeatures.innerHTML = '';
+      project.features.forEach((feature: string) => {
+        const featureEl = document.createElement('div');
+        featureEl.className = 'flex items-center gap-2 p-3 bg-slate-50 rounded-lg';
+        featureEl.innerHTML = `
+          <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span class="text-sm text-slate-700">${feature}</span>
+        `;
+        modalFeatures.appendChild(featureEl);
+      });
+    }
+
+    // Update testimonial
+    if (modalTestimonial) {
+      if (project.testimonial) {
+        modalTestimonial.style.display = 'block';
+        if (testimonialText) testimonialText.textContent = project.testimonial.text;
+        if (testimonialAuthor) testimonialAuthor.textContent = `— ${project.testimonial.author}`;
+      } else {
+        modalTestimonial.style.display = 'none';
+      }
+    }
+
+    // Show modal
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(): void {
+    if (!modal) return;
+    
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+    document.body.style.overflow = '';
+  }
+
+  function selectImage(index: number): void {
+    currentImageIndex = index;
+    const project = filteredProjects[currentProjectIndex];
+    if (!project || !modalMainImage) return;
+    
+    modalMainImage.src = project.images[index];
+
+    // Update thumbnail active state
+    if (thumbnailGallery) {
+      const thumbnails = thumbnailGallery.querySelectorAll<HTMLButtonElement>('.thumbnail-btn');
+      thumbnails.forEach((thumb, idx) => {
+        if (idx === index) {
+          thumb.classList.add('border-amber-500');
+          thumb.classList.remove('border-transparent');
+        } else {
+          thumb.classList.remove('border-amber-500');
+          thumb.classList.add('border-transparent');
+        }
+      });
+    }
+  }
+
+  function nextImage(): void {
+    const project = filteredProjects[currentProjectIndex];
+    if (project?.images && project.images.length > 1) {
+      currentImageIndex = (currentImageIndex + 1) % project.images.length;
+      selectImage(currentImageIndex);
+    }
+  }
+
+  function prevImage(): void {
+    const project = filteredProjects[currentProjectIndex];
+    if (project?.images && project.images.length > 1) {
+      currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
+      selectImage(currentImageIndex);
+    }
+  }
+
+  function nextProject(): void {
+    currentProjectIndex = (currentProjectIndex + 1) % filteredProjects.length;
+    openModal(currentProjectIndex);
+  }
+
+  function prevProject(): void {
+    currentProjectIndex = (currentProjectIndex - 1 + filteredProjects.length) % filteredProjects.length;
+    openModal(currentProjectIndex);
+  }
+
+  // Event listeners
+  openModalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = parseInt(btn.dataset.projectIndex || '0');
+      openModal(index);
+    });
+  });
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
+
+  if (prevImageBtn) {
+    prevImageBtn.addEventListener('click', prevImage);
+  }
+
+  if (nextImageBtn) {
+    nextImageBtn.addEventListener('click', nextImage);
+  }
+
+  if (prevProjectBtn) {
+    prevProjectBtn.addEventListener('click', prevProject);
+  }
+
+  if (nextProjectBtn) {
+    nextProjectBtn.addEventListener('click', nextProject);
+  }
+
+  // Close modal on backdrop click
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target === modal || target.classList.contains('modal-backdrop')) {
+        closeModal();
+      }
+    });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (modal && !modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    }
+  });
+
+  // Quick view buttons
+  document.querySelectorAll<HTMLButtonElement>('[data-project-id]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const projectId = parseInt(btn.dataset.projectId || '0');
+      const index = projectsData.findIndex(p => p.id === projectId);
+      if (index !== -1) {
+        openModal(index);
+      }
+    });
+  });
+
+  // Parallax effect
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector<HTMLElement>('.parallax-bg');
+    if (parallax) {
+      parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+  });
+
+  // Intersection Observer for animations
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in-observe').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Load more functionality
+  let visibleCount = 6;
+  
+  function showProjects(): void {
+    const allItems = document.querySelectorAll<HTMLElement>('.portfolio-item');
+    allItems.forEach((item, index) => {
+      if (index < visibleCount) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    if (loadMoreBtn && visibleCount >= allItems.length) {
+      loadMoreBtn.style.display = 'none';
+    }
+  }
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      visibleCount += 6;
+      showProjects();
+    });
+  }
+
+  // Initialize
+  // showProjects(); // Commented out to show all projects by default
