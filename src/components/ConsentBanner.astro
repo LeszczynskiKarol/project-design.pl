@@ -1,0 +1,617 @@
+---
+// src/components/ConsentBanner.astro
+---
+
+<div id="consent-banner" class="consent-banner" aria-live="polite" aria-label="Banner zgód na pliki cookie">
+  <div class="consent-container">
+    <div class="consent-content">
+      <div class="consent-header">
+        <svg class="consent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M12 15v2m0 0v2m0-2h2m-2 0h-2m5.73-3.27A9.95 9.95 0 0012 2.25a9.95 9.95 0 00-5.73 11.48M12 15l3.75-3.75M12 15L8.25 11.25"/>
+        </svg>
+        <h2 class="consent-title">Dbamy o Twoją prywatność</h2>
+      </div>
+      
+      <p class="consent-description">
+        Używamy plików cookie i podobnych technologii, aby zapewnić najlepsze doświadczenia na naszej stronie, 
+        analizować ruch oraz personalizować treści i reklamy.
+      </p>
+      
+      <div class="consent-details">
+        <button id="consent-details-btn" class="consent-link" aria-expanded="false">
+          <span>Szczegóły i ustawienia</span>
+          <svg class="consent-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="consent-actions">
+        <button id="consent-reject" class="consent-btn consent-btn-secondary">
+          Odrzuć wszystkie
+        </button>
+        <button id="consent-accept-necessary" class="consent-btn consent-btn-tertiary">
+          Tylko niezbędne
+        </button>
+        <button id="consent-accept-all" class="consent-btn consent-btn-primary">
+          Akceptuj wszystkie
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal szczegółowych ustawień -->
+<div id="consent-modal" class="consent-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-title" class="modal-title">Centrum prywatności</h3>
+      <button id="modal-close" class="modal-close" aria-label="Zamknij">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="consent-intro">
+        <p>
+          Poszanowanie Twojej prywatności jest dla nas priorytetem. Poniżej możesz zdecydować, 
+          które kategorie plików cookie chcesz zaakceptować. Pamiętaj, że niektóre funkcje strony 
+          mogą być ograniczone, jeśli wyłączysz niektóre kategorie.
+        </p>
+      </div>
+      
+      <div class="consent-categories">
+        <!-- Niezbędne -->
+        <div class="consent-category">
+          <div class="category-header">
+            <div class="category-info">
+              <h4 class="category-title">Niezbędne</h4>
+              <span class="category-badge">Zawsze aktywne</span>
+            </div>
+            <div class="category-toggle">
+              <input type="checkbox" id="consent-necessary" checked disabled>
+              <label for="consent-necessary" class="toggle-label"></label>
+            </div>
+          </div>
+          <p class="category-description">
+            Te pliki cookie są niezbędne do prawidłowego funkcjonowania strony. 
+            Umożliwiają podstawowe funkcje, takie jak nawigacja i dostęp do bezpiecznych obszarów.
+          </p>
+        </div>
+        
+        <!-- Analityczne -->
+        <div class="consent-category">
+          <div class="category-header">
+            <div class="category-info">
+              <h4 class="category-title">Analityczne</h4>
+              <span class="category-count">Google Analytics</span>
+            </div>
+            <div class="category-toggle">
+              <input type="checkbox" id="consent-analytics" class="toggle-input">
+              <label for="consent-analytics" class="toggle-label">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <p class="category-description">
+            Pomagają nam zrozumieć, jak odwiedzający korzystają ze strony, zbierając 
+            anonimowe informacje o liczbie odwiedzających, źródłach ruchu i zachowaniu użytkowników.
+          </p>
+        </div>
+        
+        <!-- Marketingowe -->
+        <div class="consent-category">
+          <div class="category-header">
+            <div class="category-info">
+              <h4 class="category-title">Marketingowe</h4>
+              <span class="category-count">Google Ads</span>
+            </div>
+            <div class="category-toggle">
+              <input type="checkbox" id="consent-marketing" class="toggle-input">
+              <label for="consent-marketing" class="toggle-label">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <p class="category-description">
+            Używane do wyświetlania spersonalizowanych reklam na podstawie Twoich zainteresowań 
+            i zachowania podczas przeglądania. Pomagają również mierzyć skuteczność kampanii reklamowych.
+          </p>
+        </div>
+        
+        <!-- Personalizacja -->
+        <div class="consent-category">
+          <div class="category-header">
+            <div class="category-info">
+              <h4 class="category-title">Personalizacja</h4>
+              <span class="category-count">Dostosowanie treści</span>
+            </div>
+            <div class="category-toggle">
+              <input type="checkbox" id="consent-personalization" class="toggle-input">
+              <label for="consent-personalization" class="toggle-label">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <p class="category-description">
+            Pozwalają na zapamiętanie Twoich preferencji i dostosowanie treści strony 
+            do Twoich indywidualnych potrzeb i zainteresowań.
+          </p>
+        </div>
+      </div>
+      
+      <div class="consent-info">
+        <div class="info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p>Możesz zmienić swoje preferencje w dowolnym momencie.</p>
+        </div>
+        <div class="info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <p>Twoje dane są bezpieczne i przetwarzane zgodnie z RODO.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button id="modal-save" class="consent-btn consent-btn-primary">
+        Zapisz ustawienia
+      </button>
+      <a href="/polityka-prywatnosci" class="privacy-link">Polityka prywatności</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Banner główny */
+  .consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 9999;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  .consent-banner.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .consent-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  
+  .consent-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .consent-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .consent-icon {
+    width: 24px;
+    height: 24px;
+    color: #f59e0b;
+  }
+  
+  .consent-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+  }
+  
+  .consent-description {
+    color: #64748b;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 800px;
+  }
+  
+  .consent-details {
+    margin-top: 0.25rem;
+  }
+  
+  .consent-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #3b82f6;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s;
+  }
+  
+  .consent-link:hover {
+    color: #2563eb;
+  }
+  
+  .consent-chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+  }
+  
+  .consent-link[aria-expanded="true"] .consent-chevron {
+    transform: rotate(180deg);
+  }
+  
+  .consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  
+  .consent-btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  
+  .consent-btn-primary {
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    color: white;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  }
+  
+  .consent-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  }
+  
+  .consent-btn-secondary {
+    background: white;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .consent-btn-secondary:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  
+  .consent-btn-tertiary {
+    background: #f1f5f9;
+    color: #334155;
+  }
+  
+  .consent-btn-tertiary:hover {
+    background: #e2e8f0;
+  }
+  
+  /* Modal */
+  .consent-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: none;
+  }
+  
+  .consent-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  
+  .modal-content {
+    position: relative;
+    background: white;
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    animation: modalSlideIn 0.3s ease-out;
+  }
+  
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+  }
+  
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #64748b;
+  }
+  
+  .modal-close:hover {
+    background: #e2e8f0;
+    color: #334155;
+  }
+  
+  .modal-close svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+  }
+  
+  .consent-intro {
+    margin-bottom: 1.5rem;
+  }
+  
+  .consent-intro p {
+    color: #64748b;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .consent-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .consent-category {
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s;
+  }
+  
+  .consent-category:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  
+  .category-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .category-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+  }
+  
+  .category-badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #059669;
+    background: #d1fae5;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    width: fit-content;
+  }
+  
+  .category-count {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+  
+  .category-description {
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  /* Toggle Switch */
+  .category-toggle {
+    position: relative;
+  }
+  
+  .toggle-input {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .toggle-label {
+    position: relative;
+    display: block;
+    width: 44px;
+    height: 24px;
+    background: #cbd5e1;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toggle-input:checked + .toggle-label {
+    background: #10b981;
+  }
+  
+  .toggle-input:checked + .toggle-label .toggle-slider {
+    transform: translateX(20px);
+  }
+  
+  .toggle-input:disabled + .toggle-label {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .consent-info {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #fef3c7;
+    border-radius: 0.5rem;
+    border: 1px solid #fde68a;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .info-item svg {
+    width: 16px;
+    height: 16px;
+    color: #f59e0b;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  
+  .info-item p {
+    font-size: 0.75rem;
+    color: #92400e;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .privacy-link {
+    color: #3b82f6;
+    font-size: 0.875rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  
+  .privacy-link:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+  
+  /* Responsive */
+  @media (min-width: 640px) {
+    .consent-content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    
+    .consent-actions {
+      flex-direction: row;
+      margin-top: 0;
+    }
+  }
+  
+  @media (max-width: 639px) {
+    .consent-container {
+      padding: 1rem;
+    }
+    
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      border-radius: 0;
+    }
+    
+    .consent-btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>

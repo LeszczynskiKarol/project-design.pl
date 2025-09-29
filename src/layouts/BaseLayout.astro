@@ -3,6 +3,7 @@
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
 
 export interface Props {
   title: string;
@@ -18,6 +19,54 @@ const { title, description, keywords, ogImage = '/og-default.jpg', canonical } =
 <!DOCTYPE html>
 <html lang="pl" class="scroll-smooth">
 <head>
+  <!-- Consent Mode - MUSI BYĆ PIERWSZE -->
+  <script>
+    // Inicjalizacja dataLayer
+    window.dataLayer = window.dataLayer || [];
+    
+    // Ustawienie domyślnych zgód PRZED załadowaniem GTM
+    window.dataLayer.push({
+      'event': 'consent_default',
+      'consent': {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'functionality_storage': 'granted',
+        'personalization_storage': 'denied',
+        'security_storage': 'granted',
+        'wait_for_update': 3000
+      }
+    });
+    
+    // Sprawdzenie zapisanych preferencji
+    try {
+      const savedConsent = localStorage.getItem('project_design_consent');
+      if (savedConsent) {
+        const parsed = JSON.parse(savedConsent);
+        if (parsed.timestamp && Date.now() - parsed.timestamp < 365 * 24 * 60 * 60 * 1000) {
+          // Aktualizacja zgód jeśli są zapisane i ważne
+          window.dataLayer.push({
+            'event': 'consent_update', 
+            'consent': parsed.consent
+          });
+        }
+      }
+    } catch(e) {
+      console.error('Błąd wczytywania preferencji consent:', e);
+    }
+  </script>
+  
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MK2JNT26');
+  </script>
+  <!-- End Google Tag Manager -->
+  
   <SEO 
     title={title}
     description={description}
@@ -25,9 +74,14 @@ const { title, description, keywords, ogImage = '/og-default.jpg', canonical } =
     ogImage={ogImage}
     canonical={canonical}
   />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+  
   <style>
     /* Critical CSS */
     :root {
@@ -87,11 +141,26 @@ const { title, description, keywords, ogImage = '/og-default.jpg', canonical } =
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MK2JNT26"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <Navigation />
+  
   <main>
     <slot />
   </main>
+  
   <Footer />
+  
+  <!-- Consent Banner -->
+  <ConsentBanner />
+  
+  <!-- Consent Mode Script -->
+  <script type="module" src="/consent-mode.js"></script>
   
   <script>
     // Intersection Observer for animations
@@ -111,6 +180,18 @@ const { title, description, keywords, ogImage = '/og-default.jpg', canonical } =
     document.addEventListener('DOMContentLoaded', () => {
       const elements = document.querySelectorAll('.fade-in-observe');
       elements.forEach(el => observer.observe(el));
+      
+      // Tracking page views po zgodzie
+      window.addEventListener('consentUpdated', (event) => {
+        if (event.detail.analytics_storage === 'granted') {
+          // Wyślij zdarzenie page_view do GTM
+          window.dataLayer.push({
+            'event': 'page_view_after_consent',
+            'page_path': window.location.pathname,
+            'page_title': document.title
+          });
+        }
+      });
     });
 
     // Smooth scroll for anchor links
@@ -123,6 +204,19 @@ const { title, description, keywords, ogImage = '/og-default.jpg', canonical } =
         }
       });
     });
+    
+    // Debug consent mode (tylko w trybie development)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      console.log('[Consent Mode Debug] DataLayer:', window.dataLayer);
+      
+      // Komenda do resetowania zgód w konsoli
+      window.resetConsent = function() {
+        localStorage.removeItem('project_design_consent');
+        window.location.reload();
+      };
+      
+      console.log('[Consent Mode Debug] Aby zresetować zgody, wpisz: resetConsent()');
+    }
   </script>
 </body>
 </html>
