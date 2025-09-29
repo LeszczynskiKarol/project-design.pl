@@ -1,4 +1,4 @@
-// src/scripts/consent-mode.js
+// public/consent-mode.js
 
 // Konfiguracja consent mode
 const CONSENT_CONFIG = {

@@ -1,0 +1,1018 @@
+---
+// src/pages/polityka-prywatnosci.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Polityka Prywatności - Project Design Toruń"
+  description="Polityka prywatności i informacje o przetwarzaniu danych osobowych w Project Design Toruń"
+  keywords="polityka prywatności, RODO, dane osobowe, cookies, Project Design Toruń"
+>
+  <div class="privacy-policy">
+    <div class="container">
+      <h1 class="page-title">Polityka Prywatności</h1>
+      <p class="last-updated">
+        Ostatnia aktualizacja: {
+          new Date().toLocaleDateString("pl-PL", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
+      </p>
+
+      <nav class="toc">
+        <h2>Spis treści</h2>
+        <ol>
+          <li><a href="#administrator">Administrator danych osobowych</a></li>
+          <li><a href="#cele">Cele i podstawy przetwarzania</a></li>
+          <li><a href="#dane">Zakres przetwarzanych danych</a></li>
+          <li><a href="#odbiorcy">Odbiorcy danych</a></li>
+          <li><a href="#okres">Okres przechowywania</a></li>
+          <li><a href="#prawa">Twoje prawa</a></li>
+          <li><a href="#cookies">Pliki cookies</a></li>
+          <li><a href="#analityka">Google Analytics</a></li>
+          <li><a href="#marketing">Google Ads i remarketing</a></li>
+          <li><a href="#bezpieczenstwo">Bezpieczeństwo</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ol>
+      </nav>
+
+      <section id="administrator" class="policy-section">
+        <h2>1. Administrator danych osobowych</h2>
+        <p>
+          Administratorem Twoich danych osobowych jest <strong
+            >Project Design Sp. z o.o.</strong
+          >
+          z siedzibą w Toruniu, ul. Przykładowa 1, 87-100 Toruń, NIP: 1234567890,
+          REGON: 123456789, wpisana do rejestru przedsiębiorców prowadzonego przez
+          Sąd Rejonowy w Toruniu.
+        </p>
+        <p>
+          We wszystkich sprawach związanych z przetwarzaniem danych osobowych
+          możesz skontaktować się z nami:
+        </p>
+        <ul>
+          <li>
+            E-mail: <a href="mailto:rodo@project-design.pl"
+              >rodo@project-design.pl</a>
+          </li>
+          <li>Telefon: +48 123 456 789</li>
+          <li>Adres: ul. Przykładowa 1, 87-100 Toruń</li>
+        </ul>
+      </section>
+
+      <section id="cele" class="policy-section">
+        <h2>2. Cele i podstawy przetwarzania</h2>
+        <p>Przetwarzamy Twoje dane osobowe w następujących celach:</p>
+
+        <h3>a) Realizacja usług</h3>
+        <ul>
+          <li>
+            <strong>Cel:</strong> Wykonanie umowy o świadczenie usług projektowania
+            wnętrz
+          </li>
+          <li>
+            <strong>Podstawa prawna:</strong> Art. 6 ust. 1 lit. b RODO (wykonanie
+            umowy)
+          </li>
+          <li>
+            <strong>Dane:</strong> Imię, nazwisko, adres, telefon, e-mail, NIP (dla
+            firm)
+          </li>
+        </ul>
+
+        <h3>b) Kontakt i obsługa zapytań</h3>
+        <ul>
+          <li>
+            <strong>Cel:</strong> Odpowiedź na pytania przesłane przez formularz
+            kontaktowy
+          </li>
+          <li>
+            <strong>Podstawa prawna:</strong> Art. 6 ust. 1 lit. f RODO (prawnie
+            uzasadniony interes)
+          </li>
+          <li>
+            <strong>Dane:</strong> Imię, e-mail, telefon, treść wiadomości
+          </li>
+        </ul>
+
+        <h3>c) Marketing bezpośredni</h3>
+        <ul>
+          <li>
+            <strong>Cel:</strong> Wysyłka newslettera i informacji o nowych usługach
+          </li>
+          <li>
+            <strong>Podstawa prawna:</strong> Art. 6 ust. 1 lit. a RODO (zgoda)
+          </li>
+          <li><strong>Dane:</strong> Imię, e-mail</li>
+        </ul>
+
+        <h3>d) Analityka i statystyka</h3>
+        <ul>
+          <li>
+            <strong>Cel:</strong> Analiza ruchu na stronie, ulepszanie usług
+          </li>
+          <li>
+            <strong>Podstawa prawna:</strong> Art. 6 ust. 1 lit. f RODO (prawnie
+            uzasadniony interes)
+          </li>
+          <li>
+            <strong>Dane:</strong> Anonimizowany adres IP, dane o urządzeniu, zachowanie
+            na stronie
+          </li>
+        </ul>
+
+        <h3>e) Obowiązki prawne</h3>
+        <ul>
+          <li>
+            <strong>Cel:</strong> Prowadzenie ksiąg rachunkowych, wystawianie faktur
+          </li>
+          <li>
+            <strong>Podstawa prawna:</strong> Art. 6 ust. 1 lit. c RODO (obowiązek
+            prawny)
+          </li>
+          <li><strong>Dane:</strong> Dane do faktury, historia transakcji</li>
+        </ul>
+      </section>
+
+      <section id="dane" class="policy-section">
+        <h2>3. Zakres przetwarzanych danych</h2>
+        <p>
+          W zależności od celu przetwarzania, możemy zbierać następujące
+          kategorie danych:
+        </p>
+
+        <h3>Dane identyfikacyjne:</h3>
+        <ul>
+          <li>Imię i nazwisko</li>
+          <li>Nazwa firmy (dla przedsiębiorców)</li>
+          <li>NIP, REGON (dla przedsiębiorców)</li>
+        </ul>
+
+        <h3>Dane kontaktowe:</h3>
+        <ul>
+          <li>Adres e-mail</li>
+          <li>Numer telefonu</li>
+          <li>Adres korespondencyjny</li>
+          <li>Adres realizacji projektu</li>
+        </ul>
+
+        <h3>Dane techniczne:</h3>
+        <ul>
+          <li>Adres IP</li>
+          <li>Typ i wersja przeglądarki</li>
+          <li>System operacyjny</li>
+          <li>Rozdzielczość ekranu</li>
+          <li>Identyfikatory cookies</li>
+        </ul>
+
+        <h3>Dane behawioralne:</h3>
+        <ul>
+          <li>Historia przeglądania strony</li>
+          <li>Czas spędzony na stronie</li>
+          <li>Kliknięte linki</li>
+          <li>Źródło ruchu (skąd przyszedłeś na stronę)</li>
+        </ul>
+      </section>
+
+      <section id="odbiorcy" class="policy-section">
+        <h2>4. Odbiorcy danych</h2>
+        <p>
+          Twoje dane mogą być udostępniane następującym kategoriom odbiorców:
+        </p>
+
+        <h3>Podmioty przetwarzające:</h3>
+        <ul>
+          <li>
+            <strong>Google LLC</strong> - Google Analytics, Google Ads (USA, Privacy
+            Shield)
+          </li>
+          <li>
+            <strong>Hosting</strong> - Dostawca hostingu strony internetowej
+          </li>
+          <li>
+            <strong>System CRM</strong> - Zarządzanie relacjami z klientami
+          </li>
+          <li>
+            <strong>Księgowość</strong> - Biuro rachunkowe (tylko dane do faktur)
+          </li>
+          <li>
+            <strong>Podwykonawcy</strong> - Architekci współpracujący (tylko zakres
+            projektu)
+          </li>
+        </ul>
+
+        <h3>Organy państwowe:</h3>
+        <ul>
+          <li>Urząd Skarbowy (dane podatkowe)</li>
+          <li>Organy ścigania (na podstawie przepisów prawa)</li>
+        </ul>
+
+        <p class="info-box">
+          <strong>Transfer danych poza EOG:</strong> Korzystamy z usług Google, które
+          mogą przetwarzać dane w USA. Google stosuje Standardowe Klauzule Umowne
+          zatwierdzone przez Komisję Europejską oraz dodatkowe środki bezpieczeństwa.
+        </p>
+      </section>
+
+      <section id="okres" class="policy-section">
+        <h2>5. Okres przechowywania danych</h2>
+        <table class="retention-table">
+          <thead>
+            <tr>
+              <th>Cel przetwarzania</th>
+              <th>Okres przechowywania</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Realizacja umowy</td>
+              <td>Czas trwania umowy + 6 lat (roszczenia)</td>
+            </tr>
+            <tr>
+              <td>Dokumenty księgowe</td>
+              <td>5 lat od końca roku podatkowego</td>
+            </tr>
+            <tr>
+              <td>Newsletter</td>
+              <td>Do momentu wycofania zgody</td>
+            </tr>
+            <tr>
+              <td>Cookies analityczne</td>
+              <td>14 miesięcy (Google Analytics)</td>
+            </tr>
+            <tr>
+              <td>Cookies marketingowe</td>
+              <td>90 dni (Google Ads)</td>
+            </tr>
+            <tr>
+              <td>Zapytania kontaktowe</td>
+              <td>1 rok od ostatniego kontaktu</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="prawa" class="policy-section">
+        <h2>6. Twoje prawa</h2>
+        <p>Zgodnie z RODO przysługują Ci następujące prawa:</p>
+
+        <div class="rights-grid">
+          <div class="right-card">
+            <h3>📋 Prawo dostępu</h3>
+            <p>
+              Możesz zażądać informacji o tym, czy przetwarzamy Twoje dane oraz
+              otrzymać ich kopię.
+            </p>
+          </div>
+
+          <div class="right-card">
+            <h3>✏️ Prawo do sprostowania</h3>
+            <p>
+              Możesz poprosić o poprawienie nieprawidłowych lub uzupełnienie
+              niekompletnych danych.
+            </p>
+          </div>
+
+          <div class="right-card">
+            <h3>🗑️ Prawo do usunięcia</h3>
+            <p>
+              W określonych przypadkach możesz żądać usunięcia swoich danych
+              ("prawo do bycia zapomnianym").
+            </p>
+          </div>
+
+          <div class="right-card">
+            <h3>🔒 Prawo do ograniczenia</h3>
+            <p>
+              Możesz żądać ograniczenia przetwarzania w określonych sytuacjach.
+            </p>
+          </div>
+
+          <div class="right-card">
+            <h3>📤 Prawo do przenoszenia</h3>
+            <p>
+              Możesz otrzymać swoje dane w formacie pozwalającym na przekazanie
+              ich innemu administratorowi.
+            </p>
+          </div>
+
+          <div class="right-card">
+            <h3>🚫 Prawo sprzeciwu</h3>
+            <p>
+              Możesz sprzeciwić się przetwarzaniu opartemu na prawnie
+              uzasadnionym interesie.
+            </p>
+          </div>
+
+          <div class="right-card">
+            <h3>↩️ Wycofanie zgody</h3>
+            <p>
+              Jeśli przetwarzanie opiera się na zgodzie, możesz ją wycofać w
+              dowolnym momencie.
+            </p>
+          </div>
+
+          <div class="right-card">
+            <h3>⚖️ Prawo do skargi</h3>
+            <p>
+              Możesz złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych.
+            </p>
+          </div>
+        </div>
+
+        <p class="info-box">
+          Aby skorzystać ze swoich praw, wyślij wiadomość na:
+          <a href="mailto:rodo@project-design.pl">rodo@project-design.pl</a>
+        </p>
+      </section>
+
+      <section id="cookies" class="policy-section">
+        <h2>7. Pliki cookies</h2>
+
+        <h3>Czym są cookies?</h3>
+        <p>
+          Cookies to małe pliki tekstowe zapisywane na Twoim urządzeniu podczas
+          odwiedzania naszej strony. Pozwalają nam zapamiętać Twoje preferencje
+          i dostosować stronę do Twoich potrzeb.
+        </p>
+
+        <h3>Rodzaje cookies których używamy:</h3>
+
+        <div class="cookies-types">
+          <div class="cookie-type">
+            <h4>🔧 Niezbędne</h4>
+            <p>Wymagane do działania strony. Nie można ich wyłączyć.</p>
+            <ul>
+              <li>
+                <code>consent_mode</code> - zapamiętuje Twoje preferencje dotyczące
+                cookies
+              </li>
+              <li><code>session_id</code> - identyfikator sesji</li>
+            </ul>
+          </div>
+
+          <div class="cookie-type">
+            <h4>📊 Analityczne</h4>
+            <p>Pomagają nam zrozumieć, jak używasz naszej strony.</p>
+            <ul>
+              <li>
+                <code>_ga</code> - Google Analytics, rozróżnia użytkowników
+              </li>
+              <li>
+                <code>_gid</code> - Google Analytics, rozróżnia użytkowników
+              </li>
+              <li>
+                <code>_ga_*</code> - Google Analytics 4, utrzymuje stan sesji
+              </li>
+            </ul>
+          </div>
+
+          <div class="cookie-type">
+            <h4>🎯 Marketingowe</h4>
+            <p>Używane do wyświetlania spersonalizowanych reklam.</p>
+            <ul>
+              <li>
+                <code>_gcl_au</code> - Google Ads, przechowuje informacje o kliknięciach
+              </li>
+              <li>
+                <code>IDE</code> - DoubleClick, służy do targetowania reklam
+              </li>
+              <li><code>NID</code> - Google, przechowuje preferencje</li>
+            </ul>
+          </div>
+
+          <div class="cookie-type">
+            <h4>⚙️ Funkcjonalne</h4>
+            <p>Zapamiętują Twoje preferencje i ustawienia.</p>
+            <ul>
+              <li><code>language</code> - preferowany język</li>
+              <li><code>theme</code> - wybrany motyw strony</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Jak zarządzać cookies?</h3>
+        <p>Możesz kontrolować cookies na kilka sposobów:</p>
+        <ul>
+          <li>
+            <strong>Nasz baner zgód:</strong> Użyj przycisku "Ustawienia cookies"
+            na dole strony
+          </li>
+          <li>
+            <strong>Ustawienia przeglądarki:</strong> Możesz zablokować lub usunąć
+            cookies w swojej przeglądarce
+          </li>
+          <li>
+            <strong>Wtyczki:</strong> Zainstaluj Google Analytics Opt-out Browser
+            Add-on
+          </li>
+        </ul>
+
+        <p class="warning-box">
+          ⚠️ <strong>Uwaga:</strong> Wyłączenie niektórych cookies może ograniczyć
+          funkcjonalność strony.
+        </p>
+      </section>
+
+      <section id="analityka" class="policy-section">
+        <h2>8. Google Analytics</h2>
+
+        <p>
+          Używamy Google Analytics 4 do analizy ruchu na naszej stronie. Google
+          Analytics zbiera informacje anonimowo i raportuje trendy bez
+          identyfikowania indywidualnych użytkowników.
+        </p>
+
+        <h3>Jakie dane zbiera Google Analytics?</h3>
+        <ul>
+          <li>Anonimizowany adres IP (ostatni oktet jest maskowany)</li>
+          <li>Typ przeglądarki i system operacyjny</li>
+          <li>Źródło ruchu (skąd przyszedłeś na stronę)</li>
+          <li>Czas spędzony na stronie i odwiedzone podstrony</li>
+          <li>Informacje o urządzeniu (rozdzielczość, język)</li>
+          <li>
+            Przybliżona lokalizacja (kraj, miasto - bez dokładnego adresu)
+          </li>
+        </ul>
+
+        <h3>Funkcje prywatności Google Analytics:</h3>
+        <ul>
+          <li>✅ Anonimizacja IP włączona</li>
+          <li>✅ Sygnały Google wyłączone</li>
+          <li>✅ Remarketing wyłączony w raportach</li>
+          <li>✅ Okres przechowywania: 14 miesięcy</li>
+          <li>✅ Consent mode v2 aktywny</li>
+        </ul>
+
+        <p>
+          Więcej informacji:
+          <a
+            href="https://support.google.com/analytics/answer/6004245"
+            target="_blank"
+            rel="noopener"
+          >
+            Ochrona danych w Google Analytics
+          </a>
+        </p>
+      </section>
+
+      <section id="marketing" class="policy-section">
+        <h2>9. Google Ads i remarketing</h2>
+
+        <p>
+          Używamy Google Ads do wyświetlania reklam i mierzenia ich
+          skuteczności. Remarketing pozwala nam pokazywać spersonalizowane
+          reklamy osobom, które odwiedziły naszą stronę.
+        </p>
+
+        <h3>Jak działa remarketing?</h3>
+        <ol>
+          <li>
+            Podczas wizyty na naszej stronie zapisywany jest cookie reklamowy
+          </li>
+          <li>Cookie pozwala Google rozpoznać Cię na innych stronach</li>
+          <li>Możemy wyświetlać Ci reklamy związane z naszymi usługami</li>
+          <li>Nie mamy dostępu do Twoich danych osobowych w Google</li>
+        </ol>
+
+        <h3>Jak zrezygnować z remarketingu?</h3>
+        <ul>
+          <li>
+            <a
+              href="https://www.google.com/settings/ads"
+              target="_blank"
+              rel="noopener"
+            >
+              Ustawienia reklam Google
+            </a> - zarządzaj personalizacją reklam
+          </li>
+          <li>
+            <a
+              href="http://www.aboutads.info/choices/"
+              target="_blank"
+              rel="noopener"
+            >
+              Your Ad Choices
+            </a> - rezygnacja z reklam behawioralnych
+          </li>
+          <li>
+            <a
+              href="http://www.networkadvertising.org/choices/"
+              target="_blank"
+              rel="noopener"
+            >
+              NAI Opt Out
+            </a> - rezygnacja z sieci reklamowych
+          </li>
+        </ul>
+
+        <p class="info-box">
+          💡 <strong>Modelowanie konwersji:</strong> Gdy nie wyrażasz zgody na cookies
+          marketingowe, Google używa modelowania statystycznego do szacowania konwersji,
+          zachowując Twoją prywatność.
+        </p>
+      </section>
+
+      <section id="bezpieczenstwo" class="policy-section">
+        <h2>10. Bezpieczeństwo danych</h2>
+
+        <p>
+          Stosujemy odpowiednie środki techniczne i organizacyjne, aby chronić
+          Twoje dane przed nieuprawnionym dostępem, utratą lub zniszczeniem:
+        </p>
+
+        <div class="security-measures">
+          <div class="measure">
+            <span class="icon">🔐</span>
+            <h4>Szyfrowanie SSL/TLS</h4>
+            <p>Cała komunikacja ze stroną jest szyfrowana</p>
+          </div>
+
+          <div class="measure">
+            <span class="icon">🔑</span>
+            <h4>Kontrola dostępu</h4>
+            <p>Tylko upoważnieni pracownicy mają dostęp do danych</p>
+          </div>
+
+          <div class="measure">
+            <span class="icon">💾</span>
+            <h4>Kopie zapasowe</h4>
+            <p>Regularne backupy z szyfrowaniem</p>
+          </div>
+
+          <div class="measure">
+            <span class="icon">🛡️</span>
+            <h4>Firewall i monitoring</h4>
+            <p>Ochrona przed atakami i nieuprawnionym dostępem</p>
+          </div>
+
+          <div class="measure">
+            <span class="icon">📝</span>
+            <h4>Umowy powierzenia</h4>
+            <p>Wszyscy podwykonawcy podpisują umowy RODO</p>
+          </div>
+
+          <div class="measure">
+            <span class="icon">🎓</span>
+            <h4>Szkolenia</h4>
+            <p>Regularnie szkolimy zespół z ochrony danych</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" class="policy-section">
+        <h2>11. Kontakt</h2>
+
+        <p>
+          Jeśli masz pytania dotyczące tej Polityki Prywatności lub sposobu, w
+          jaki przetwarzamy Twoje dane, skontaktuj się z nami:
+        </p>
+
+        <div class="contact-cards">
+          <div class="contact-card">
+            <h3>📧 E-mail</h3>
+            <a href="mailto:rodo@project-design.pl">rodo@project-design.pl</a>
+          </div>
+
+          <div class="contact-card">
+            <h3>📞 Telefon</h3>
+            <a href="tel:+48123456789">+48 123 456 789</a>
+          </div>
+
+          <div class="contact-card">
+            <h3>📮 Adres</h3>
+            <address>
+              Project Design Sp. z o.o.<br />
+              ul. Przykładowa 1<br />
+              87-100 Toruń
+            </address>
+          </div>
+        </div>
+
+        <div class="supervisor-info">
+          <h3>Organ nadzorczy</h3>
+          <p>
+            Jeśli uważasz, że Twoje prawa zostały naruszone, możesz złożyć
+            skargę do:
+          </p>
+          <address>
+            <strong>Prezes Urzędu Ochrony Danych Osobowych</strong><br />
+            ul. Stawki 2<br />
+            00-193 Warszawa<br />
+            Tel: 22 531 03 00<br />
+            <a href="https://uodo.gov.pl" target="_blank" rel="noopener"
+              >www.uodo.gov.pl</a
+            >
+          </address>
+        </div>
+      </section>
+
+      <section class="policy-footer">
+        <p>
+          <strong>Zmiany w Polityce Prywatności:</strong> Zastrzegamy sobie prawo
+          do aktualizacji tej polityki. O istotnych zmianach poinformujemy przez
+          e-mail lub wyraźne powiadomienie na stronie.
+        </p>
+
+        <div class="version-info">
+          <p>Wersja: 2.0</p>
+          <p>Data wejścia w życie: {new Date().toLocaleDateString("pl-PL")}</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .privacy-policy {
+    padding: 4rem 0;
+    background: linear-gradient(to bottom, #f8fafc, white);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    font-family: "Playfair Display", serif;
+  }
+
+  .last-updated {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Table of Contents */
+  .toc {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .toc h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 1rem;
+  }
+
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: toc-counter;
+  }
+
+  .toc li {
+    counter-increment: toc-counter;
+    margin-bottom: 0.5rem;
+  }
+
+  .toc li::before {
+    content: counter(toc-counter) ". ";
+    color: #f59e0b;
+    font-weight: 600;
+  }
+
+  .toc a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .toc a:hover {
+    color: #f59e0b;
+  }
+
+  /* Sections */
+  .policy-section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .policy-section h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f59e0b;
+  }
+
+  .policy-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .policy-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #475569;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .policy-section p {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .policy-section ul,
+  .policy-section ol {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .policy-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-section a {
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .policy-section a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  /* Info boxes */
+  .info-box {
+    background: #dbeafe;
+    border-left: 4px solid #3b82f6;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .warning-box {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  /* Rights Grid */
+  .rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .right-card {
+    background: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s;
+  }
+
+  .right-card:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .right-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.5rem;
+  }
+
+  .right-card p {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  /* Cookies Types */
+  .cookies-types {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .cookie-type {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .cookie-type h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.5rem;
+  }
+
+  .cookie-type p {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cookie-type ul {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .cookie-type code {
+    background: #e2e8f0;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Security Measures */
+  .security-measures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .measure {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s;
+  }
+
+  .measure:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .measure .icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .measure h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.5rem;
+  }
+
+  .measure p {
+    font-size: 0.8125rem;
+    margin: 0;
+    color: #64748b;
+  }
+
+  /* Contact Cards */
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .contact-card {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+  }
+
+  .contact-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.75rem;
+  }
+
+  .contact-card a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-card a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-card address {
+    font-style: normal;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  /* Supervisor Info */
+  .supervisor-info {
+    background: #fef3c7;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .supervisor-info h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #92400e;
+    margin: 0 0 0.75rem;
+  }
+
+  .supervisor-info address {
+    font-style: normal;
+    color: #78350f;
+    line-height: 1.6;
+  }
+
+  /* Table */
+  .retention-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .retention-table thead {
+    background: #f8fafc;
+  }
+
+  .retention-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #334155;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .retention-table td {
+    padding: 1rem;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .retention-table tbody tr:hover {
+    background: #f8fafc;
+  }
+
+  /* Policy Footer */
+  .policy-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e2e8f0;
+  }
+
+  .version-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+  }
+
+  .version-info p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.875rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .rights-grid,
+    .security-measures,
+    .contact-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .version-info {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

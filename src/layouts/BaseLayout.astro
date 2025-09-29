@@ -1,9 +1,9 @@
 ---
 // src/layouts/BaseLayout.astro
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-import SEO from '../components/SEO.astro';
-import ConsentBanner from '../components/ConsentBanner.astro';
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
 
 export interface Props {
   title: string;
@@ -13,210 +13,329 @@ export interface Props {
   canonical?: string;
 }
 
-const { title, description, keywords, ogImage = '/og-default.jpg', canonical } = Astro.props;
+const {
+  title,
+  description,
+  keywords,
+  ogImage = "/og-default.jpg",
+  canonical,
+} = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl" class="scroll-smooth">
-<head>
-  <!-- Consent Mode - MUSI BYĆ PIERWSZE -->
-  <script>
-    // Inicjalizacja dataLayer
-    window.dataLayer = window.dataLayer || [];
-    
-    // Ustawienie domyślnych zgód PRZED załadowaniem GTM
-    window.dataLayer.push({
-      'event': 'consent_default',
-      'consent': {
-        'ad_storage': 'denied',
-        'analytics_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'functionality_storage': 'granted',
-        'personalization_storage': 'denied',
-        'security_storage': 'granted',
-        'wait_for_update': 3000
+  <head>
+    <!-- Consent Mode - MUSI BYĆ PIERWSZE -->
+    <script is:inline>
+      // Inicjalizacja dataLayer
+      window.dataLayer = window.dataLayer || [];
+
+      // Ustawienie domyślnych zgód PRZED załadowaniem GTM
+      window.dataLayer.push({
+        event: "consent_default",
+        consent: {
+          ad_storage: "denied",
+          analytics_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+          functionality_storage: "granted",
+          personalization_storage: "denied",
+          security_storage: "granted",
+          wait_for_update: 3000,
+        },
+      });
+
+      // Sprawdzenie zapisanych preferencji
+      try {
+        const savedConsent = localStorage.getItem("project_design_consent");
+        if (savedConsent) {
+          const parsed = JSON.parse(savedConsent);
+          if (
+            parsed.timestamp &&
+            Date.now() - parsed.timestamp < 365 * 24 * 60 * 60 * 1000
+          ) {
+            // Aktualizacja zgód jeśli są zapisane i ważne
+            window.dataLayer.push({
+              event: "consent_update",
+              consent: parsed.consent,
+            });
+          }
+        }
+      } catch (e) {
+        console.error("Błąd wczytywania preferencji consent:", e);
       }
-    });
-    
-    // Sprawdzenie zapisanych preferencji
-    try {
-      const savedConsent = localStorage.getItem('project_design_consent');
-      if (savedConsent) {
-        const parsed = JSON.parse(savedConsent);
-        if (parsed.timestamp && Date.now() - parsed.timestamp < 365 * 24 * 60 * 60 * 1000) {
-          // Aktualizacja zgód jeśli są zapisane i ważne
-          window.dataLayer.push({
-            'event': 'consent_update', 
-            'consent': parsed.consent
-          });
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        if (f && f.parentNode) {
+          f.parentNode.insertBefore(j, f);
+        }
+      })(window, document, "script", "dataLayer", "GTM-MK2JNT26");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <SEO
+      title={title}
+      description={description}
+      keywords={keywords}
+      ogImage={ogImage}
+      canonical={canonical}
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Critical CSS */
+      :root {
+        --primary: #0f172a;
+        --accent: #f59e0b;
+        --gray: #64748b;
+        --light: #f8fafc;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        line-height: 1.6;
+        color: var(--primary);
+        min-height: 100vh;
+      }
+      .font-display {
+        font-family: "Playfair Display", serif;
+      }
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Performance optimizations */
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
-    } catch(e) {
-      console.error('Błąd wczytywania preferencji consent:', e);
-    }
-  </script>
-  
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MK2JNT26');
-  </script>
-  <!-- End Google Tag Manager -->
-  
-  <SEO 
-    title={title}
-    description={description}
-    keywords={keywords}
-    ogImage={ogImage}
-    canonical={canonical}
-  />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://www.google-analytics.com">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <style>
-    /* Critical CSS */
-    :root {
-      --primary: #0f172a;
-      --accent: #f59e0b;
-      --gray: #64748b;
-      --light: #f8fafc;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.6;
-      color: var(--primary);
-      min-height: 100vh;
-    }
-    .font-display {
-      font-family: 'Playfair Display', serif;
-    }
-    /* Smooth scroll */
-    html {
-      scroll-behavior: smooth;
-    }
-    /* Performance optimizations */
-    img, video {
-      max-width: 100%;
-      height: auto;
-    }
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in {
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    .animate-slide-left {
-      animation: slideInLeft 0.8s ease-out forwards;
-    }
-    /* Intersection Observer animations */
-    .fade-in-observe {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .fade-in-observe.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MK2JNT26"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  
-  <Navigation />
-  
-  <main>
-    <slot />
-  </main>
-  
-  <Footer />
-  
-  <!-- Consent Banner -->
-  <ConsentBanner />
-  
-  <!-- Consent Mode Script -->
-  <script type="module" src="/consent-mode.js"></script>
-  
-  <script>
-    // Intersection Observer for animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+      .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
         }
-      });
-    }, observerOptions);
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const elements = document.querySelectorAll('.fade-in-observe');
-      elements.forEach(el => observer.observe(el));
-      
-      // Tracking page views po zgodzie
-      window.addEventListener('consentUpdated', (event) => {
-        if (event.detail.analytics_storage === 'granted') {
-          // Wyślij zdarzenie page_view do GTM
-          window.dataLayer.push({
-            'event': 'page_view_after_consent',
-            'page_path': window.location.pathname,
-            'page_title': document.title
-          });
+        to {
+          opacity: 1;
+          transform: translateX(0);
         }
-      });
-    });
+      }
+      .animate-slide-left {
+        animation: slideInLeft 0.8s ease-out forwards;
+      }
+      /* Intersection Observer animations */
+      .fade-in-observe {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .fade-in-observe.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      /* Floating cookie button styles */
+      .cookie-settings-floating {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 24px;
+        z-index: 9990;
+        transition: all 0.3s ease;
+      }
+
+      .cookie-settings-floating:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-color: #f59e0b;
+      }
+
+      /* Higher on mobile to avoid nav */
+      @media (max-width: 640px) {
+        .cookie-settings-floating {
+          bottom: 70px;
         }
-      });
-    });
-    
-    // Debug consent mode (tylko w trybie development)
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      console.log('[Consent Mode Debug] DataLayer:', window.dataLayer);
-      
-      // Komenda do resetowania zgód w konsoli
-      window.resetConsent = function() {
-        localStorage.removeItem('project_design_consent');
-        window.location.reload();
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-MK2JNT26"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <Navigation />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- Consent Banner -->
+    <ConsentBanner />
+
+    <!-- Floating Cookie Settings Button -->
+    <button
+      id="cookie-settings-floating"
+      class="cookie-settings-floating"
+      aria-label="Ustawienia cookies"
+      title="Zarządzaj zgodami cookies"
+    >
+      🍪
+    </button>
+
+    <!-- Consent Mode Script -->
+    <script type="module" src="/consent-mode.js"></script>
+
+    <script is:inline>
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
       };
-      
-      console.log('[Consent Mode Debug] Aby zresetować zgody, wpisz: resetConsent()');
-    }
-  </script>
-</body>
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll(".fade-in-observe");
+        elements.forEach((el) => observer.observe(el));
+
+        // Tracking page views po zgodzie
+        window.addEventListener("consentUpdated", (event) => {
+          const customEvent = event;
+          if (
+            customEvent.detail &&
+            customEvent.detail.analytics_storage === "granted"
+          ) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "page_view_after_consent",
+              page_path: window.location.pathname,
+              page_title: document.title,
+            });
+          }
+        });
+
+        // Cookie settings button handler
+        const cookieButton = document.getElementById(
+          "cookie-settings-floating"
+        );
+        if (cookieButton) {
+          cookieButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            // Próba otwarcia modala
+            if (
+              window.consentManager &&
+              window.consentManager.showConsentModal
+            ) {
+              window.consentManager.showConsentModal();
+            } else {
+              // Fallback - pokaż banner jeśli modal nie jest dostępny
+              const banner = document.getElementById("consent-banner");
+              if (banner) {
+                banner.classList.add("show");
+                banner.setAttribute("aria-hidden", "false");
+              } else {
+                alert(
+                  'Aby zmienić ustawienia cookies, odśwież stronę i kliknij "Szczegóły i ustawienia" w bannerze cookies.'
+                );
+              }
+            }
+          });
+          console.log("[Cookie Button] Floating button ready");
+        }
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const element = e.currentTarget;
+          const href = element.getAttribute("href");
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      });
+
+      // Debug consent mode (tylko w trybie development)
+      if (
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+      ) {
+        console.log("[Consent Mode Debug] DataLayer:", window.dataLayer);
+
+        window.resetConsent = function () {
+          localStorage.removeItem("project_design_consent");
+          window.location.reload();
+        };
+
+        console.log(
+          "[Consent Mode Debug] Aby zresetować zgody, wpisz: resetConsent()"
+        );
+      }
+    </script>
+  </body>
 </html>
