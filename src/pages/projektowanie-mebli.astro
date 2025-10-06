@@ -18,37 +18,37 @@ const furnitureTypes = [
     title: 'Kuchnie na wymiar',
     description: 'Funkcjonalne i estetyczne kuchnie dopasowane do przestrzeni i stylu życia.',
     features: ['Ergonomiczne rozplanowanie', 'Wysokiej jakości materiały', 'Nowoczesne systemy'],
-    image: '/api/placeholder/600/400'
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2024/04/k-9.jpg'
   },
   {
     title: 'Szafy i garderoby',
     description: 'Pojemne systemy przechowywania wykorzystujące każdy centymetr przestrzeni.',
     features: ['Systemy przesuwne', 'Organizery wewnętrzne', 'Oświetlenie LED'],
-    image: '/api/placeholder/600/400'
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2024/04/gar1-5.jpg'
   },
   {
     title: 'Meble łazienkowe',
     description: 'Eleganckie i praktyczne rozwiązania do łazienek każdej wielkości.',
     features: ['Materiały wodoodporne', 'Szuflady z cichym domykiem', 'Blaty na wymiar'],
-    image: '/api/placeholder/600/400'
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2024/04/lazgozdz-3.jpg'
   },
   {
     title: 'Meble biurowe',
     description: 'Ergonomiczne stanowiska pracy wspierające produktywność i komfort.',
     features: ['Biurka regulowane', 'Systemy kablowe', 'Przestrzeń na dokumenty'],
-    image: '/api/placeholder/600/400'
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2024/04/Biuro-Nieruchomosci-18.jpg'
   },
   {
     title: 'Biblioteki i regały',
     description: 'Kreatywne rozwiązania do przechowywania książek i eksponowania kolekcji.',
     features: ['Konstrukcje modułowe', 'Półki regulowane', 'Podświetlenie ekspozycyjne'],
-    image: '/api/placeholder/600/400'
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2024/04/zest-8_opt.webp'
   },
   {
     title: 'Zabudowy wnęk',
     description: 'Optymalne wykorzystanie trudnych przestrzeni i nietypowych wymiarów.',
     features: ['Dopasowanie milimetrowe', 'Maksymalizacja przestrzeni', 'Estetyczne wykończenie'],
-    image: '/api/placeholder/600/400'
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2024/04/mebelki-72.jpg'
   }
 ];
 
@@ -67,7 +67,7 @@ const process = [
   },
   {
     title: 'Produkcja',
-    description: 'Precyzyjna produkcja w lokalnych warsztatach stolarskich.'
+    description: 'Precyzyjna produkcja przez zespół fachowców z Meble System.'
   },
   {
     title: 'Montaż',
@@ -76,13 +76,13 @@ const process = [
 ];
 
 const materials = [
-  'Płyty laminowane wysokiej jakości',
-  'Forniry naturalne',
-  'Drewno lite',
+  'Płyty laminowane',
+  'Forniry',
+  
   'MDF lakierowany',
   'Szkło i lustra',
   'Metal i stal nierdzewna',
-  'Kamień naturalny',
+  
   'Kompozyty'
 ];
 ---
@@ -123,7 +123,7 @@ const materials = [
               <div class="text-sm text-slate-600">Gwarancji</div>
             </div>
             <div class="text-center">
-              <div class="text-3xl font-bold text-amber-500">500+</div>
+              <div class="text-3xl font-bold text-amber-500">100+</div>
               <div class="text-sm text-slate-600">Realizacji</div>
             </div>
           </div>
@@ -131,7 +131,7 @@ const materials = [
         
         <div class="relative animate-slide-left">
           <img 
-            src="/api/placeholder/700/800" 
+            src="https://www.meblesystem.pl/wp-content/uploads/2024/04/k6-7_opt.webp" 
             alt="Meble na wymiar Toruń"
             class="rounded-2xl shadow-2xl"
             loading="eager"
@@ -295,7 +295,7 @@ const materials = [
           Współpracujemy tylko ze sprawdzonymi dostawcami, gwarantując trwałość i estetykę
         </p>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
           {materials.map((material) => (
             <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 hover:bg-white/20 transition-all">
               <span class="text-white font-medium">{material}</span>
@@ -307,46 +307,12 @@ const materials = [
           <a href="#kontakt" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl inline-block">
             Zapytaj o wycenę
           </a>
-          <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all inline-block">
-            Zobacz próbki materiałów
-          </a>
+          
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Guarantee Section -->
-  <section class="py-20 bg-amber-50">
-    <div class="container mx-auto px-4 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          Gwarancja <span class="text-amber-500">satysfakcji</span>
-        </h2>
-        <p class="text-lg text-slate-600 mb-12">
-          Zapewniamy kompleksową obsługę od projektu po montaż
-        </p>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-8 rounded-2xl shadow-lg">
-            <div class="text-4xl font-bold text-amber-500 mb-4">5 lat</div>
-            <h3 class="font-semibold text-slate-900 mb-2">Gwarancja</h3>
-            <p class="text-sm text-slate-600">Na wszystkie produkowane meble</p>
-          </div>
-          <div class="bg-white p-8 rounded-2xl shadow-lg">
-            <div class="text-4xl font-bold text-amber-500 mb-4">0 zł</div>
-            <h3 class="font-semibold text-slate-900 mb-2">Projekt i wycena</h3>
-            <p class="text-sm text-slate-600">Bezpłatne konsultacje i kosztorys</p>
-          </div>
-          <div class="bg-white p-8 rounded-2xl shadow-lg">
-            <div class="text-4xl font-bold text-amber-500 mb-4">100%</div>
-            <h3 class="font-semibold text-slate-900 mb-2">Zadowolenia</h3>
-            <p class="text-sm text-slate-600">Gwarantujemy pełną satysfakcję</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <CTA />
+  
   <Contact />
 </BaseLayout>

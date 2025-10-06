@@ -183,6 +183,48 @@ const projects = [
       text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
       author: 'Investor prywatny'
     }
+  },
+   {
+    id: 9,
+    title: 'Minimalistyczne mieszkanie',
+    category: 'Mieszkanie',
+    style: 'Minimalistyczny',
+    images: [
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/28f07804-8ba2-491c-b7c5-ff883c80633e_rw_1920.jpg?h=597c2b19308cd0bf033213254c85855a', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/38de0233-2f3d-4c64-b0bd-a7999f213a57_rw_1920.jpg?h=64053976df41b34b9eeab748e47ff089', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/25faa4c1-d8f9-4f18-82af-18e70f69c568_rw_1920.jpg?h=a8319ae58e602ded3ab7b6816b847dfa', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/1b75e168-9f16-45b7-a877-c2f132b54de9_rw_1920.jpg?h=88ef3ff347f91a33616ade140294a454', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/edef81cf-9b81-4158-ae89-90bede33afa0_rw_1920.jpg?h=db370ddf3eb6d2c277f45bc581888452', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/3bb5db99-771c-4a5a-8242-1d270fcbd38f_rw_1920.jpg?h=b7bfba667ac6468bfaf5b616f2324bda'
+    ],
+    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+    location: 'Ciechocinek',
+    area: '150 m²',
+    year: '2023',
+    completionTime: '5 miesięcy',
+    budget: 'Luxury',
+    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
+    testimonial: {
+      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+      author: 'Investor prywatny'
+    }
+  },
+  {
+    id: 10,
+    title: 'Biura w zabytkowym budynku',
+    category: 'Przestrzeń komercyjna',
+    style: 'Klasyczna elegancja',
+    images: [
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/6125ceb8-cb2a-4a2f-9dc9-e82dcace73a8_rw_1920.jpg?h=7ff6077e6226a1494b3274094fde5f74', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/33e157fd-387a-4497-b8b1-fd535fedba37_rw_3840.jpeg?h=188ec54d0707a0bd69e5a16bdb8de668', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/9d4af452-264d-48e8-b0b4-51de8a0eead3_rw_3840.jpeg?h=cfa372e82abfc7933be056cc847dd048', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/36c5a446-8065-43c4-9f6e-6c8e009e70b2_rw_3840.jpeg?h=7d8b43239c221c416cfb66ab247d9220'
+    ],
+    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+    location: 'Ciechocinek',
+    area: '150 m²',
+    year: '2023',
+    completionTime: '5 miesięcy',
+    budget: 'Luxury',
+    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
+    testimonial: {
+      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+      author: 'Investor prywatny'
+    }
   }
 ];
 
@@ -209,7 +251,7 @@ const styles = [...new Set(projects.map(p => p.style))];
       <div class="animate-fade-in">
         
         <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6">
-          Nasze <span class="text-amber-500">Realizacje</span>
+          Nasze <span class="text-amber-500">realizacje</span>
         </h1>
         
       </div>      
@@ -544,134 +586,7 @@ const styles = [...new Set(projects.map(p => p.style))];
               </div>
             </div>
 
-            <!-- Project Details Grid -->
-            <div class="grid lg:grid-cols-3 gap-8">
-              <!-- Left Column - Description -->
-              <div class="lg:col-span-2 space-y-6">
-                <div>
-                  <h3 class="font-display text-xl font-bold text-slate-900 mb-3">O projekcie</h3>
-                  <p id="modalDescription" class="text-slate-600 leading-relaxed"></p>
-                </div>
-
-                <!-- Features -->
-                <div>
-                  <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Kluczowe elementy</h3>
-                  <div id="modalFeatures" class="grid grid-cols-2 gap-3">
-                    <!-- Features will be inserted here -->
-                  </div>
-                </div>
-
-                <!-- Testimonial -->
-                <div id="modalTestimonial" class="bg-amber-50 rounded-xl p-6 border-l-4 border-amber-500">
-                  <svg class="w-8 h-8 text-amber-500 mb-3" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                  </svg>
-                  <p id="testimonialText" class="text-slate-700 italic mb-3"></p>
-                  <p id="testimonialAuthor" class="text-sm text-slate-600 font-medium"></p>
-                </div>
-              </div>
-
-              <!-- Right Column - Meta Info -->
-              <div class="space-y-6">
-                <!-- Project Info Card -->
-                <div class="bg-slate-50 rounded-xl p-6">
-                  <h3 class="font-display text-xl font-bold text-slate-900 mb-4">Szczegóły projektu</h3>
-                  <ul class="space-y-3">
-                    <li class="flex items-start gap-3">
-                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                      </svg>
-                      <div>
-                        <p class="text-xs text-slate-500">Lokalizacja</p>
-                        <p id="modalLocation" class="text-slate-900 font-medium"></p>
-                      </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-                      </svg>
-                      <div>
-                        <p class="text-xs text-slate-500">Powierzchnia</p>
-                        <p id="modalArea" class="text-slate-900 font-medium"></p>
-                      </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                      </svg>
-                      <div>
-                        <p class="text-xs text-slate-500">Rok realizacji</p>
-                        <p id="modalYear" class="text-slate-900 font-medium"></p>
-                      </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                      </svg>
-                      <div>
-                        <p class="text-xs text-slate-500">Czas realizacji</p>
-                        <p id="modalTime" class="text-slate-900 font-medium"></p>
-                      </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                      <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                      </svg>
-                      <div>
-                        <p class="text-xs text-slate-500">Budżet</p>
-                        <p id="modalBudget" class="text-slate-900 font-medium"></p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                <!-- CTA Card -->
-                <div class="bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl p-6 text-white">
-                  <h3 class="font-display text-xl font-bold mb-3">Zrealizujmy Twój projekt!</h3>
-                  <p class="text-white/90 mb-4 text-sm">
-                    Podobają Ci się nasze realizacje? Skontaktuj się z nami i stwórzmy razem Twoją wymarzoną przestrzeń.
-                  </p>
-                  <a href="#kontakt" class="inline-flex items-center bg-white text-amber-600 px-5 py-2 rounded-full font-medium hover:shadow-lg transition-all">
-                    <span>Zapytaj o wycenę</span>
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                  </a>
-                </div>
-
-                <!-- Share Buttons -->
-                <div class="flex gap-2">
-                  <button class="flex-1 py-2 px-4 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-all flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
-                    </svg>
-                    <span class="text-sm">Udostępnij</span>
-                  </button>
-                  <button class="flex-1 py-2 px-4 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-all flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
-                    </svg>
-                    <span class="text-sm">LinkedIn</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Navigation Footer -->
-            <div class="flex justify-between items-center mt-8 pt-8 border-t border-slate-200">
-              <button id="prevProject" class="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-                <span>Poprzedni projekt</span>
-              </button>
-              <button id="nextProject" class="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
-                <span>Następny projekt</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </div>
+       
           </div>
         </div>
       
@@ -1062,11 +977,53 @@ const styles = [...new Set(projects.map(p => p.style))];
         text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
         author: 'Investor prywatny'
       }
+    },
+   
+    {
+    id: 9,
+    title: 'Minimalistyczne mieszkanie',
+    category: 'Mieszkanie',
+    style: 'Minimalistyczny',
+    images: [
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/28f07804-8ba2-491c-b7c5-ff883c80633e_rw_1920.jpg?h=597c2b19308cd0bf033213254c85855a', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/38de0233-2f3d-4c64-b0bd-a7999f213a57_rw_1920.jpg?h=64053976df41b34b9eeab748e47ff089', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/25faa4c1-d8f9-4f18-82af-18e70f69c568_rw_1920.jpg?h=a8319ae58e602ded3ab7b6816b847dfa', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/1b75e168-9f16-45b7-a877-c2f132b54de9_rw_1920.jpg?h=88ef3ff347f91a33616ade140294a454', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/edef81cf-9b81-4158-ae89-90bede33afa0_rw_1920.jpg?h=db370ddf3eb6d2c277f45bc581888452', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/3bb5db99-771c-4a5a-8242-1d270fcbd38f_rw_1920.jpg?h=b7bfba667ac6468bfaf5b616f2324bda'
+    ],
+    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+    location: 'Ciechocinek',
+    area: '150 m²',
+    year: '2023',
+    completionTime: '5 miesięcy',
+    budget: 'Luxury',
+    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
+    testimonial: {
+      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+      author: 'Investor prywatny'
     }
+  },
+  {
+    id: 10,
+    title: 'Biura w zabytkowym budynku',
+    category: 'Przestrzeń komercyjna',
+    style: 'Klasyczna elegancja',
+    images: [
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/6125ceb8-cb2a-4a2f-9dc9-e82dcace73a8_rw_1920.jpg?h=7ff6077e6226a1494b3274094fde5f74', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/33e157fd-387a-4497-b8b1-fd535fedba37_rw_3840.jpeg?h=188ec54d0707a0bd69e5a16bdb8de668', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/9d4af452-264d-48e8-b0b4-51de8a0eead3_rw_3840.jpeg?h=cfa372e82abfc7933be056cc847dd048', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/36c5a446-8065-43c4-9f6e-6c8e009e70b2_rw_3840.jpeg?h=7d8b43239c221c416cfb66ab247d9220'
+    ],
+    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+    location: 'Ciechocinek',
+    area: '150 m²',
+    year: '2023',
+    completionTime: '5 miesięcy',
+    budget: 'Luxury',
+    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
+    testimonial: {
+      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+      author: 'Investor prywatny'
+    }
+  }
   ];
 
-  // State
-  let currentFilter: string = 'all';
+    let currentFilter: string = 'all';
   let currentStyleFilter: string | null = null;
   let currentSort: string = 'newest';
   let currentView: string = 'grid';
@@ -1092,25 +1049,13 @@ const styles = [...new Set(projects.map(p => p.style))];
   const modalTitle = document.getElementById('modalTitle') as HTMLElement | null;
   const modalCategory = document.getElementById('modalCategory') as HTMLElement | null;
   const modalStyle = document.getElementById('modalStyle') as HTMLElement | null;
-  const modalDescription = document.getElementById('modalDescription') as HTMLElement | null;
-  const modalLocation = document.getElementById('modalLocation') as HTMLElement | null;
-  const modalArea = document.getElementById('modalArea') as HTMLElement | null;
-  const modalYear = document.getElementById('modalYear') as HTMLElement | null;
-  const modalTime = document.getElementById('modalTime') as HTMLElement | null;
-  const modalBudget = document.getElementById('modalBudget') as HTMLElement | null;
-  const modalFeatures = document.getElementById('modalFeatures') as HTMLElement | null;
-  const modalTestimonial = document.getElementById('modalTestimonial') as HTMLElement | null;
-  const testimonialText = document.getElementById('testimonialText') as HTMLElement | null;
-  const testimonialAuthor = document.getElementById('testimonialAuthor') as HTMLElement | null;
   const modalMainImage = document.getElementById('modalMainImage') as HTMLImageElement | null;
   const thumbnailGallery = document.getElementById('thumbnailGallery') as HTMLElement | null;
   const prevImageBtn = document.getElementById('prevImage') as HTMLButtonElement | null;
   const nextImageBtn = document.getElementById('nextImage') as HTMLButtonElement | null;
-  const prevProjectBtn = document.getElementById('prevProject') as HTMLButtonElement | null;
-  const nextProjectBtn = document.getElementById('nextProject') as HTMLButtonElement | null;
   const openModalBtns = document.querySelectorAll<HTMLButtonElement>('.open-project-modal');
 
-  // Filter functionality
+  // Filter functionality (bez zmian)
   function applyFilters(): void {
     let itemsToShow = [...portfolioItems];
     let hasVisibleItems = false;
@@ -1140,7 +1085,6 @@ const styles = [...new Set(projects.map(p => p.style))];
       }
     });
 
-    // Show/hide no results message
     if (noResults) {
       if (hasVisibleItems) {
         noResults.classList.add('hidden');
@@ -1149,7 +1093,6 @@ const styles = [...new Set(projects.map(p => p.style))];
       }
     }
 
-    // Update filtered projects for modal navigation
     filteredProjects = projectsData.filter(project => {
       let shouldInclude = true;
       
@@ -1164,11 +1107,10 @@ const styles = [...new Set(projects.map(p => p.style))];
       return shouldInclude;
     });
 
-    // Apply sorting
     applySorting();
   }
 
-  // Sorting functionality
+  // Sorting functionality (bez zmian - skrócone dla zwięzłości)
   function applySorting(): void {
     const container = currentView === 'grid' 
       ? document.querySelector<HTMLElement>('.projects-grid')
@@ -1198,7 +1140,106 @@ const styles = [...new Set(projects.map(p => p.style))];
     });
   }
 
-  // Category filter buttons
+  // NOWA FUNKCJA: Modal functionality
+  function openModal(index: number): void {
+    if (!modal) return;
+    
+    currentProjectIndex = index;
+    const project = filteredProjects[index];
+    if (!project) {
+      console.error('Project not found at index:', index);
+      return;
+    }
+    
+    currentImageIndex = 0;
+
+    // Update modal content
+    if (modalTitle) modalTitle.textContent = project.title;
+    if (modalCategory) modalCategory.textContent = project.category;
+    if (modalStyle) modalStyle.textContent = project.style;
+
+    // Update main image
+    if (modalMainImage) {
+      modalMainImage.src = project.images?.[0] || project.mainImage;
+      modalMainImage.alt = project.title;
+    }
+
+    // Update thumbnails
+    if (thumbnailGallery) {
+      thumbnailGallery.innerHTML = '';
+      if (project.images && project.images.length > 1) {
+        project.images.forEach((image: string, idx: number) => {
+          const thumb = document.createElement('button');
+          thumb.className = `thumbnail-btn flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-amber-500' : 'border-transparent'} hover:border-amber-500 transition-colors`;
+          thumb.innerHTML = `<img src="${image}" alt="" class="w-full h-full object-cover">`;
+          thumb.addEventListener('click', () => selectImage(idx));
+          thumbnailGallery.appendChild(thumb);
+        });
+
+        if (prevImageBtn) prevImageBtn.style.display = 'flex';
+        if (nextImageBtn) nextImageBtn.style.display = 'flex';
+      } else {
+        if (prevImageBtn) prevImageBtn.style.display = 'none';
+        if (nextImageBtn) nextImageBtn.style.display = 'none';
+      }
+    }
+
+    // Show modal
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(): void {
+    if (!modal) return;
+    
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+    document.body.style.overflow = '';
+  }
+
+  function selectImage(index: number): void {
+    currentImageIndex = index;
+    const project = filteredProjects[currentProjectIndex];
+    if (!project || !modalMainImage) return;
+    
+    modalMainImage.src = project.images[index];
+
+    if (thumbnailGallery) {
+      const thumbnails = thumbnailGallery.querySelectorAll<HTMLButtonElement>('.thumbnail-btn');
+      thumbnails.forEach((thumb, idx) => {
+        if (idx === index) {
+          thumb.classList.add('border-amber-500');
+          thumb.classList.remove('border-transparent');
+        } else {
+          thumb.classList.remove('border-amber-500');
+          thumb.classList.add('border-transparent');
+        }
+      });
+    }
+  }
+
+  function nextImage(): void {
+    const project = filteredProjects[currentProjectIndex];
+    if (project?.images && project.images.length > 1) {
+      currentImageIndex = (currentImageIndex + 1) % project.images.length;
+      selectImage(currentImageIndex);
+    }
+  }
+
+  function prevImage(): void {
+    const project = filteredProjects[currentProjectIndex];
+    if (project?.images && project.images.length > 1) {
+      currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
+      selectImage(currentImageIndex);
+    }
+  }
+
+  // Category filter buttons (reszta bez zmian...)
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active', 'bg-amber-500', 'text-white'));
@@ -1273,152 +1314,27 @@ const styles = [...new Set(projects.map(p => p.style))];
     });
   }
 
-  // Modal functionality
-  function openModal(index: number): void {
-    if (!modal) return;
-    
-    currentProjectIndex = index;
-    const project = filteredProjects[index];
-    if (!project) return;
-    
-    currentImageIndex = 0;
-
-    // Update modal content with null checks
-    if (modalTitle) modalTitle.textContent = project.title;
-    if (modalCategory) modalCategory.textContent = project.category;
-    if (modalStyle) modalStyle.textContent = project.style;
-    if (modalDescription) modalDescription.textContent = project.description;
-    if (modalLocation) modalLocation.textContent = project.location;
-    if (modalArea) modalArea.textContent = project.area;
-    if (modalYear) modalYear.textContent = project.year;
-    if (modalTime) modalTime.textContent = project.completionTime;
-    if (modalBudget) modalBudget.textContent = project.budget;
-
-    // Update main image
-    if (modalMainImage) {
-      modalMainImage.src = project.images?.[0] || project.mainImage;
-    }
-
-    // Update thumbnails
-    if (thumbnailGallery) {
-      thumbnailGallery.innerHTML = '';
-      if (project.images && project.images.length > 1) {
-        project.images.forEach((image: string, idx: number) => {
-          const thumb = document.createElement('button');
-          thumb.className = `thumbnail-btn flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-amber-500' : 'border-transparent'} hover:border-amber-500 transition-colors`;
-          thumb.innerHTML = `<img src="${image}" alt="" class="w-full h-full object-cover">`;
-          thumb.addEventListener('click', () => selectImage(idx));
-          thumbnailGallery.appendChild(thumb);
-        });
-
-        // Show/hide navigation
-        if (prevImageBtn) prevImageBtn.style.display = 'flex';
-        if (nextImageBtn) nextImageBtn.style.display = 'flex';
-      } else {
-        if (prevImageBtn) prevImageBtn.style.display = 'none';
-        if (nextImageBtn) nextImageBtn.style.display = 'none';
-      }
-    }
-
-    // Update features
-    if (modalFeatures) {
-      modalFeatures.innerHTML = '';
-      project.features.forEach((feature: string) => {
-        const featureEl = document.createElement('div');
-        featureEl.className = 'flex items-center gap-2 p-3 bg-slate-50 rounded-lg';
-        featureEl.innerHTML = `
-          <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-          </svg>
-          <span class="text-sm text-slate-700">${feature}</span>
-        `;
-        modalFeatures.appendChild(featureEl);
-      });
-    }
-
-    // Update testimonial
-    if (modalTestimonial) {
-      if (project.testimonial) {
-        modalTestimonial.style.display = 'block';
-        if (testimonialText) testimonialText.textContent = project.testimonial.text;
-        if (testimonialAuthor) testimonialAuthor.textContent = `— ${project.testimonial.author}`;
-      } else {
-        modalTestimonial.style.display = 'none';
-      }
-    }
-
-    // Show modal
-    modal.classList.remove('hidden');
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal(): void {
-    if (!modal) return;
-    
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.classList.add('hidden');
-    }, 300);
-    document.body.style.overflow = '';
-  }
-
-  function selectImage(index: number): void {
-    currentImageIndex = index;
-    const project = filteredProjects[currentProjectIndex];
-    if (!project || !modalMainImage) return;
-    
-    modalMainImage.src = project.images[index];
-
-    // Update thumbnail active state
-    if (thumbnailGallery) {
-      const thumbnails = thumbnailGallery.querySelectorAll<HTMLButtonElement>('.thumbnail-btn');
-      thumbnails.forEach((thumb, idx) => {
-        if (idx === index) {
-          thumb.classList.add('border-amber-500');
-          thumb.classList.remove('border-transparent');
-        } else {
-          thumb.classList.remove('border-amber-500');
-          thumb.classList.add('border-transparent');
-        }
-      });
-    }
-  }
-
-  function nextImage(): void {
-    const project = filteredProjects[currentProjectIndex];
-    if (project?.images && project.images.length > 1) {
-      currentImageIndex = (currentImageIndex + 1) % project.images.length;
-      selectImage(currentImageIndex);
-    }
-  }
-
-  function prevImage(): void {
-    const project = filteredProjects[currentProjectIndex];
-    if (project?.images && project.images.length > 1) {
-      currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
-      selectImage(currentImageIndex);
-    }
-  }
-
-  function nextProject(): void {
-    currentProjectIndex = (currentProjectIndex + 1) % filteredProjects.length;
-    openModal(currentProjectIndex);
-  }
-
-  function prevProject(): void {
-    currentProjectIndex = (currentProjectIndex - 1 + filteredProjects.length) % filteredProjects.length;
-    openModal(currentProjectIndex);
-  }
-
-  // Event listeners
+  // POPRAWIONE: Event listeners dla przycisków "Zobacz szczegóły"
   openModalBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Zapobiega propagacji do article
       const index = parseInt(btn.dataset.projectIndex || '0');
       openModal(index);
     });
+  });
+
+  // NOWE: Kliknięcie w cały box projektu
+  portfolioItems.forEach((item, index) => {
+    item.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      // Ignoruj kliknięcia w przyciski (mają swoją obsługę)
+      if (target.closest('button')) {
+        return;
+      }
+      openModal(index);
+    });
+    // Dodaj wskaźnik kursora dla lepszego UX
+    item.style.cursor = 'pointer';
   });
 
   if (closeModalBtn) {
@@ -1431,14 +1347,6 @@ const styles = [...new Set(projects.map(p => p.style))];
 
   if (nextImageBtn) {
     nextImageBtn.addEventListener('click', nextImage);
-  }
-
-  if (prevProjectBtn) {
-    prevProjectBtn.addEventListener('click', prevProject);
-  }
-
-  if (nextProjectBtn) {
-    nextProjectBtn.addEventListener('click', nextProject);
   }
 
   // Close modal on backdrop click
@@ -1523,6 +1431,4 @@ const styles = [...new Set(projects.map(p => p.style))];
       showProjects();
     });
   }
-
-  // Initialize
-  // showProjects(); // Commented out to show all projects by default
+</script>

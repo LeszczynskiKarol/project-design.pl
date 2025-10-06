@@ -191,6 +191,24 @@ const {
         transition: all 0.3s ease;
       }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.group:hover .floating-badge {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hero-image-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+
       .cookie-settings-floating:hover {
         transform: scale(1.1);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
