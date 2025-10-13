@@ -122,24 +122,24 @@ const projects = [
     }
   },
   {
-    id: 6,
-    title: 'Pokój dziecięcy Marzenie',
-    category: 'Pokój dziecięcy',
-    style: 'Kreatywny i kolorowy',
+    id: 10,
+    title: 'Biura w zabytkowym budynku',
+    category: 'Przestrzeń komercyjna',
+    style: 'Klasyczna elegancja',
     images: [
-      'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/6125ceb8-cb2a-4a2f-9dc9-e82dcace73a8_rw_1920.jpg?h=7ff6077e6226a1494b3274094fde5f74', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/33e157fd-387a-4497-b8b1-fd535fedba37_rw_3840.jpeg?h=188ec54d0707a0bd69e5a16bdb8de668', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/9d4af452-264d-48e8-b0b4-51de8a0eead3_rw_3840.jpeg?h=cfa372e82abfc7933be056cc847dd048', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/36c5a446-8065-43c4-9f6e-6c8e009e70b2_rw_3840.jpeg?h=7d8b43239c221c416cfb66ab247d9220'
     ],
-    mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
-    description: 'Barwny świat dziecięcej wyobraźni. Pokój zaprojektowany z myślą o zabawie, nauce i odpoczynku.',
-    location: 'Toruń, Bielawy',
-    area: '18 m²',
-    year: '2024',
-    completionTime: '3 tygodnie',
-    budget: 'Standard',
-    features: ['Strefa nauki', 'Strefa zabawy', 'Pojemna szafa', 'Bezpieczne materiały', 'Regulowane meble'],
+    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+    location: 'Ciechocinek',
+    area: '150 m²',
+    year: '2023',
+    completionTime: '5 miesięcy',
+    budget: 'Luxury',
+    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
     testimonial: {
-      text: 'Córka jest zachwycona swoim nowym królestwem!',
-      author: 'Rodzice Mai'
+      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+      author: 'Investor prywatny'
     }
   },
   {
@@ -205,27 +205,7 @@ const projects = [
       author: 'Investor prywatny'
     }
   },
-  {
-    id: 10,
-    title: 'Biura w zabytkowym budynku',
-    category: 'Przestrzeń komercyjna',
-    style: 'Klasyczna elegancja',
-    images: [
-      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/6125ceb8-cb2a-4a2f-9dc9-e82dcace73a8_rw_1920.jpg?h=7ff6077e6226a1494b3274094fde5f74', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/33e157fd-387a-4497-b8b1-fd535fedba37_rw_3840.jpeg?h=188ec54d0707a0bd69e5a16bdb8de668', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/9d4af452-264d-48e8-b0b4-51de8a0eead3_rw_3840.jpeg?h=cfa372e82abfc7933be056cc847dd048', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/36c5a446-8065-43c4-9f6e-6c8e009e70b2_rw_3840.jpeg?h=7d8b43239c221c416cfb66ab247d9220'
-    ],
-    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
-    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
-    location: 'Ciechocinek',
-    area: '150 m²',
-    year: '2023',
-    completionTime: '5 miesięcy',
-    budget: 'Luxury',
-    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
-    testimonial: {
-      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
-      author: 'Investor prywatny'
-    }
-  }
+  
 ];
 
 // Unikalne kategorie
@@ -916,26 +896,26 @@ const styles = [...new Set(projects.map(p => p.style))];
       }
     },
     {
-      id: 6,
-      title: 'Pokój dziecięcy Marzenie',
-      category: 'Pokój dziecięcy',
-      style: 'Kreatywny i kolorowy',
-      images: [
-        'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
-      ],
-      mainImage: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
-      description: 'Barwny świat dziecięcej wyobraźni. Pokój zaprojektowany z myślą o zabawie, nauce i odpoczynku.',
-      location: 'Toruń, Bielawy',
-      area: '18 m²',
-      year: '2024',
-      completionTime: '3 tygodnie',
-      budget: 'Standard',
-      features: ['Strefa nauki', 'Strefa zabawy', 'Pojemna szafa', 'Bezpieczne materiały', 'Regulowane meble'],
-      testimonial: {
-        text: 'Córka jest zachwycona swoim nowym królestwem!',
-        author: 'Rodzice Mai'
-      }
-    },
+    id: 6,
+    title: 'Biura w zabytkowym budynku',
+    category: 'Przestrzeń komercyjna',
+    style: 'Klasyczna elegancja',
+    images: [
+      'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/6125ceb8-cb2a-4a2f-9dc9-e82dcace73a8_rw_1920.jpg?h=7ff6077e6226a1494b3274094fde5f74', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/33e157fd-387a-4497-b8b1-fd535fedba37_rw_3840.jpeg?h=188ec54d0707a0bd69e5a16bdb8de668', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/9d4af452-264d-48e8-b0b4-51de8a0eead3_rw_3840.jpeg?h=cfa372e82abfc7933be056cc847dd048', 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/36c5a446-8065-43c4-9f6e-6c8e009e70b2_rw_3840.jpeg?h=7d8b43239c221c416cfb66ab247d9220'
+    ],
+    mainImage: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+    description: 'Ekskluzywny penthouse z tarasem widokowym. Luksus w każdym detalu.',
+    location: 'Ciechocinek',
+    area: '150 m²',
+    year: '2023',
+    completionTime: '5 miesięcy',
+    budget: 'Luxury',
+    features: ['Taras 50m²', 'Jacuzzi', 'Kominek', 'Walk-in closet', 'Smart home'],
+    testimonial: {
+      text: 'Perfekcja w każdym calu. Mieszkanie jak ze snu.',
+      author: 'Investor prywatny'
+    }
+  },
     {
       id: 7,
       title: 'Biuro Open Space Bi Mii',

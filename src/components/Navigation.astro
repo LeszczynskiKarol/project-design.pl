@@ -3,11 +3,10 @@
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-  { href: '/', label: 'Strona główna' },
   { href: '/arazacje-wnetrz', label: 'Aranżacje wnętrz' },
   { href: '/studio-projektowania-wnetrz', label: 'Studio' },
   { href: '/projektowanie-mebli', label: 'Meble na wymiar' },
-  { href: '/architekci-wnetrz', label: 'Architekci' }
+  { href: '/architekci-wnetrz', label: 'Architekci' },
 ];
 ---
 
@@ -44,13 +43,19 @@ const navItems = [
         ))}
       </ul>
 
-      <!-- CTA Button -->
-      <div class="hidden lg:block">
+      <!-- CTA Buttons - Combined -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a 
+          href="/realizacje" 
+          class="bg-white text-amber-500 border-2 border-amber-500 px-4 py-3 rounded-full font-medium hover:bg-amber-500 hover:text-white transition-all hover:shadow-lg transform hover:scale-105"
+        >
+          Realizacje
+        </a>
         <a 
           href="#kontakt" 
           class="bg-amber-500 text-white px-6 py-3 rounded-full font-medium hover:bg-amber-600 transition-all hover:shadow-lg transform hover:scale-105"
         >
-          Darmowa wycena
+          Wycena
         </a>
       </div>
 
@@ -83,12 +88,18 @@ const navItems = [
             </li>
           ))}
         </ul>
-        <div class="mt-8">
+        <div class="mt-8 space-y-4">
+          <a 
+            href="/realizacje" 
+            class="bg-amber-500 text-white px-6 py-3 rounded-full font-medium block text-center hover:bg-amber-600 transition-all"
+          >
+            Realizacje
+          </a>
           <a 
             href="#kontakt" 
-            class="bg-amber-500 text-white px-6 py-3 rounded-full font-medium inline-block hover:bg-amber-600 transition-all"
+            class="bg-amber-500 text-white px-6 py-3 rounded-full font-medium block text-center hover:bg-amber-600 transition-all"
           >
-            Darmowa wycena
+            Wycena
           </a>
         </div>
       </div>

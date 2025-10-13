@@ -2,227 +2,511 @@
 // src/pages/aranzacje-wnetrz.astro
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Team from '../components/Team.astro';
+import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
 
 const seoData = {
-  title: 'Aranżacje Wnętrz Toruń - Aranżacje Mieszkań i Domów',
-  description: 'Profesjonalne aranżacje wnętrz w Toruniu. Kompleksowe aranżacje mieszkań i domów. Indywidualne projekty dostosowane do Twojego stylu życia.',
-  keywords: 'aranżacje wnętrz Toruń, aranżacje mieszkań Toruń, aranżacje domów Toruń, projektowanie wnętrz, Project Design',
-  canonical: 'https://www.project-design.pl/arazacje-wnetrz'
+  title: 'Aranżacje Wnętrz Toruń - Mieszkań, Domów | Project Design',
+  description: 'Profesjonalne aranżacje wnętrz w Toruniu. Kompleksowe aranżacje mieszkań i domów jednorodzinnych. Indywidualne projekty aranżacji dopasowane do Twoich potrzeb. Darmowa konsultacja.',
+  keywords: 'aranżacje wnętrz Toruń, aranżacje mieszkań Toruń, aranżacje domów Toruń, aranżacja wnętrz, projekt aranżacji, Project Design',
+  canonical: 'https://project-design.pl/aranazacje-wnetrz'
 };
 
-const realizacje = [
+const apartmentTypes = [
   {
-    title: 'Minimalistyczne mieszkanie',
-    type: 'Mieszkanie 75m²',
-    description: 'Przestronna aranżacja w stylu minimalistycznym z dominacją bieli i naturalnego drewna.',
-    features: ['Otwarta kuchnia', 'Przestronna sypialnia', 'Home office'],
-    image: '/api/placeholder/800/600'
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+    </svg>`,
+    title: 'Kawalerki i małe mieszkania',
+    area: '20-40 m²',
+    description: 'Maksymalne wykorzystanie przestrzeni. Inteligentne rozwiązania dla małych metrażów.',
+    features: [
+      'Wielofunkcyjne meble',
+      'Optymalizacja przestrzeni',
+      'Jasna kolorystyka',
+      'Clever storage'
+    ],
+    price: 'od 3000 zł'
   },
   {
-    title: 'Dom rodzinny Rubinkowo',
-    type: 'Dom 200m²',
-    description: 'Ciepłe, rodzinne wnętrze z dużą ilością naturalnego światła i przestrzennym salonem.',
-    features: ['5 sypialni', 'Strefa dzienna', 'Ogród zimowy'],
-    image: '/api/placeholder/800/600'
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+    </svg>`,
+    title: 'Mieszkania 2-3 pokojowe',
+    area: '40-70 m²',
+    description: 'Funkcjonalne strefy dla rodzin. Ergonomiczne rozplanowanie przestrzeni dziennej i nocnej.',
+    features: [
+      'Podział na strefy',
+      'Przestrzeń dla rodziny',
+      'Praktyczne rozwiązania',
+      'Estetyka i funkcja'
+    ],
+    price: 'od 5000 zł'
   },
   {
-    title: 'Loft industrialny',
-    type: 'Mieszkanie 120m²',
-    description: 'Surowy charakter połączony z nowoczesnymi elementami i wysokimi sufitami.',
-    features: ['Antresola', 'Cegła i beton', 'Duże przeszklenia'],
-    image: '/api/placeholder/800/600'
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+    </svg>`,
+    title: 'Duże apartamenty',
+    area: '70-120 m²',
+    description: 'Luksusowe aranżacje z dbałością o każdy detal. Przestrzenie reprezentacyjne i komfortowe.',
+    features: [
+      'Wysokie standardy',
+      'Ekskluzywne materiały',
+      'Indywidualny charakter',
+      'Przestronne wnętrza'
+    ],
+    price: 'od 8000 zł'
+  }
+];
+
+const houseTypes = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+    </svg>`,
+    title: 'Domy jednorodzinne',
+    area: '100-200 m²',
+    description: 'Kompleksowe aranżacje całego domu. Od parteru po poddasze - spójna koncepcja.',
+    features: [
+      'Spójna wizja całości',
+      'Integracja z ogrodem',
+      'Strefy funkcjonalne',
+      'Smart home'
+    ]
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+    </svg>`,
+    title: 'Rezydencje i wille',
+    area: '200+ m²',
+    description: 'Ekskluzywne aranżacje prestiżowych nieruchomości. Luksus i elegancja w każdym detalu.',
+    features: [
+      'Premium materiały',
+      'Wyjątkowy design',
+      'Technologie premium',
+      'Pełna obsługa'
+    ]
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 7v1a3 3 0 003 3h12a3 3 0 003-3V7M3 7l9-4 9 4M5 21V10.5M19 21V10.5"/>
+    </svg>`,
+    title: 'Domy szeregowe i bliźniaki',
+    area: '80-150 m²',
+    description: 'Optymalne wykorzystanie przestrzeni. Funkcjonalne rozwiązania dla rodzin.',
+    features: [
+      'Efektywne zarządzanie',
+      'Praktyczne rozwiązania',
+      'Strefa dzienna i nocna',
+      'Ogród i taras'
+    ]
+  }
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Pierwsza konsultacja',
+    description: 'Poznajemy Twoje potrzeby, styl życia i oczekiwania. Omawiamy możliwości i budżet projektu.',
+    duration: '1-2 godz.',
+    deliverables: ['Brief projektowy', 'Wstępna koncepcja', 'Harmonogram']
+  },
+  {
+    number: '02',
+    title: 'Pomiary i analiza',
+    description: 'Dokładne pomiary przestrzeni, analiza funkcjonalna, określenie mocnych i słabych stron wnętrza.',
+    duration: '1-2 dni',
+    deliverables: ['Rzuty pomieszczeń', 'Dokumentacja foto', 'Analiza potrzeb']
+  },
+  {
+    number: '03',
+    title: 'Koncepcja aranżacji',
+    description: 'Tworzenie moodboardów, dobór kolorystyki, materiałów i mebli. Prezentacja 2-3 wariantów.',
+    duration: '1-2 tyg.',
+    deliverables: ['Moodboardy', 'Paleta kolorów', 'Propozycje materiałów']
+  },
+  {
+    number: '04',
+    title: 'Projekt wykonawczy',
+    description: 'Szczegółowe rzuty z rozmieszczeniem mebli, oświetlenia, gniazdek. Wizualizacje 3D.',
+    duration: '2-4 tyg.',
+    deliverables: ['Rzuty techniczne', 'Wizualizacje 3D', 'Specyfikacja materiałów']
+  },
+  {
+    number: '05',
+    title: 'Realizacja',
+    description: 'Nadzór nad wykonaniem, koordynacja wykonawców, zakup materiałów i mebli.',
+    duration: '2-6 mies.',
+    deliverables: ['Gotowe wnętrze', 'Sesja zdjęciowa', 'Dokumentacja']
+  }
+];
+
+const styles = [
+  {
+    name: 'Skandynawski',
+    description: 'Jasne kolory, naturalne materiały, minimalizm',
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+    characteristics: ['Biel i szarości', 'Drewno', 'Prostota', 'Funkcjonalność']
+  },
+  {
+    name: 'Nowoczesny',
+    description: 'Czyste linie, minimalizm, technologia',
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+    characteristics: ['Geometria', 'Neutral colors', 'Innowacje', 'Elegancja']
+  },
+  {
+    name: 'Klasyczny',
+    description: 'Ponadczasowa elegancja, symetria, bogate dekoracje',
+    image: 'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp',
+    characteristics: ['Symetria', 'Ornamentyka', 'Drewno', 'Elegancja']
+  },
+  {
+    name: 'Industrialny',
+    description: 'Surowe materiały, otwarte przestrzenie, loft',
+    image: 'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+    characteristics: ['Cegła', 'Metal', 'Beton', 'Otwartość']
   }
 ];
 ---
 
 <BaseLayout {...seoData}>
   <!-- Hero Section -->
-  <section class="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
+  <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
       <img 
-        src="/api/placeholder/1920/1080" 
+        src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp" 
         alt="Aranżacje wnętrz Toruń"
         class="w-full h-full object-cover"
       />
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/80"></div>
     </div>
+    
     <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
       <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
         Aranżacje <span class="text-amber-500">wnętrz</span> Toruń
       </h1>
-      <p class="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-        Tworzymy wyjątkowe aranżacje mieszkań i domów, które łączą funkcjonalność z estetyką. 
-        Każdy projekt to unikalna historia dostosowana do Twojego stylu życia.
+      <p class="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+        Profesjonalne aranżacje mieszkań i domów. Tworzymy przestrzenie, które odzwierciedlają Twoją osobowość 
+        i wspierają codzienne życie. Od koncepcji po realizację.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#realizacje" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl">
-          Zobacz realizacje
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <a href="#mieszkania" class="bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl inline-block">
+          Aranżacje mieszkań
         </a>
-        <a href="#kontakt" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all">
-          Darmowa konsultacja
+        <a href="#domy" class="border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-slate-900 transition-all inline-block">
+          Aranżacje domów
         </a>
+      </div>
+      
+      <!-- Quick stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+          <div class="text-3xl font-bold text-amber-500">100+</div>
+          <div class="text-white text-sm">Aranżacji mieszkań</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+          <div class="text-3xl font-bold text-amber-500">50+</div>
+          <div class="text-white text-sm">Aranżacji domów</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+          <div class="text-3xl font-bold text-amber-500">10+</div>
+          <div class="text-white text-sm">Lat doświadczenia</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+          <div class="text-3xl font-bold text-amber-500">98%</div>
+          <div class="text-white text-sm">Zadowolonych klientów</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Co to są aranżacje wnętrz -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          Kompleksowe aranżacje <span class="text-amber-500">przestrzeni</span>
-        </h2>
-        <p class="text-lg text-slate-600">
-          Specjalizujemy się w tworzeniu aranżacji mieszkań i domów w Toruniu. Nasze projekty to harmonijna 
-          kombinacja Twoich potrzeb, dostępnej przestrzeni i najnowszych trendów.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-3 gap-8">
-        <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-xl transition-all">
-          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
-          </div>
-          <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Aranżacje mieszkań</h3>
-          <p class="text-slate-600 mb-6">
-            Od kawalerek po przestronne apartamenty - tworzymy funkcjonalne i piękne przestrzenie mieszkalne.
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Czym są <span class="text-amber-500">aranżacje wnętrz</span>?
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Aranżacja wnętrz to sztuka harmonijnego łączenia funkcjonalności z estetyką. 
+            To proces tworzenia przestrzeni, która nie tylko pięknie wygląda, ale przede wszystkim 
+            doskonale służy swoim mieszkańcom.
           </p>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Optymalizacja małych przestrzeni
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Strefy funkcjonalne
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Inteligentne systemy przechowywania
-            </li>
-          </ul>
         </div>
 
-        <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-xl transition-all">
-          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-            </svg>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">
+              Aranżacja to więcej niż dekoracja
+            </h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              Podczas gdy dekoracja skupia się na estetyce, aranżacja wnętrz to kompleksowe podejście 
+              obejmujące planowanie przestrzeni, dobór materiałów, kolorystykę, oświetlenie i meble. 
+              To proces przemyślany od początku do końca.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-slate-600">Analiza funkcjonalna przestrzeni</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-slate-600">Optymalizacja rozkładu pomieszczeń</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-slate-600">Dobór materiałów i kolorystyki</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <svg class="w-6 h-6 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-slate-600">Projekt oświetlenia i elektryki</span>
+              </li>
+            </ul>
           </div>
-          <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Aranżacje domów</h3>
-          <p class="text-slate-600 mb-6">
-            Kompleksowe projekty domów jednorodzinnych z uwzględnieniem potrzeb wszystkich domowników.
-          </p>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Planowanie całego domu
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Integracja z ogrodem
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Przestrzenie wielofunkcyjne
-            </li>
-          </ul>
-        </div>
-
-        <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-xl transition-all">
-          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
-            </svg>
+          <div>
+            <img 
+              src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp" 
+              alt="Przykład aranżacji wnętrza"
+              class="rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
           </div>
-          <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Style i trendy</h3>
-          <p class="text-slate-600 mb-6">
-            Projektujemy w różnorodnych stylach - od minimalizmu po klasyczną elegancję.
-          </p>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Skandynawski minimalizm
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Nowoczesny industrial
-            </li>
-            <li class="flex items-center">
-              <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Klasyczna elegancja
-            </li>
-          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio Section -->
-  <section id="realizacje" class="py-20 bg-slate-50">
+  <!-- Aranżacje mieszkań -->
+  <section id="mieszkania" class="py-20 bg-gradient-to-br from-slate-50 to-white">
     <div class="container mx-auto px-4 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          Nasze <span class="text-amber-500">realizacje</span>
+          Aranżacje <span class="text-amber-500">mieszkań</span>
         </h2>
-        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-          Zobacz przykłady naszych aranżacji wnętrz w Toruniu. Każdy projekt to indywidualna historia.
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Specjalizujemy się w aranżacjach mieszkań każdej wielkości. Od kawalerek po przestronne apartamenty 
+          - tworzymy wnętrza funkcjonalne, estetyczne i dopasowane do budżetu.
         </p>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-8">
-        {realizacje.map((projekt) => (
-          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group">
-            <div class="relative h-64 overflow-hidden">
-              <img 
-                src={projekt.image} 
-                alt={projekt.title}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div class="absolute top-4 left-4 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium">
-                {projekt.type}
-              </div>
+        {apartmentTypes.map((type, index) => (
+          <div 
+            class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 overflow-hidden fade-in-observe"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="bg-gradient-to-br from-amber-500 to-amber-600 p-8 text-white">
+              <div class="mb-4" set:html={type.icon} />
+              <h3 class="font-display text-2xl font-bold mb-2">{type.title}</h3>
+              <div class="text-amber-100">{type.area}</div>
             </div>
             <div class="p-8">
-              <h3 class="font-display text-2xl font-bold text-slate-900 mb-3">{projekt.title}</h3>
-              <p class="text-slate-600 mb-4">{projekt.description}</p>
-              <ul class="space-y-2 mb-6">
-                {projekt.features.map(feature => (
-                  <li class="flex items-center text-sm text-slate-500">
-                    <svg class="w-4 h-4 text-amber-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <p class="text-slate-600 mb-6">{type.description}</p>
+              <ul class="space-y-3 mb-6">
+                {type.features.map(feature => (
+                  <li class="flex items-center text-sm text-slate-600">
+                    <svg class="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                     </svg>
                     {feature}
                   </li>
                 ))}
-              </ul>
-              <a href="#" class="inline-flex items-center text-amber-500 font-medium hover:text-amber-600 transition-colors">
-                Zobacz szczegóły
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
-              </a>
+              </ul>              
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Dlaczego warto -->
+      <div class="mt-16 bg-white rounded-3xl shadow-xl p-8 lg:p-12">
+        <h3 class="font-display text-3xl font-bold text-slate-900 mb-8 text-center">
+          Dlaczego warto zainwestować w aranżację mieszkania?
+        </h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-900 mb-2">Wzrost wartości</h4>
+            <p class="text-sm text-slate-600">Dobrze zaprojektowane mieszkanie zwiększa swoją wartość rynkową</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-900 mb-2">Oszczędność czasu</h4>
+            <p class="text-sm text-slate-600">Unikamy kosztownych błędów i przeróbek podczas remontu</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-900 mb-2">Komfort życia</h4>
+            <p class="text-sm text-slate-600">Przestrzeń dostosowana do Twojego stylu życia i potrzeb</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-900 mb-2">Pewność rezultatu</h4>
+            <p class="text-sm text-slate-600">Profesjonalny projekt gwarantuje spójność i jakość wykończenia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aranżacje domów -->
+  <section id="domy" class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Aranżacje <span class="text-amber-500">domów</span> jednorodzinnych
+        </h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Kompleksowe aranżacje domów to nasza specjalność. Projektujemy spójne wnętrza, 
+          które harmonizują z architekturą budynku i otoczeniem.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 mb-16">
+        {houseTypes.map((type, index) => (
+          <div 
+            class="bg-slate-50 rounded-2xl p-8 hover:shadow-xl transition-all fade-in-observe"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="text-amber-500 mb-4" set:html={type.icon} />
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-2">{type.title}</h3>
+            <div class="text-sm text-slate-500 mb-4">{type.area}</div>
+            <p class="text-slate-600 mb-6">{type.description}</p>
+            <div class="space-y-2">
+              {type.features.map(feature => (
+                <div class="flex items-center text-sm text-slate-600">
+                  <svg class="w-4 h-4 text-amber-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  {feature}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Zalety aranżacji domów -->
+      <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 lg:p-12">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="font-display text-3xl font-bold text-slate-900 mb-6">
+              Kompleksowa aranżacja domu
+            </h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              Aranżacja domu jednorodzinnego to wyzwanie wymagające holistycznego podejścia. 
+              Projektujemy nie tylko poszczególne pomieszczenia, ale całą przestrzeń jako spójną kompozycję.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span class="text-amber-500 font-bold text-xl">01</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">Spójna wizja</h4>
+                  <p class="text-sm text-slate-600">Jeden styl przewodni łączący wszystkie pomieszczenia</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span class="text-amber-500 font-bold text-xl">02</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">Funkcjonalne strefy</h4>
+                  <p class="text-sm text-slate-600">Wydzielenie stref: reprezentacyjnej, prywatnej, gospodarczej</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span class="text-amber-500 font-bold text-xl">03</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">Integracja z ogrodem</h4>
+                  <p class="text-sm text-slate-600">Projektowanie tarasów i połączenia wnętrza z zewnętrzem</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img 
+              src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp" 
+              alt="Aranżacja domu jednorodzinnego"
+              class="rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Style aranżacji -->
+  <section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Popularne <span class="text-amber-500">style</span> aranżacji
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Realizujemy aranżacje w różnych stylach. Każdy projekt jest unikalny i dostosowany do Twoich preferencji.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {styles.map((style, index) => (
+          <div 
+            class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group fade-in-observe"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="relative h-48 overflow-hidden">
+              <img 
+                src={style.image} 
+                alt={`Styl ${style.name}`}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="font-display text-xl font-bold text-white mb-1">{style.name}</h3>
+                <p class="text-white/80 text-sm">{style.description}</p>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex flex-wrap gap-2">
+                {style.characteristics.map(char => (
+                  <span class="px-2 py-1 bg-amber-50 text-amber-700 text-xs rounded-full">
+                    {char}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}
@@ -230,77 +514,208 @@ const realizacje = [
     </div>
   </section>
 
-  <!-- Process Section -->
+  <!-- Proces aranżacji -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6 text-center">
+          Jak przebiega proces <span class="text-amber-500">aranżacji</span>?
+        </h2>
+        <p class="text-lg text-slate-600 text-center mb-12 max-w-2xl mx-auto">
+          Sprawdzony proces projektowy gwarantuje, że Twoje wnętrze będzie funkcjonalne, piękne i wykonane zgodnie z planem.
+        </p>
+
+        <div class="space-y-6">
+          {processSteps.map((step, index) => (
+            <div 
+              class="bg-slate-50 rounded-2xl p-6 lg:p-8 hover:shadow-lg transition-all fade-in-observe"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="flex flex-col lg:flex-row gap-6">
+                <div class="flex-shrink-0">
+                  <div class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center">
+                    <span class="font-bold text-xl">{step.number}</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-3">
+                    <h3 class="font-display text-2xl font-bold text-slate-900">{step.title}</h3>
+                    <span class="text-amber-500 font-medium">{step.duration}</span>
+                  </div>
+                  <p class="text-slate-600 mb-4">{step.description}</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="text-sm text-slate-500 font-medium">Efekty:</span>
+                    {step.deliverables.map(item => (
+                      <span class="px-3 py-1 bg-white text-slate-700 text-sm rounded-full border border-slate-200">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Podsumowanie czasu -->
+        <div class="mt-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-8 text-white text-center">
+          <h3 class="font-display text-2xl font-bold mb-2">Średni czas realizacji</h3>
+          <p class="text-white/90 mb-4">
+            Mieszkanie (50-70m²): 2-3 miesiące | Dom (150-200m²): 4-6 miesięcy
+          </p>
+          <p class="text-sm text-white/80">
+            *Czas realizacji zależy od zakresu projektu i stopnia zaawansowania prac wykończeniowych
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Przykłady realizacji -->
+  <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Nasze <span class="text-amber-500">realizacje</span>
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+          Zobacz przykłady naszych aranżacji mieszkań i domów w Toruniu
+        </p>
+        <a 
+          href="/realizacje" 
+          class="inline-flex items-center bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl"
+        >
+          <span>Zobacz wszystkie realizacje</span>
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mini gallery -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
+          <img 
+            src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp" 
+            alt="Aranżacja mieszkania"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white mb-1">Apartament 85m²</h3>
+              <p class="text-white/80 text-sm">Nowoczesny minimalizm</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
+          <img 
+            src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp" 
+            alt="Aranżacja domu"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white mb-1">Dom 250m²</h3>
+              <p class="text-white/80 text-sm">Klasyczna elegancja</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
+          <img 
+            src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp" 
+            alt="Aranżacja salonu"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end p-6">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white mb-1">Mieszkanie 55m²</h3>
+              <p class="text-white/80 text-sm">Styl skandynawski</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zespół -->
+  <Team />
+
+  <!-- Testimonials -->
+  <Testimonials />
+
+  <!-- FAQ -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4 lg:px-8">
       <div class="max-w-4xl mx-auto">
-        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6 text-center">
-          Proces tworzenia <span class="text-amber-500">aranżacji</span>
-        </h2>
-        <p class="text-lg text-slate-600 text-center mb-12">
-          Nasz sprawdzony proces gwarantuje sukces każdego projektu
-        </p>
+        <div class="text-center mb-12">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            Często zadawane <span class="text-amber-500">pytania</span>
+          </h2>
+          <p class="text-lg text-slate-600">
+            Odpowiedzi na najczęstsze pytania o aranżacje wnętrz
+          </p>
+        </div>
 
-        <div class="space-y-8">
-          <div class="flex gap-6">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
-                1
-              </div>
+        <div class="space-y-4">
+          
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Jak długo trwa proces aranżacji?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Projekt koncepcyjny zajmuje 1-2 tygodnie, projekt wykonawczy 2-4 tygodnie. Realizacja (wykończenie) mieszkania 50-70m² trwa około 2-3 miesiące, domu 150-200m² około 4-6 miesięcy. Dokładny harmonogram ustalamy indywidualnie na pierwszym spotkaniu.</p>
             </div>
-            <div>
-              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Analiza potrzeb</h3>
-              <p class="text-slate-600">
-                Rozpoczynamy od dokładnego poznania Twoich potrzeb, stylu życia i oczekiwań. 
-                Analizujemy przestrzeń, światło, akustykę i przepływ ruchu.
-              </p>
-            </div>
-          </div>
+          </details>
 
-          <div class="flex gap-6">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
-                2
-              </div>
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Czy mogę wprowadzać zmiany w projekcie aranżacji?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Oczywiście! Proces projektowania jest iteracyjny. Na etapie koncepcji możesz wprowadzać nieograniczoną liczbę poprawek. Po zatwierdzeniu koncepcji i przejściu do projektu wykonawczego, dodatkowe zmiany wyceniamy indywidualnie. Zależy nam na Twojej satysfakcji z finalnego rezultatu.</p>
             </div>
-            <div>
-              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Koncepcja i wizualizacje</h3>
-              <p class="text-slate-600">
-                Tworzymy koncepcję aranżacji wraz z moodboardami i wizualizacjami 3D. 
-                Prezentujetajemy różne warianty rozwiązań.
-              </p>
-            </div>
-          </div>
+          </details>
 
-          <div class="flex gap-6">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
-                3
-              </div>
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Czy zajmujecie się również realizacją aranżacji?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Tak, oferujemy kompleksową realizację projektów we współpracy z Meble System. Zajmujemy się koordynacją wykonawców, zakupem materiałów i mebli, nadzorem budowlanym oraz odbiorem prac. Możesz również wybrać opcję "tylko projekt" i samodzielnie zająć się realizacją.</p>
             </div>
-            <div>
-              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Dokumentacja projektowa</h3>
-              <p class="text-slate-600">
-                Przygotowujemy kompletną dokumentację z rysunkami technicznymi, listą materiałów 
-                i szczegółowym kosztorysem.
-              </p>
-            </div>
-          </div>
+          </details>
 
-          <div class="flex gap-6">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">
-                4
-              </div>
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Jakie dokumenty otrzymam po zakończeniu projektu?
+              </h3>
+              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Otrzymasz komplet dokumentacji: rzuty z rozmieszczeniem mebli, projekt oświetlenia i elektryki, wizualizacje 3D wszystkich pomieszczeń, zestawienie materiałów wykończeniowych, specyfikację mebli i wyposażenia, oraz kosztorys inwestorski. Wszystko w wersji cyfrowej i opcjonalnie drukowanej.</p>
             </div>
-            <div>
-              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Realizacja i nadzór</h3>
-              <p class="text-slate-600">
-                Nadzorujemy realizację projektu, współpracujemy z wykonawcami i dbamy 
-                o zgodność z projektem i terminowość prac.
-              </p>
-            </div>
-          </div>
+          </details>
         </div>
       </div>
     </div>
@@ -309,3 +724,78 @@ const realizacje = [
   <CTA />
   <Contact />
 </BaseLayout>
+
+<style>
+  /* Custom animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-observe {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .fade-in-observe.visible {
+    opacity: 1;
+  }
+
+  /* Details animation */
+  details[open] summary ~ * {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for animations
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.fade-in-observe');
+    elements.forEach(el => observer.observe(el));
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const element = e.currentTarget as HTMLAnchorElement;
+      const href = element.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
