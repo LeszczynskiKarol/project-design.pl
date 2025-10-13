@@ -31,7 +31,7 @@ project-design-torun/
 │   │   └── BaseLayout.astro
 │   └── pages/
 │       ├── index.astro
-│       ├── arazacje-wnetrz.astro
+│       ├── aranzacje-wnetrz.astro
 │       ├── studio-projektowania-wnetrz.astro
 │       ├── projektowanie-mebli.astro
 │       └── architekci-wnetrz.astro

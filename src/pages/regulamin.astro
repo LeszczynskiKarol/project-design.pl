@@ -1,0 +1,977 @@
+---
+// src/pages/regulamin.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Regulamin Serwisu - Project Design Toruń"
+  description="Regulamin korzystania z serwisu internetowego Project Design Toruń - studio projektowania wnętrz"
+  keywords="regulamin, warunki korzystania, Project Design Toruń"
+>
+  <div class="terms-page">
+    <div class="container">
+      <h1 class="page-title">Regulamin Serwisu</h1>
+      <p class="last-updated">
+        Ostatnia aktualizacja: {
+          new Date().toLocaleDateString("pl-PL", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
+      </p>
+
+      <nav class="toc">
+        <h2>Spis treści</h2>
+        <ol>
+          <li><a href="#postanowienia">Postanowienia ogólne</a></li>
+          <li><a href="#definicje">Definicje</a></li>
+          <li><a href="#warunki">Warunki korzystania</a></li>
+          <li><a href="#wlasnosc">Własność intelektualna</a></li>
+          <li><a href="#formularz">Formularz kontaktowy</a></li>
+          <li><a href="#linki">Linki zewnętrzne</a></li>
+          <li><a href="#odpowiedzialnosc">Odpowiedzialność</a></li>
+          <li><a href="#zmiany">Zmiany regulaminu</a></li>
+          <li><a href="#prawo">Prawo właściwe</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ol>
+      </nav>
+
+      <section id="postanowienia" class="terms-section">
+        <h2>1. Postanowienia ogólne</h2>
+        
+        <p>
+          Niniejszy Regulamin określa zasady korzystania z serwisu internetowego 
+          dostępnego pod adresem <strong>project-design.pl</strong> (zwanego dalej "Serwisem").
+        </p>
+
+        <div class="info-box">
+          <p>
+            <strong>Administratorem Serwisu jest:</strong><br>
+            MSystem Jacek Wichowski<br>
+            ul. Polna 134, hala nr 3<br>
+            87-100 Toruń<br>
+            NIP: 956-211-16-20<br>            
+            E-mail: <a href="mailto:kontakt@project-design.pl">kontakt@project-design.pl</a><br>
+            Tel: +48 123 456 789
+          </p>
+        </div>
+
+        <p>
+          Korzystanie z Serwisu jest dobrowolne i wymaga akceptacji niniejszego Regulaminu. 
+          Rozpoczęcie korzystania z Serwisu oznacza akceptację wszystkich postanowień Regulaminu.
+        </p>
+
+        <p>
+          Regulamin jest dostępny nieodpłatnie na stronie internetowej Serwisu, 
+          co umożliwia jego pozyskanie, odtwarzanie i utrwalanie w każdym czasie.
+        </p>
+      </section>
+
+      <section id="definicje" class="terms-section">
+        <h2>2. Definicje</h2>
+        
+        <p>Pojęcia użyte w Regulaminie oznaczają:</p>
+
+        <div class="definitions-grid">
+          <div class="definition-card">
+            <h3>🌐 Serwis</h3>
+            <p>
+              Strona internetowa prowadzona przez Administratora pod adresem 
+              project-design.pl wraz z wszystkimi podstronami.
+            </p>
+          </div>
+
+          <div class="definition-card">
+            <h3>👤 Administrator</h3>
+            <p>
+              Jacek Wichowski, właściciel i operator Serwisu.
+            </p>
+          </div>
+
+          <div class="definition-card">
+            <h3>👥 Użytkownik</h3>
+            <p>
+              Każda osoba fizyczna, prawna lub jednostka organizacyjna nieposiadająca 
+              osobowości prawnej, korzystająca z Serwisu.
+            </p>
+          </div>
+
+          <div class="definition-card">
+            <h3>📝 Treści</h3>
+            <p>
+              Wszystkie materiały publikowane w Serwisie, w tym teksty, grafiki, 
+              zdjęcia, logo, filmy, layout strony.
+            </p>
+          </div>
+
+          <div class="definition-card">
+            <h3>💬 Formularz kontaktowy</h3>
+            <p>
+              Interaktywny formularz umożliwiający Użytkownikowi przesłanie 
+              zapytania do Administratora.
+            </p>
+          </div>
+
+          <div class="definition-card">
+            <h3>🔗 Link zewnętrzny</h3>
+            <p>
+              Odnośnik prowadzący do stron internetowych podmiotów trzecich, 
+              niezwiązanych z Administratorem.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="warunki" class="terms-section">
+        <h2>3. Warunki korzystania z Serwisu</h2>
+
+        <h3>3.1. Zasady ogólne</h3>
+        <p>Użytkownik korzystając z Serwisu zobowiązuje się do:</p>
+        <ul>
+          <li>Korzystania z Serwisu w sposób zgodny z prawem i dobrymi obyczajami</li>
+          <li>Nienaruszania praw Administratora oraz innych Użytkowników</li>
+          <li>Niepodejmowania działań mogących zakłócić funkcjonowanie Serwisu</li>
+          <li>Nieumieszczania w Serwisie treści niezgodnych z prawem</li>
+          <li>Korzystania z Serwisu w sposób niezakłócający jego funkcjonowania</li>
+        </ul>
+
+        <h3>3.2. Wymagania techniczne</h3>
+        <p>Korzystanie z Serwisu wymaga:</p>
+        <ul>
+          <li>Urządzenia z dostępem do Internetu (komputer, tablet, smartfon)</li>
+          <li>Przeglądarki internetowej (Chrome, Firefox, Safari, Edge w aktualnej wersji)</li>
+          <li>Włączonej obsługi JavaScript</li>
+          <li>Akceptacji plików cookies niezbędnych do działania Serwisu</li>
+          <li>Aktywnego połączenia internetowego</li>
+        </ul>
+
+        <h3>3.3. Zakaz nieuprawnionego użycia</h3>
+        <div class="warning-box">
+          <p><strong>⚠️ Zabrania się:</strong></p>
+          <ul>
+            <li>Podejmowania prób nieautoryzowanego dostępu do Serwisu</li>
+            <li>Używania robotów, scraperów lub innych zautomatyzowanych narzędzi</li>
+            <li>Wprowadzania wirusów, złośliwego kodu lub innych szkodliwych programów</li>
+            <li>Podszywania się pod inne osoby lub podmioty</li>
+            <li>Obciążania lub zakłócania infrastruktury Serwisu</li>
+            <li>Dekompilowania, dezasemblacji lub reverse engineering</li>
+          </ul>
+        </div>
+
+        <h3>3.4. Dostępność Serwisu</h3>
+        <p>
+          Administrator dokłada wszelkich starań, aby Serwis działał bez przerw. 
+          Jednak nie gwarantuje ciągłej, nieprzerwanej dostępności Serwisu. 
+          Niedostępność może wynikać z:
+        </p>
+        <ul>
+          <li>Prac konserwacyjnych i technicznych</li>
+          <li>Aktualizacji systemu</li>
+          <li>Awarii sprzętu lub oprogramowania</li>
+          <li>Działania siły wyższej</li>
+          <li>Ataków hakerskich lub DDoS</li>
+        </ul>
+      </section>
+
+      <section id="wlasnosc" class="terms-section">
+        <h2>4. Własność intelektualna</h2>
+
+        <h3>4.1. Prawa autorskie</h3>
+        <p>
+          Wszystkie Treści publikowane w Serwisie, w tym teksty, grafiki, zdjęcia, 
+          logo, układ graficzny, kod źródłowy, są objęte ochroną prawnoautorską 
+          i stanowią własność Administratora lub są używane za zgodą właścicieli praw.
+        </p>
+
+        <div class="copyright-info">
+          <div class="copyright-card">
+            <span class="icon">©️</span>
+            <h4>Prawa autorskie</h4>
+            <p>
+              Wszelkie prawa do Treści są zastrzeżone. Kopiowanie, rozpowszechnianie 
+              lub wykorzystywanie Treści bez zgody jest zabronione.
+            </p>
+          </div>
+
+          <div class="copyright-card">
+            <span class="icon">🎨</span>
+            <h4>Grafika i zdjęcia</h4>
+            <p>
+              Wizualizacje projektów i zdjęcia realizacji są własnością 
+              Project Design i nie mogą być wykorzystywane bez pisemnej zgody.
+            </p>
+          </div>
+
+          <div class="copyright-card">
+            <span class="icon">🔤</span>
+            <h4>Logo i znaki firmowe</h4>
+            <p>
+              Logo "Project Design" oraz inne znaki towarowe są zastrzeżone 
+              i chronione prawem.
+            </p>
+          </div>
+        </div>
+
+        <h3>4.2. Dozwolony użytek</h3>
+        <p>Użytkownik może:</p>
+        <ul>
+          <li>Przeglądać Treści w Serwisie wyłącznie w celach informacyjnych</li>
+          <li>Pobierać i drukować pojedyncze fragmenty Treści do użytku osobistego</li>
+          <li>Udostępniać linki do Serwisu w mediach społecznościowych</li>
+        </ul>
+
+        <p class="info-box">
+          <strong>💡 Chcesz wykorzystać nasze treści?</strong><br>
+          Skontaktuj się z nami: <a href="mailto:kontakt@project-design.pl">kontakt@project-design.pl</a>
+        </p>
+
+        <h3>4.3. Zgłaszanie naruszeń</h3>
+        <p>
+          Jeśli uważasz, że Twoje prawa autorskie zostały naruszone, 
+          prosimy o kontakt na adres: <a href="mailto:prawne@project-design.pl">prawne@project-design.pl</a>
+        </p>
+      </section>
+
+      <section id="formularz" class="terms-section">
+        <h2>5. Formularz kontaktowy</h2>
+
+        <h3>5.1. Zasady korzystania</h3>
+        <p>
+          Serwis udostępnia Formularz kontaktowy, który służy do przesyłania 
+          zapytań dotyczących usług projektowania wnętrz.
+        </p>
+
+        <h3>5.2. Wymagane informacje</h3>
+        <p>Wysyłając wiadomość przez Formularz kontaktowy podajesz:</p>
+        <ul>
+          <li><strong>Imię i nazwisko</strong> - pole obowiązkowe</li>
+          <li><strong>Adres e-mail</strong> - pole obowiązkowe</li>
+          <li><strong>Numer telefonu</strong> - pole opcjonalne</li>
+          <li><strong>Treść wiadomości</strong> - pole obowiązkowe</li>
+        </ul>
+
+        <h3>5.3. Przetwarzanie zapytań</h3>
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-number">1</span>
+            <h4>Wysłanie formularza</h4>
+            <p>Użytkownik wypełnia i wysyła formularz kontaktowy</p>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <h4>Potwierdzenie</h4>
+            <p>System wysyła automatyczne potwierdzenie otrzymania zapytania</p>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <h4>Odpowiedź</h4>
+            <p>Administrator odpowiada na zapytanie w ciągu 48 godzin roboczych</p>
+          </div>
+        </div>
+
+        <h3>5.4. Ochrona danych</h3>
+        <p>
+          Dane osobowe podane w Formularzu kontaktowym są przetwarzane zgodnie 
+          z <a href="/polityka-prywatnosci">Polityką Prywatności</a> wyłącznie 
+          w celu udzielenia odpowiedzi na zapytanie.
+        </p>
+
+        <div class="warning-box">
+          <p>
+            <strong>⚠️ Nie przesyłaj przez formularz:</strong>
+          </p>
+          <ul>
+            <li>Danych wrażliwych (np. dane zdrowotne, dokumenty tożsamości)</li>
+            <li>Spamu lub treści reklamowych</li>
+            <li>Treści niezgodnych z prawem lub dobrymi obyczajami</li>
+            <li>Złośliwego kodu lub linków phishingowych</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="linki" class="terms-section">
+        <h2>6. Linki zewnętrzne</h2>
+
+        <h3>6.1. Linki do serwisów zewnętrznych</h3>
+        <p>
+          Serwis może zawierać linki do stron internetowych podmiotów trzecich 
+          (np. profile w mediach społecznościowych, strony partnerów).
+        </p>
+
+        <div class="info-box">
+          <p>
+            <strong>📌 Ważne:</strong> Administrator nie ponosi odpowiedzialności 
+            za treści i politykę prywatności serwisów zewnętrznych. Korzystanie 
+            z nich odbywa się na zasadach tam określonych.
+          </p>
+        </div>
+
+        <h3>6.2. Linkowanie do naszego Serwisu</h3>
+        <p>
+          Możesz umieszczać linki do naszego Serwisu na swoich stronach lub 
+          w mediach społecznościowych pod warunkiem, że:
+        </p>
+        <ul>
+          <li>Link prowadzi bezpośrednio do project-design.pl</li>
+          <li>Nie sugerujesz, że Administrator popiera Twoją stronę</li>
+          <li>Nie umieszczasz linku na stronach o treściach nielegalnych lub obraźliwych</li>
+          <li>Link nie wprowadza w błąd co do pochodzenia treści</li>
+        </ul>
+      </section>
+
+      <section id="odpowiedzialnosc" class="terms-section">
+        <h2>7. Odpowiedzialność</h2>
+
+        <h3>7.1. Wyłączenie odpowiedzialności</h3>
+        <p>Administrator nie ponosi odpowiedzialności za:</p>
+        
+        <div class="liability-grid">
+          <div class="liability-item">
+            <span class="icon">💻</span>
+            <h4>Problemy techniczne</h4>
+            <p>
+              Awarie sprzętu, oprogramowania, przerwy w dostępie do Internetu 
+              po stronie Użytkownika
+            </p>
+          </div>
+
+          <div class="liability-item">
+            <span class="icon">🔗</span>
+            <h4>Strony zewnętrzne</h4>
+            <p>
+              Treści i działania serwisów zewnętrznych, do których prowadzą linki
+            </p>
+          </div>
+
+          <div class="liability-item">
+            <span class="icon">📊</span>
+            <h4>Decyzje biznesowe</h4>
+            <p>
+              Decyzje podjęte przez Użytkownika na podstawie informacji z Serwisu
+            </p>
+          </div>
+
+          <div class="liability-item">
+            <span class="icon">🔒</span>
+            <h4>Bezpieczeństwo urządzenia</h4>
+            <p>
+              Zabezpieczenie urządzenia i połączenia internetowego Użytkownika
+            </p>
+          </div>
+        </div>
+
+        <h3>7.2. Charakter informacyjny</h3>
+        <p>
+          Informacje zawarte w Serwisie mają charakter ogólny i informacyjny. 
+          Nie stanowią oferty handlowej w rozumieniu Kodeksu Cywilnego. 
+          Ostateczne warunki współpracy ustalane są indywidualnie.
+        </p>
+
+        <h3>7.3. Aktualność informacji</h3>
+        <p>
+          Administrator dokłada starań, aby informacje w Serwisie były aktualne 
+          i poprawne. Jednak nie gwarantuje, że wszystkie informacje są 
+          kompletne, aktualne i wolne od błędów.
+        </p>
+
+        <div class="warning-box">
+          <p>
+            <strong>⚠️ Zastrzeżenia:</strong> Przed podjęciem decyzji biznesowych 
+            zalecamy kontakt bezpośredni w celu uzyskania aktualnych informacji 
+            i indywidualnej wyceny.
+          </p>
+        </div>
+      </section>
+
+      <section id="zmiany" class="terms-section">
+        <h2>8. Zmiany Regulaminu</h2>
+
+        <h3>8.1. Prawo do zmian</h3>
+        <p>
+          Administrator zastrzega sobie prawo do wprowadzania zmian w Regulaminie 
+          w każdym czasie. Zmiany mogą wynikać z:
+        </p>
+        <ul>
+          <li>Zmian w przepisach prawa</li>
+          <li>Rozwoju funkcjonalności Serwisu</li>
+          <li>Względów technicznych lub organizacyjnych</li>
+          <li>Poprawy bezpieczeństwa lub jakości usług</li>
+        </ul>
+
+        <h3>8.2. Informowanie o zmianach</h3>
+        <p>
+          O istotnych zmianach w Regulaminie Administrator poinformuje poprzez:
+        </p>
+        <ul>
+          <li>Wyraźne powiadomienie na stronie głównej Serwisu</li>
+          <li>Aktualizację daty "Ostatnia aktualizacja" na górze Regulaminu</li>
+          <li>E-mail do osób, które pozostawiły swoje dane kontaktowe (w przypadku istotnych zmian)</li>
+        </ul>
+
+        <h3>8.3. Akceptacja zmian</h3>
+        <p>
+          Zmiany wchodzą w życie w terminie wskazanym przy ich publikacji, 
+          nie wcześniej jednak niż po upływie 7 dni od ogłoszenia. 
+          Dalsze korzystanie z Serwisu po wejściu w życie zmian oznacza 
+          akceptację nowego Regulaminu.
+        </p>
+      </section>
+
+      <section id="prawo" class="terms-section">
+        <h2>9. Prawo właściwe i rozstrzyganie sporów</h2>
+
+        <h3>9.1. Prawo właściwe</h3>
+        <p>
+          Regulamin oraz wszelkie sprawy związane z korzystaniem z Serwisu 
+          podlegają prawu polskiemu.
+        </p>
+
+        <h3>9.2. Rozstrzyganie sporów</h3>
+        <p>
+          Wszelkie spory wynikłe w związku z Regulaminem będą rozstrzygane 
+          przez sądy powszechne właściwe dla siedziby Administratora, 
+          chyba że przepisy bezwzględnie obowiązujące stanowią inaczej.
+        </p>
+
+        <h3>9.3. Konsumenci</h3>
+        <div class="info-box">
+          <p>
+            <strong>👥 Jesteś konsumentem?</strong><br>
+            Jeśli korzystasz z Serwisu jako konsument (osoba fizyczna dokonująca 
+            czynności niezwiązanych z działalnością gospodarczą), przysługują Ci 
+            dodatkowe prawa wynikające z przepisów o ochronie konsumentów.
+          </p>
+          <p>
+            Możesz skorzystać z pozasądowych sposobów rozpatrywania reklamacji 
+            i dochodzenia roszczeń:
+          </p>
+          <ul>
+            <li>
+              <strong>Rzecznik Praw Konsumenta:</strong> 
+              <a href="https://www.gov.pl/web/uokik" target="_blank" rel="noopener">www.gov.pl/web/uokik</a>
+            </li>
+            <li>
+              <strong>Wojewódzki Inspektor Inspekcji Handlowej</strong>
+            </li>
+            <li>
+              <strong>Platforma ODR:</strong> 
+              <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="kontakt" class="terms-section">
+        <h2>10. Kontakt</h2>
+
+        <p>
+          W sprawach związanych z Regulaminem lub działaniem Serwisu 
+          możesz skontaktować się z Administratorem:
+        </p>
+
+        <div class="contact-cards">
+          <div class="contact-card">
+            <h3>📧 E-mail</h3>
+            <a href="mailto:kontakt@project-design.pl">kontakt@project-design.pl</a>
+            <p class="note">Odpowiadamy w ciągu 48h roboczych</p>
+          </div>
+
+          <div class="contact-card">
+            <h3>📞 Telefon</h3>
+            <a href="tel:+48123456789">+48 123 456 789</a>
+            <p class="note">Pon-Pt: 7:00 - 16:30</p>
+          </div>
+
+          <div class="contact-card">
+            <h3>📮 Adres</h3>
+            <address>
+              MSystem Jacek Wichowski<br>
+              ul. Polna 134, hala nr 3<br>
+              87-100 Toruń
+            </address>
+          </div>
+
+          <div class="contact-card">
+            <h3>💬 Formularz</h3>
+            <a href="/#kontakt">Formularz kontaktowy</a>
+            <p class="note">Na stronie głównej</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="terms-footer">
+        <div class="acceptance-box">
+          <h3>✅ Akceptacja Regulaminu</h3>
+          <p>
+            Korzystając z Serwisu oświadczasz, że zapoznałeś się z niniejszym 
+            Regulaminem i w pełni go akceptujesz. Jeśli nie zgadzasz się 
+            z postanowieniami Regulaminu, nie korzystaj z Serwisu.
+          </p>
+        </div>
+
+        <div class="version-info">
+          <div>
+            <strong>Wersja:</strong> 1.0
+          </div>
+          <div>
+            <strong>Data wejścia w życie:</strong> {new Date().toLocaleDateString("pl-PL")}
+          </div>
+        </div>
+
+        <div class="related-docs">
+          <p><strong>Zobacz również:</strong></p>
+          <ul>
+            <li><a href="/polityka-prywatnosci">Polityka Prywatności</a></li>
+            <li><a href="/#kontakt">Formularz kontaktowy</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .terms-page {
+    padding: 4rem 0;
+    background: linear-gradient(to bottom, #f8fafc, white);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    font-family: "Playfair Display", serif;
+  }
+
+  .last-updated {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Table of Contents */
+  .toc {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .toc h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 1rem;
+  }
+
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: toc-counter;
+  }
+
+  .toc li {
+    counter-increment: toc-counter;
+    margin-bottom: 0.5rem;
+  }
+
+  .toc li::before {
+    content: counter(toc-counter) ". ";
+    color: #f59e0b;
+    font-weight: 600;
+  }
+
+  .toc a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .toc a:hover {
+    color: #f59e0b;
+  }
+
+  /* Sections */
+  .terms-section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .terms-section h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f59e0b;
+  }
+
+  .terms-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .terms-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #475569;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .terms-section p {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .terms-section ul,
+  .terms-section ol {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .terms-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .terms-section a {
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .terms-section a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  .terms-section address {
+    font-style: normal;
+  }
+
+  /* Info boxes */
+  .info-box {
+    background: #dbeafe;
+    border-left: 4px solid #3b82f6;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .warning-box {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  /* Definitions Grid */
+  .definitions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .definition-card {
+    background: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s;
+  }
+
+  .definition-card:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .definition-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.5rem;
+  }
+
+  .definition-card p {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  /* Copyright Info */
+  .copyright-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .copyright-card {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+  }
+
+  .copyright-card .icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .copyright-card h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.5rem;
+  }
+
+  .copyright-card p {
+    font-size: 0.8125rem;
+    margin: 0;
+    color: #64748b;
+  }
+
+  /* Process Steps */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .step {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    position: relative;
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #f59e0b;
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  .step h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.8125rem;
+    margin: 0;
+    color: #64748b;
+  }
+
+  /* Liability Grid */
+  .liability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .liability-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .liability-item .icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .liability-item h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.5rem;
+  }
+
+  .liability-item p {
+    font-size: 0.8125rem;
+    margin: 0;
+    color: #64748b;
+  }
+
+  /* Contact Cards */
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .contact-card {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+  }
+
+  .contact-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 0.75rem;
+  }
+
+  .contact-card a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-card a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-card .note {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0.5rem 0 0;
+  }
+
+  /* Footer */
+  .terms-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e2e8f0;
+  }
+
+  .acceptance-box {
+    background: #dcfce7;
+    border-left: 4px solid #22c55e;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .acceptance-box h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #166534;
+    margin: 0 0 0.75rem;
+  }
+
+  .acceptance-box p {
+    margin: 0;
+    color: #166534;
+  }
+
+  .version-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .version-info div {
+    color: #64748b;
+    font-size: 0.875rem;
+  }
+
+  .related-docs {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .related-docs p {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.75rem;
+  }
+
+  .related-docs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related-docs li {
+    margin-bottom: 0.5rem;
+  }
+
+  .related-docs a {
+    color: #3b82f6;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .related-docs a::before {
+    content: "→";
+    margin-right: 0.5rem;
+    color: #f59e0b;
+  }
+
+  .related-docs a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .terms-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .definitions-grid,
+    .copyright-info,
+    .process-steps,
+    .liability-grid,
+    .contact-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .version-info {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+  }
+</style>
+</document_content>
