@@ -1,5 +1,30 @@
 ---
-// src/components/Contact.astro
+// src/components/Contact.astro - Formularz kontaktowy z EmailJS + Cloudinary
+
+// Dane kontaktowe
+const contactInfo = {
+  phone: "+48 123 456 789", 
+  email: "kontakt@project-design.pl",
+  address: {
+    street: "ul. Polna 134, hala nr 3",
+    city: "87-100 Toruń"
+  },
+  hours: {
+    weekdays: "Pon-Pt: 7:00 - 16:30",
+    saturday: "Sob: zamknięte",
+    sunday: "Ndz: zamknięte"
+  }
+};
+
+// KONFIGURACJA EMAILJS
+const EMAILJS_PUBLIC_KEY = "gjau8dneW58l9l3tz";
+const EMAILJS_SERVICE_ID = "service_ilqjfai";
+const EMAILJS_TEMPLATE_ID = "template_828un5c";
+
+// KONFIGURACJA CLOUDINARY
+// Zarejestruj się na cloudinary.com (darmowe konto) i wstaw swoje dane:
+const CLOUDINARY_CLOUD_NAME = "drpll3ho2"; // ZMIEŃ NA SWOJE!
+const CLOUDINARY_UPLOAD_PRESET = "project-design"; // ZMIEŃ NA SWOJE!
 ---
 
 <section id="kontakt" class="py-20 bg-white">
@@ -20,26 +45,26 @@
         <form class="space-y-6" id="contact-form">
           <div class="grid md:grid-cols-2 gap-6">
             <div>
-              <label for="name" class="block text-sm font-medium text-slate-700 mb-2">
+              <label for="user_name" class="block text-sm font-medium text-slate-700 mb-2">
                 Imię i nazwisko *
               </label>
               <input 
                 type="text" 
-                id="name" 
-                name="name" 
+                id="user_name" 
+                name="user_name" 
                 required
                 class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
                 placeholder="Jan Kowalski"
               />
             </div>
             <div>
-              <label for="email" class="block text-sm font-medium text-slate-700 mb-2">
+              <label for="user_email" class="block text-sm font-medium text-slate-700 mb-2">
                 Email *
               </label>
               <input 
                 type="email" 
-                id="email" 
-                name="email" 
+                id="user_email" 
+                name="user_email" 
                 required
                 class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
                 placeholder="jan@example.com"
@@ -47,15 +72,18 @@
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-6">
-           
-            <div>
-              
-          
-            </div>
+          <div>
+            <label for="user_phone" class="block text-sm font-medium text-slate-700 mb-2">
+              Telefon (opcjonalnie)
+            </label>
+            <input 
+              type="tel" 
+              id="user_phone" 
+              name="user_phone"
+              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+              placeholder="601 234 567"
+            />
           </div>
-
-          
 
           <div>
             <label for="message" class="block text-sm font-medium text-slate-700 mb-2">
@@ -64,11 +92,39 @@
             <textarea 
               id="message" 
               name="message" 
-              rows="4" 
+              rows="5" 
               required
               class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all resize-none"
               placeholder="Opisz swoją wizję lub zadaj pytanie..."
             ></textarea>
+          </div>
+
+          <!-- File Upload Section -->
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">
+              Załączniki 
+              <span class="text-slate-500 text-xs">(opcjonalnie, max. 5 plików po 10MB)</span>
+            </label>
+            <div class="file-upload-area" id="file-upload-area">
+              <div class="file-upload-content">
+                <svg class="upload-icon mx-auto mb-3" width="48" height="48" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" stroke-width="2"/>
+                  <path d="M17 8l-5-5-5 5" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 3v12" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <p class="upload-text text-slate-700 font-medium mb-2">
+                  Przeciągnij pliki tutaj lub kliknij aby wybrać
+                </p>
+                <p class="upload-info text-slate-500 text-sm mb-4">
+                  JPG, PNG, PDF, DOC, DOCX (max. 10MB każdy)
+                </p>
+                <button type="button" class="upload-btn" id="upload-btn">
+                  Wybierz pliki
+                </button>
+              </div>
+              <div class="uploaded-files" id="uploaded-files"></div>
+            </div>
+            <input type="hidden" id="attachment_urls" name="attachment_urls" />
           </div>
 
           <div class="flex items-start">
@@ -81,16 +137,27 @@
             />
             <label for="privacy" class="ml-3 text-sm text-slate-600">
               Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z 
-              <a href="#" class="text-amber-500 hover:underline">polityką prywatności</a> *
+              <a href="/polityka-prywatnosci" class="text-amber-500 hover:underline">polityką prywatności</a> *
             </label>
           </div>
 
           <button 
             type="submit"
-            class="w-full bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl transform hover:scale-105"
+            class="w-full bg-amber-500 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-amber-600 transition-all hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            id="submit-btn"
           >
-            Wyślij zapytanie
+            <span class="btn-text">Wyślij zapytanie</span>
+            <span class="btn-loading hidden items-center justify-center gap-2">
+              <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Wysyłanie...
+            </span>
           </button>
+
+          <!-- Status Message -->
+          <div id="form-status" class="hidden"></div>
         </form>
       </div>
 
@@ -110,8 +177,8 @@
               </div>
               <div>
                 <div class="text-sm text-slate-500 mb-1">Telefon</div>
-                <a href="tel:+48123456789" class="text-lg font-medium text-slate-900 hover:text-amber-500 transition-colors">
-                  +48 123 456 789
+                <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} class="text-lg font-medium text-slate-900 hover:text-amber-500 transition-colors">
+                  {contactInfo.phone}
                 </a>
               </div>
             </div>
@@ -124,8 +191,8 @@
               </div>
               <div>
                 <div class="text-sm text-slate-500 mb-1">Email</div>
-                <a href="mailto:kontakt@projectdesign.pl" class="text-lg font-medium text-slate-900 hover:text-amber-500 transition-colors">
-                  kontakt@projectdesign.pl
+                <a href={`mailto:${contactInfo.email}`} class="text-lg font-medium text-slate-900 hover:text-amber-500 transition-colors">
+                  {contactInfo.email}
                 </a>
               </div>
             </div>
@@ -140,9 +207,8 @@
               <div>
                 <div class="text-sm text-slate-500 mb-1">Adres</div>
                 <div class="text-lg font-medium text-slate-900">
-                  ul. Polna 134, hala nr 3<br/>
-                  87-100 Toruń
-                  
+                  {contactInfo.address.street}<br/>
+                  {contactInfo.address.city}
                 </div>
               </div>
             </div>
@@ -156,35 +222,491 @@
               <div>
                 <div class="text-sm text-slate-500 mb-1">Godziny otwarcia</div>
                 <div class="text-lg font-medium text-slate-900">
-                  Pon-Pt: 7:00 - 16:30<br/>
-                  Sob: zamknięte<br/>
-                  Ndz: zamknięte
+                  {contactInfo.hours.weekdays}<br/>
+                  {contactInfo.hours.saturday}<br/>
+                  {contactInfo.hours.sunday}
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  // Form handling
-  const form = document.getElementById('contact-form') as HTMLFormElement;
+<!-- EmailJS Script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- Cloudinary Upload Widget -->
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+<script define:vars={{ 
+  EMAILJS_PUBLIC_KEY, 
+  EMAILJS_SERVICE_ID, 
+  EMAILJS_TEMPLATE_ID,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_UPLOAD_PRESET
+}}>
+  // Store uploaded file URLs
+  let uploadedFiles = [];
+  let myWidget = null;
   
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // Initialize Cloudinary Upload Widget
+  function initCloudinary() {
+    if (typeof cloudinary === 'undefined') {
+      console.log('⏳ Waiting for Cloudinary to load...');
+      setTimeout(initCloudinary, 100);
+      return;
+    }
     
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    console.log('✅ Cloudinary loaded');
     
-    // Here you would typically send the data to your backend
-    console.log('Form data:', data);
+    myWidget = cloudinary.createUploadWidget(
+      {
+        cloudName: CLOUDINARY_CLOUD_NAME,
+        uploadPreset: CLOUDINARY_UPLOAD_PRESET,
+        sources: ['local', 'url', 'camera'],
+        multiple: true,
+        maxFiles: 5,
+        maxFileSize: 10485760, // 10MB
+        resourceType: 'auto',
+        clientAllowedFormats: ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx'],
+        showPoweredBy: false,
+        language: 'pl',
+        text: {
+          pl: {
+            or: 'Lub',
+            back: 'Wstecz',
+            close: 'Zamknij',
+            upload_successful: 'Upload zakończony!',
+            upload_files: 'Wybierz pliki',
+            drag_files: 'Przeciągnij pliki tutaj',
+            browse: 'Przeglądaj',
+            uploading: 'Przesyłanie...',
+            upload_complete: 'Przesłano pomyślnie',
+            processing: 'Przetwarzanie...',
+            max_files_title: 'Przekroczono limit plików',
+            max_files_text: 'Możesz przesłać maksymalnie 5 plików.',
+            max_file_size_title: 'Plik jest za duży',
+            max_file_size_text: 'Maksymalny rozmiar pliku to 10MB.'
+          }
+        },
+        styles: {
+          palette: {
+            window: "#ffffff",
+            windowBorder: "#f59e0b",
+            tabIcon: "#f59e0b",
+            menuIcons: "#f59e0b",
+            textDark: "#000000",
+            textLight: "#FFFFFF",
+            link: "#f59e0b",
+            action: "#f59e0b",
+            inactiveTabIcon: "#666666",
+            error: "#ef4444",
+            inProgress: "#f59e0b",
+            complete: "#10b981",
+            sourceBg: "#f9fafb"
+          }
+        }
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          const fileInfo = {
+            url: result.info.secure_url,
+            name: result.info.original_filename,
+            size: result.info.bytes,
+            format: result.info.format
+          };
+          uploadedFiles.push(fileInfo);
+          document.getElementById('attachment_urls').value = uploadedFiles.map(f => f.url).join(',');
+          displayUploadedFile(fileInfo);
+          console.log('✅ File uploaded:', fileInfo.name);
+        }
+      }
+    );
     
-    // Show success message
-    alert('Dziękujemy za wiadomość! Odpowiemy najszybciej jak to możliwe.');
-    form.reset();
-  });
+    console.log('✅ Cloudinary widget initialized');
+  }
+  
+  // Display uploaded file
+  function displayUploadedFile(fileInfo) {
+    const container = document.getElementById('uploaded-files');
+    const fileElement = document.createElement('div');
+    fileElement.className = 'uploaded-file';
+    fileElement.innerHTML = `
+      <div class="file-info">
+        <span class="file-icon">📎</span>
+        <span class="file-name">${fileInfo.name}.${fileInfo.format}</span>
+        <span class="file-size">${formatFileSize(fileInfo.size)}</span>
+      </div>
+      <button type="button" class="remove-file" data-url="${fileInfo.url}">✕</button>
+    `;
+    container.appendChild(fileElement);
+    
+    fileElement.querySelector('.remove-file').addEventListener('click', function() {
+      removeFile(this.dataset.url, fileElement);
+    });
+  }
+  
+  // Remove file
+  function removeFile(url, element) {
+    uploadedFiles = uploadedFiles.filter(f => f.url !== url);
+    document.getElementById('attachment_urls').value = uploadedFiles.map(f => f.url).join(',');
+    element.remove();
+    console.log('🗑️ File removed');
+  }
+  
+  // Format file size
+  function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+  }
+  
+  // Initialize form
+  function initializeForm() {
+    console.log('🔧 Initializing contact form...');
+    
+    // Check if EmailJS is loaded
+    if (typeof emailjs === 'undefined') {
+      console.error('❌ EmailJS not loaded!');
+      setTimeout(initializeForm, 100);
+      return;
+    }
+    
+    console.log('✅ EmailJS loaded successfully');
+    
+    // Initialize EmailJS
+    try {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      console.log('✅ EmailJS initialized');
+    } catch (error) {
+      console.error('❌ EmailJS init failed:', error);
+      return;
+    }
+    
+    // Initialize Cloudinary
+    initCloudinary();
+    
+    // Get form element
+    const contactForm = document.getElementById('contact-form');
+    
+    if (!contactForm) {
+      console.error('❌ Form not found!');
+      return;
+    }
+    
+    console.log('✅ Form found and ready');
+    
+    // Open upload widget
+    document.getElementById('upload-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      if (myWidget) {
+        myWidget.open();
+      } else {
+        console.error('❌ Upload widget not initialized yet');
+      }
+    });
+    
+    // Drag and drop
+    const uploadArea = document.getElementById('file-upload-area');
+    
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('drag-over');
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('drag-over');
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+      if (myWidget) {
+        myWidget.open();
+      }
+    });
+
+    // Handle form submission
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      console.log('📧 Form submitted - processing...');
+      
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoading = submitBtn.querySelector('.btn-loading');
+      const formStatus = document.getElementById('form-status');
+      
+      // Show loading state
+      console.log('🔄 Showing loading state...');
+      btnText.classList.add('hidden');
+      btnLoading.classList.remove('hidden');
+      btnLoading.classList.add('flex');
+      submitBtn.disabled = true;
+      
+      // Get form data
+      const formData = new FormData(contactForm);
+      
+      // Prepare attachments text
+      let attachmentsText = 'Brak załączników';
+      if (uploadedFiles.length > 0) {
+        attachmentsText = uploadedFiles.map((f, index) => 
+          `${index + 1}. ${f.name}.${f.format} (${formatFileSize(f.size)})\n   Link: ${f.url}`
+        ).join('\n\n');
+      }
+      
+      // Prepare template params - WAŻNE: nazwy muszą pasować do zmiennych w szablonie EmailJS
+      const templateParams = {
+        user_name: formData.get('user_name'),
+        user_email: formData.get('user_email'),
+        user_phone: formData.get('user_phone') || 'Nie podano',
+        message: formData.get('message'),
+        attachments: attachmentsText
+      };
+      
+      console.log('📝 Sending with params:', {
+        name: templateParams.user_name,
+        email: templateParams.user_email,
+        has_phone: templateParams.user_phone !== 'Nie podano',
+        attachments_count: uploadedFiles.length
+      });
+      
+      // Send email via EmailJS
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(function(response) {
+          console.log('✅ SUCCESS!', response);
+          
+          // Track in GTM
+          if (typeof window.dataLayer !== 'undefined') {
+            window.dataLayer.push({
+              'event': 'form_submit_success',
+              'form_type': 'contact',
+              'form_location': 'contact_section',
+              'form_details': {
+                'has_phone': templateParams.user_phone !== 'Nie podano',
+                'has_attachments': uploadedFiles.length > 0,
+                'attachment_count': uploadedFiles.length
+              }
+            });
+          }
+
+          // Show success message
+          formStatus.innerHTML = `
+            <div class="p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3 animate-fadeIn">
+              <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div>
+                <p class="font-semibold text-green-800">✅ Wiadomość została wysłana!</p>
+                <p class="text-sm text-green-700">Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe.</p>
+              </div>
+            </div>
+          `;
+          formStatus.classList.remove('hidden');
+          
+          // Reset form
+          contactForm.reset();
+          uploadedFiles = [];
+          document.getElementById('uploaded-files').innerHTML = '';
+          document.getElementById('attachment_urls').value = '';
+          
+          // Reset button
+          btnText.classList.remove('hidden');
+          btnLoading.classList.add('hidden');
+          submitBtn.disabled = false;
+          
+          // Hide message after 8 seconds
+          setTimeout(() => {
+            formStatus.classList.add('hidden');
+            formStatus.innerHTML = '';
+          }, 8000);
+        })
+        .catch(function(error) {
+          console.error('❌ EmailJS FAILED:', error);
+          
+          // Show error message
+          formStatus.innerHTML = `
+            <div class="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3 animate-fadeIn">
+              <svg class="w-6 h-6 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div>
+                <p class="font-semibold text-red-800">❌ Wystąpił błąd podczas wysyłania</p>
+                <p class="text-sm text-red-700">Spróbuj ponownie lub zadzwoń: ${contactInfo.phone}</p>
+                <p class="text-xs text-red-600 mt-1">Szczegóły: ${error.text || error.message || 'Nieznany błąd'}</p>
+              </div>
+            </div>
+          `;
+          formStatus.classList.remove('hidden');
+          
+          // Reset button
+          btnText.classList.remove('hidden');
+          btnLoading.classList.add('hidden');
+          submitBtn.disabled = false;
+        });
+    });
+    
+    // Phone click tracking
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    phoneLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        console.log('📞 Phone link clicked');
+        const phoneNumber = this.href.replace('tel:', '');
+        if (typeof window.dataLayer !== 'undefined') {
+          window.dataLayer.push({
+            'event': 'phone_click',
+            'phone_number': phoneNumber,
+            'click_location': window.location.pathname,
+            'engagement_type': 'call_intent'
+          });
+        }
+      });
+    });
+    
+    console.log('✅ All event listeners attached');
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeForm);
+  } else {
+    initializeForm();
+  }
 </script>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  /* File Upload Styles */
+  .file-upload-area {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.1));
+    border: 2px dashed rgba(245, 158, 11, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .file-upload-area:hover,
+  .file-upload-area.drag-over {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: #f59e0b;
+    transform: scale(1.01);
+  }
+
+  .file-upload-content {
+    text-align: center;
+  }
+
+  .upload-icon {
+    stroke: #f59e0b;
+    margin: 0 auto;
+  }
+
+  .upload-btn {
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+  }
+
+  .uploaded-files {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .uploaded-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    animation: slideInUp 0.3s ease;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .file-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .file-icon {
+    font-size: 1.2rem;
+  }
+
+  .file-name {
+    color: #1f2937;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .file-size {
+    color: #6b7280;
+    font-size: 0.85rem;
+  }
+
+  .remove-file {
+    width: 28px;
+    height: 28px;
+    background: rgba(239, 68, 68, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .remove-file:hover {
+    background: rgba(239, 68, 68, 0.2);
+    transform: scale(1.1);
+  }
+</style>
