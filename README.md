@@ -305,7 +305,7 @@ Strona jest w pełni responsywna i zoptymalizowana dla:
 W razie pytań lub problemów:
 
 - Email: kontakt@projectdesign.pl
-- Tel: +48 123 456 789
+- Tel: +48 576 060 832
 
 ---
 
