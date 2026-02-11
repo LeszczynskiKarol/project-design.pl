@@ -188,10 +188,10 @@ read -p "Czy otworzyć stronę w przeglądarce? (t/n): " -n 1 -r
 echo ""
 if [[ $REPLY =~ ^[Tt]$ ]]; then
     if command -v xdg-open &> /dev/null; then
-        xdg-open "https://project-design.pl"
+        xdg-open "https://www.project-design.pl"
     elif command -v open &> /dev/null; then
-        open "https://project-design.pl"
+        open "https://www.project-design.pl"
     else
-        echo "Otwórz w przeglądarce: https://project-design.pl"
+        echo "Otwórz w przeglądarce: https://www.project-design.pl"
     fi
 fi
