@@ -1,6 +1,7 @@
 ---
 // src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { srcset } from '../lib/img';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
 import Portfolio from '../components/Portfolio.astro';
@@ -16,12 +17,20 @@ const seoData = {
   keywords: 'projektowanie wnętrz Toruń, projekty wnętrz Toruń, projektant wnętrz Toruń, aranżacja wnętrz Toruń, Project Design'
 };
 
-// Obraz LCP sekcji hero — pobierany z wyprzedzeniem (PSI: LCP 11,9 s na mobile).
+// Obraz LCP sekcji hero — pobierany z wyprzedzeniem.
+// srcset i sizes MUSZĄ być zgodne z <img> w Hero.astro, inaczej przeglądarka
+// pobierze dwa różne warianty tego samego zdjęcia.
 const heroImage =
   'https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp';
+const heroSizes = '(max-width: 1024px) 100vw, 50vw';
 ---
 
-<BaseLayout {...seoData} preloadImage={heroImage}>
+<BaseLayout
+  {...seoData}
+  preloadImage={heroImage}
+  preloadImageSrcset={srcset(heroImage)}
+  preloadImageSizes={heroSizes}
+>
   <Hero />
   
   <!-- About Section -->

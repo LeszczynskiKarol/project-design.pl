@@ -2,6 +2,7 @@
 // src/pages/aranzacje-wnetrz.astro
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { srcset } from '../lib/img';
 import Team from '../components/Team.astro';
 import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
@@ -211,7 +212,9 @@ const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
   <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
       <img 
-        src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp" 
+        src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
         alt="Aranżacje wnętrz Toruń"
         class="w-full h-full object-cover"
       />
@@ -313,7 +316,9 @@ const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
           </div>
           <div>
             <img 
-              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp" 
+              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
               alt="Przykład aranżacji wnętrza"
               class="rounded-2xl shadow-2xl"
               loading="lazy"
@@ -492,7 +497,9 @@ const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
           </div>
           <div>
             <img 
-              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp" 
+              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
               alt="Aranżacja domu jednorodzinnego"
               class="rounded-2xl shadow-2xl"
               loading="lazy"
@@ -523,7 +530,9 @@ const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
           >
             <div class="relative h-48 overflow-hidden">
               <img 
-                src={style.image} 
+                src={style.image}
+                    srcset={srcset(style.image)}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
                 alt={`Styl ${style.name}`}
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
@@ -631,7 +640,9 @@ const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
           <img 
-            src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp" 
+            src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
             alt="Aranżacja mieszkania"
             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             loading="lazy"
@@ -645,7 +656,9 @@ const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
         </div>
         <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
           <img 
-            src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp" 
+            src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
             alt="Aranżacja domu"
             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             loading="lazy"
@@ -659,7 +672,9 @@ const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
         </div>
         <div class="relative h-64 rounded-2xl overflow-hidden shadow-lg group">
           <img 
-            src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp" 
+            src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
             alt="Aranżacja salonu"
             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             loading="lazy"

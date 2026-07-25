@@ -1,5 +1,6 @@
 ---
 // src/components/Team.astro
+import { srcset } from '../lib/img';
 
 const team = [
 {
@@ -47,6 +48,8 @@ const team = [
             <div class="relative">
               <img
                 src={member.image}
+                srcset={srcset(member.image)}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 alt={`${member.name} — ${member.role.toLowerCase()} w Project Design Toruń`}
                 class="w-full h-96 object-cover"
                 width="600"

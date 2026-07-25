@@ -2,6 +2,7 @@
 // src/components/Portfolio.astro
 // Dane realizacji z JEDNEGO źródła: src/data/portfolio.ts (gotowe pod globalne portfolio).
 import { portfolio, type PortfolioImage } from "../data/portfolio";
+import { srcset, smallest } from '../lib/img';
 
 const projects: PortfolioImage[] = portfolio;
 ---
@@ -46,6 +47,8 @@ const projects: PortfolioImage[] = portfolio;
           <div class="relative overflow-hidden rounded-2xl shadow-lg group-hover:shadow-2xl transition-all">
             <img
               src={project.src}
+              srcset={srcset(project.src)}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               alt={project.title}
               class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               width="600"
@@ -193,9 +196,13 @@ const projects: PortfolioImage[] = portfolio;
           data-index={index}
         >
           <img
-            src={project.src}
+            src={smallest(project.src, 480)}
             alt={project.title}
             class="w-full h-full object-cover"
+            width="64"
+            height="64"
+            loading="lazy"
+            decoding="async"
           />
         </button>
       ))}

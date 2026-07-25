@@ -2,6 +2,7 @@
 // src/pages/architekci-wnetrz.astro
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { srcset } from '../lib/img';
 import Team from '../components/Team.astro';
 import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
@@ -91,7 +92,9 @@ const breadcrumbSchema = breadcrumb('Architekci wnętrz', '/architekci-wnetrz/')
   <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
       <img 
-        src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektWidok-6_1-2_opt.webp" 
+        src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektWidok-6_1-2_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektWidok-6_1-2_opt.webp")}
+                    sizes="100vw" 
         alt="Architekci wnętrz Toruń"
         class="w-full h-full object-cover"
       />
@@ -183,7 +186,9 @@ const breadcrumbSchema = breadcrumb('Architekci wnętrz', '/architekci-wnetrz/')
           </div>
           <div class="fade-in-observe">
             <img 
-              src="https://media.meblesystem.pl/shared/adobe-portfolio/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.webp" 
+              src="https://media.meblesystem.pl/shared/adobe-portfolio/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.webp"
+                    srcset={srcset("https://media.meblesystem.pl/shared/adobe-portfolio/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.webp")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
               alt="Architektura wnętrz"
               class="rounded-2xl shadow-2xl"
               loading="lazy"

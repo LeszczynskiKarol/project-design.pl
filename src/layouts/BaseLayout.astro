@@ -15,10 +15,22 @@ export interface Props {
   schemas?: Record<string, unknown>[];
   /** URL obrazu LCP do wstępnego pobrania — ustawiać tylko tam, gdzie obraz jest nad zgięciem. */
   preloadImage?: string;
+  /** srcset i sizes obrazu LCP — MUSZĄ być identyczne jak na <img>, inaczej
+      przeglądarka pobierze dwa różne warianty tego samego zdjęcia. */
+  preloadImageSrcset?: string;
+  preloadImageSizes?: string;
 }
 
-const { title, description, ogImage, canonical, schemas, preloadImage } =
-  Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  canonical,
+  schemas,
+  preloadImage,
+  preloadImageSrcset,
+  preloadImageSizes,
+} = Astro.props;
 
 const FONTS_HREF =
   "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700;900&display=swap";
@@ -107,6 +119,8 @@ const FONTS_HREF =
           as="image"
           fetchpriority="high"
           href={preloadImage}
+          imagesrcset={preloadImageSrcset}
+          imagesizes={preloadImageSizes}
         />
       )
     }

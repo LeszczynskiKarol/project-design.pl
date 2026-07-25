@@ -3,6 +3,7 @@
 // src/pages/projektowanie-mebli.astro
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { srcset } from '../lib/img';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
 import { breadcrumb } from '../lib/schema';
@@ -133,7 +134,9 @@ const breadcrumbSchema = breadcrumb('Projektowanie mebli na wymiar', '/projektow
         
         <div class="relative animate-slide-left">
           <img 
-            src="https://media.meblesystem.pl/meblesystem.pl/kuchnie-plyta-laminowana/k6-7_opt.webp" 
+            src="https://media.meblesystem.pl/meblesystem.pl/kuchnie-plyta-laminowana/k6-7_opt.webp"
+                    srcset={srcset("https://media.meblesystem.pl/meblesystem.pl/kuchnie-plyta-laminowana/k6-7_opt.webp")}
+                    sizes="(max-width: 1024px) 100vw, 50vw" 
             alt="Meble na wymiar Toruń"
             class="rounded-2xl shadow-2xl"
             loading="eager"
@@ -233,7 +236,9 @@ const breadcrumbSchema = breadcrumb('Projektowanie mebli na wymiar', '/projektow
           >
             <div class="relative h-48 overflow-hidden">
               <img 
-                src={type.image} 
+                src={type.image}
+                    srcset={srcset(type.image)}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
                 alt={type.title}
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
