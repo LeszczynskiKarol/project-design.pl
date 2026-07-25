@@ -58,9 +58,18 @@ const capabilities = [
 ];
 const breadcrumbSchema = breadcrumb('Studio projektowania wnętrz', '/studio-projektowania-wnetrz/');
 
+const heroImage = 'https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp';
+const heroSizes = '(max-width: 1024px) 100vw, 50vw';
+
 ---
 
-<BaseLayout {...seoData} schemas={[breadcrumbSchema]}>
+<BaseLayout
+  {...seoData}
+  schemas={[breadcrumbSchema]}
+  preloadImage={heroImage}
+  preloadImageSrcset={srcset(heroImage)}
+  preloadImageSizes={heroSizes}
+>
   <!-- Hero Section -->
 <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0">

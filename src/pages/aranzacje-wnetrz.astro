@@ -205,17 +205,29 @@ const faqSchema = {
 
 const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
 
+const heroImage = 'https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp';
+const heroSizes = '100vw';
+
 ---
 
-<BaseLayout {...seoData} schemas={[breadcrumbSchema, faqSchema]}>
+<BaseLayout
+  {...seoData}
+  schemas={[breadcrumbSchema, faqSchema]}
+  preloadImage={heroImage}
+  preloadImageSrcset={srcset(heroImage)}
+  preloadImageSizes={heroSizes}
+>
   <!-- Hero Section -->
   <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
-      <img 
-        src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp"
-                    srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp")}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" 
-        alt="Aranżacje wnętrz Toruń"
+      <img
+        src={heroImage}
+        srcset={srcset(heroImage)}
+        sizes={heroSizes}
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+        alt="Aranżacja wnętrza mieszkania w Toruniu — realizacja Project Design"
         class="w-full h-full object-cover"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/80"></div>

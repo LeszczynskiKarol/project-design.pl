@@ -85,9 +85,18 @@ const projectTypes = [
 ];
 const breadcrumbSchema = breadcrumb('Architekci wnętrz', '/architekci-wnetrz/');
 
+const heroImage = 'https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektWidok-6_1-2_opt.webp';
+const heroSizes = '100vw';
+
 ---
 
-<BaseLayout {...seoData} schemas={[breadcrumbSchema]}>
+<BaseLayout
+  {...seoData}
+  schemas={[breadcrumbSchema]}
+  preloadImage={heroImage}
+  preloadImageSrcset={srcset(heroImage)}
+  preloadImageSizes={heroSizes}
+>
   <!-- Hero Section -->
   <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
@@ -95,6 +104,9 @@ const breadcrumbSchema = breadcrumb('Architekci wnętrz', '/architekci-wnetrz/')
         src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektWidok-6_1-2_opt.webp"
                     srcset={srcset("https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektWidok-6_1-2_opt.webp")}
                     sizes="100vw" 
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
         alt="Architekci wnętrz Toruń"
         class="w-full h-full object-cover"
       />

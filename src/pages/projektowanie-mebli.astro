@@ -88,9 +88,18 @@ const materials = [
 ];
 const breadcrumbSchema = breadcrumb('Projektowanie mebli na wymiar', '/projektowanie-mebli/');
 
+const heroImage = 'https://media.meblesystem.pl/meblesystem.pl/kuchnie-plyta-laminowana/k6-7_opt.webp';
+const heroSizes = '(max-width: 1024px) 100vw, 50vw';
+
 ---
 
-<BaseLayout {...seoData} schemas={[breadcrumbSchema]}>
+<BaseLayout
+  {...seoData}
+  schemas={[breadcrumbSchema]}
+  preloadImage={heroImage}
+  preloadImageSrcset={srcset(heroImage)}
+  preloadImageSizes={heroSizes}
+>
   <!-- Hero Section -->
   <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-50 to-white">
     <div class="absolute inset-0 opacity-10">
@@ -137,9 +146,11 @@ const breadcrumbSchema = breadcrumb('Projektowanie mebli na wymiar', '/projektow
             src="https://media.meblesystem.pl/meblesystem.pl/kuchnie-plyta-laminowana/k6-7_opt.webp"
                     srcset={srcset("https://media.meblesystem.pl/meblesystem.pl/kuchnie-plyta-laminowana/k6-7_opt.webp")}
                     sizes="(max-width: 1024px) 100vw, 50vw" 
-            alt="Meble na wymiar Toruń"
-            class="rounded-2xl shadow-2xl"
+            fetchpriority="high"
             loading="eager"
+            decoding="async"
+            alt="Kuchnia na wymiar zaprojektowana przez Project Design w Toruniu"
+            class="rounded-2xl shadow-2xl"
           />
           <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
             <div class="flex items-center space-x-4">
