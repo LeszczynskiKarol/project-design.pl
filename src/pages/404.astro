@@ -1,0 +1,95 @@
+---
+// src/pages/404.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const seoData = {
+  title: 'Nie znaleziono strony (404) | Project Design Toruń',
+  description:
+    'Ta strona nie istnieje lub została przeniesiona. Przejdź do projektowania wnętrz, aranżacji, mebli na wymiar lub naszych realizacji w Toruniu.',
+};
+
+const links = [
+  {
+    href: '/',
+    title: 'Projektowanie wnętrz Toruń',
+    description: 'Strona główna — pełna oferta studia.',
+  },
+  {
+    href: '/aranzacje-wnetrz/',
+    title: 'Aranżacje wnętrz',
+    description: 'Kompleksowe aranżacje mieszkań i domów jednorodzinnych.',
+  },
+  {
+    href: '/architekci-wnetrz/',
+    title: 'Architekci wnętrz',
+    description: 'Projekty mieszkalne i komercyjne od koncepcji do realizacji.',
+  },
+  {
+    href: '/studio-projektowania-wnetrz/',
+    title: 'Studio projektowania wnętrz',
+    description: 'Jak pracujemy i kto stoi za projektami.',
+  },
+  {
+    href: '/projektowanie-mebli/',
+    title: 'Meble na wymiar',
+    description: 'Kuchnie, szafy, garderoby i meble biurowe.',
+  },
+  {
+    href: '/realizacje/',
+    title: 'Realizacje',
+    description: 'Portfolio zrealizowanych wnętrz w Toruniu i okolicach.',
+  },
+];
+---
+
+<BaseLayout {...seoData}>
+  <section class="py-24 lg:py-32 bg-gradient-to-br from-slate-50 to-amber-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <p class="font-display text-7xl lg:text-8xl font-bold text-amber-500 mb-4">
+          404
+        </p>
+        <h1 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Nie znaleźliśmy tej strony
+        </h1>
+        <p class="text-lg text-slate-600 leading-relaxed">
+          Adres mógł się zmienić albo zawierać literówkę. Poniżej znajdziesz
+          wszystko, czego zwykle szukają nasi klienci. Jeśli wolisz zapytać od
+          razu — zadzwoń pod
+          <a
+            href="tel:+48576060832"
+            class="text-amber-500 font-medium hover:text-amber-600 transition-colors"
+            >+48 576 060 832</a
+          >.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="block bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all group"
+            >
+              <h2 class="font-semibold text-lg text-slate-900 mb-2 group-hover:text-amber-500 transition-colors">
+                {link.title}
+              </h2>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                {link.description}
+              </p>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="text-center mt-14">
+        <a
+          href="/#kontakt"
+          class="inline-flex items-center bg-slate-900 text-white px-8 py-4 rounded-full font-medium hover:bg-slate-800 transition-all hover:shadow-xl"
+        >
+          Skontaktuj się z nami
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

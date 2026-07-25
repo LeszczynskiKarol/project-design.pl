@@ -1,16 +1,9 @@
 ---
 // src/components/Testimonials.astro
 
-// Definicje typów
-interface GoogleReview {
-  id: string;
-  author: string;
-  verified: boolean;
-  text: string;
-  rating: number;
-  date: string;
-}
+import { getReviews, type GoogleReview } from '../lib/reviews';
 
+// Definicje typów
 interface Testimonial {
   id?: string;
   name: string;
@@ -21,36 +14,9 @@ interface Testimonial {
   project: string;
 }
 
-interface GoogleApiResponse {
-  reviews: GoogleReview[];
-  rating: number;
-  totalReviews: number;
-}
-
-// Fallback testimonials (używane gdy API nie odpowiada)
-const fallbackTestimonials: Testimonial[] = [
-  {
-    name: 'Anna Kowalska',
-    role: 'Właścicielka apartamentu',
-    content: 'Project Design odmienił nasze mieszkanie w prawdziwy dom. Profesjonalizm, kreatywność i dbałość o każdy szczegół - wszystko na najwyższym poziomie.',
-    rating: 5,
-    project: 'Apartament 120m², Toruń'
-  },
-  {
-    name: 'Marek Nowicki',
-    role: 'CEO firmy technologicznej',
-    content: 'Aranżacja naszego biura przeszła wszelkie oczekiwania. Przestrzeń jest nie tylko piękna, ale przede wszystkim funkcjonalna i inspirująca dla zespołu.',
-    rating: 5,
-    project: 'Biuro 250m², Toruń'
-  },
-  {
-    name: 'Katarzyna i Piotr Wiśniewscy',
-    role: 'Rodzina z dziećmi',
-    content: 'Szukaliśmy kogoś, kto zrozumie potrzeby rodziny z małymi dziećmi. Project Design stworzył przestrzeń bezpieczną, praktyczną i jednocześnie stylową.',
-    rating: 5,
-    project: 'Dom 180m², okolice Torunia'
-  }
-];
+// UWAGA: żadnych opinii zastępczych. Publikowanie zmyślonych opinii konsumenckich
+// i zagregowanych ocen bez pokrycia jest zakazaną praktyką rynkową (dyrektywa Omnibus).
+// Gdy API nie zwróci realnych opinii, sekcja po prostu się nie renderuje.
 
 // Funkcja do skracania tekstu
 function truncateText(text: string, maxLength: number = 300): string {
@@ -71,35 +37,11 @@ function formatGoogleReviews(googleReviews: GoogleReview[]): Testimonial[] {
   }));
 }
 
-// Pobieranie opinii z Google API
-let allTestimonials: Testimonial[] = fallbackTestimonials.map(t => ({
-  ...t,
-  contentTruncated: truncateText(t.content)
-}));
-let totalRating: number = 5.0;
-let totalReviews: number = 500;
+// Opinie z tego samego źródła co aggregateRating w <SEO> — patrz src/lib/reviews.ts.
+const { reviews, rating: totalRating, totalReviews } = await getReviews();
 
-// Pobierz opinie z Google API
-const apiEndpoint = import.meta.env.PUBLIC_REVIEWS_API_ENDPOINT;
-
-if (apiEndpoint) {
-  try {
-    const response = await fetch(apiEndpoint);
-    
-    if (response.ok) {
-      const data: GoogleApiResponse = await response.json();
-      
-      // Jeśli mamy opinie z Google, użyj ich
-      if (data.reviews && data.reviews.length > 0) {
-        allTestimonials = formatGoogleReviews(data.reviews);
-        totalRating = data.rating || 5.0;
-        totalReviews = data.totalReviews || 500;
-      }
-    }
-  } catch (error) {
-    console.error('Failed to fetch Google reviews:', error);
-  }
-}
+const allTestimonials: Testimonial[] = formatGoogleReviews(reviews);
+const hasTestimonials = allTestimonials.length > 0;
 
 // Pierwsze 3 opinie do wyświetlenia
 const initialTestimonials = allTestimonials.slice(0, 3);
@@ -113,7 +55,11 @@ function getStarsArray(rating: number): boolean[] {
 
 ---
 
-<section class="py-20 bg-slate-50" id="testimonials-section">
+{hasTestimonials && (
+<section
+  class="py-20 bg-slate-50"
+  id="testimonials-section"
+>
   <div class="container mx-auto px-4 lg:px-8">
     <!-- Header -->
     <div class="text-center mb-16 fade-in-observe">
@@ -121,11 +67,11 @@ function getStarsArray(rating: number): boolean[] {
         Co mówią nasi <span class="text-amber-500">klienci</span>
       </h2>
       <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-        Zaufało nam już ponad {totalReviews} klientów. Zobacz, co mówią o współpracy z nami.
+        Opinie klientów Project Design zebrane w wizytówce Google.
       </p>
-      
+
       <!-- Ocena Google -->
-      {totalRating && (
+      {totalRating !== null && totalReviews !== null && (
         <div class="mt-6 flex items-center justify-center gap-3">
           <div class="flex items-center gap-1">
             {getStarsArray(totalRating).map((filled) => (
@@ -268,6 +214,7 @@ function getStarsArray(rating: number): boolean[] {
     )}   
   </div>
 </section>
+)}
 
 <style>
   .testimonial-card {

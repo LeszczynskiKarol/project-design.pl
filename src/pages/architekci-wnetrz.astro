@@ -6,12 +6,12 @@ import Team from '../components/Team.astro';
 import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
+import { breadcrumb } from '../lib/schema';
 
 const seoData = {
   title: 'Architekci Wnętrz Toruń - Architektura Wnętrz',
   description: 'Doświadczeni architekci wnętrz w Toruniu. Profesjonalna architektura wnętrz mieszkalnych i komercyjnych. Kompleksowe projekty od koncepcji do realizacji.',
-  keywords: 'architekci wnętrz Toruń, architektura wnętrz Toruń, architekt wnętrz, projektowanie wnętrz, Project Design',
-  canonical: 'https://www.project-design.pl/architekci-wnetrz'
+  keywords: 'architekci wnętrz Toruń, architektura wnętrz Toruń, architekt wnętrz, projektowanie wnętrz, Project Design'
 };
 
 const expertise = [
@@ -82,9 +82,11 @@ const projectTypes = [
     description: 'Sklepy, restauracje, gabinety'
   }
 ];
+const breadcrumbSchema = breadcrumb('Architekci wnętrz', '/architekci-wnetrz/');
+
 ---
 
-<BaseLayout {...seoData}>
+<BaseLayout {...seoData} schemas={[breadcrumbSchema]}>
   <!-- Hero Section -->
   <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
@@ -135,9 +137,11 @@ const projectTypes = [
             Architektura wnętrz to <span class="text-amber-500">sztuka życia</span>
           </h2>
           <p class="text-lg text-slate-600 leading-relaxed">
-            Jako architekci wnętrz działający w Toruniu, jesteśmy przekonani, że przestrzeń ma moc transformacji. 
-            Nasze projekty to więcej niż estetyka - tworzymy środowiska wspierające dobre samopoczucie, 
-            produktywność i harmonię.
+            Jako architekci wnętrz działający w Toruniu, jesteśmy przekonani, że przestrzeń ma moc transformacji.
+            Nasze projekty to więcej niż estetyka - tworzymy środowiska wspierające dobre samopoczucie,
+            produktywność i harmonię. Zobacz
+            <a href="/studio-projektowania-wnetrz/" class="text-amber-500 hover:text-amber-600 underline">nasze studio projektowania wnętrz w Toruniu</a>
+            i sprawdź, jak wygląda praca nad projektem od pierwszego spotkania.
           </p>
         </div>
 

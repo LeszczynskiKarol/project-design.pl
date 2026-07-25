@@ -5,7 +5,20 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://www.project-design.pl",
-  integrations: [tailwind(), sitemap()],
+  integrations: [
+    tailwind(),
+    sitemap({
+      // Strony prawne zostaja indeksowalne (linki w stopce), ale nie zjadaja
+      // budzetu crawlowania stronom uslugowym.
+      filter: (page) =>
+        !page.includes("/polityka-prywatnosci") &&
+        !page.includes("/regulamin"),
+      serialize: (item) => ({
+        ...item,
+        lastmod: new Date().toISOString(),
+      }),
+    }),
+  ],
   output: "static",
   build: {
     assets: "assets",

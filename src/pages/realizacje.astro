@@ -4,12 +4,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
+import { breadcrumb } from '../lib/schema';
 
 const seoData = {
   title: 'Realizacje - Portfolio Projektów Wnętrz | Project Design Toruń',
   description: 'Zobacz nasze realizacje projektów wnętrz w Toruniu. Portfolio mieszkań, domów, biur i przestrzeni komercyjnych. Inspirujące aranżacje wnętrz od Project Design.',
-  keywords: 'realizacje wnętrz Toruń, portfolio projektów, aranżacje wnętrz, projekty mieszkań Toruń, projekty domów Toruń',
-  canonical: 'https://www.project-design.pl/realizacje'
+  keywords: 'realizacje wnętrz Toruń, portfolio projektów, aranżacje wnętrz, projekty mieszkań Toruń, projekty domów Toruń'
 };
 
 // Rozbudowana lista projektów - możesz tu dodać swoje własne zdjęcia
@@ -213,9 +213,42 @@ const categories = [...new Set(projects.map(p => p.category))];
 
 // Style projektów
 const styles = [...new Set(projects.map(p => p.style))];
+// FAQ — jedno zrodlo prawdy: ta sama tresc trafia do markupu i do FAQPage w JSON-LD.
+// Google wymaga zgodnosci danych strukturalnych z tresci widoczna na stronie.
+const faqItems = [
+  {
+    "question": "Jak długo trwa realizacja typowego projektu?",
+    "answer": "Czas realizacji zależy od zakresu projektu. Typowe mieszkanie (50-80m²) zajmuje 2-3 miesiące, dom jednorodzinny 4-6 miesięcy, a przestrzenie komercyjne 3-5 miesięcy. Dokładny harmonogram ustalamy indywidualnie."
+  },
+  {
+    "question": "Czy mogę zobaczyć więcej zdjęć z realizacji?",
+    "answer": "Oczywiście! Podczas spotkania prezentujemy pełne portfolio z setkami zdjęć. Możemy też umówić wizytę w wybranych, zrealizowanych przez nas wnętrzach (za zgodą właścicieli)."
+  },
+  {
+    "question": "Jaki jest koszt realizacji projektu?",
+    "answer": "Koszt zależy od powierzchni, zakresu prac i standardu wykończenia. Przygotowujemy projekty w różnych budżetach - od ekonomicznych po luksusowe. Pierwsza konsultacja i wycena są bezpłatne."
+  },
+  {
+    "question": "Czy zajmujecie się także realizacją projektu?",
+    "answer": "Tak, oferujemy kompleksową realizację projektów \"pod klucz\". Współpracujemy ze sprawdzonymi wykonawcami i dostawcami, nadzorujemy wszystkie etapy prac i gwarantujemy najwyższą jakość wykonania."
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = breadcrumb('Realizacje', '/realizacje/');
+
 ---
 
-<BaseLayout {...seoData}>
+<BaseLayout {...seoData} schemas={[breadcrumbSchema, faqSchema]}>
   <!-- Hero Section z parallax -->
   <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
@@ -231,7 +264,7 @@ const styles = [...new Set(projects.map(p => p.style))];
       <div class="animate-fade-in">
         
         <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6">
-          Nasze <span class="text-amber-500">realizacje</span>
+          <span class="text-amber-500">Realizacje</span> projektów wnętrz — Toruń i okolice
         </h1>
         
       </div>      
@@ -274,6 +307,15 @@ const styles = [...new Set(projects.map(p => p.style))];
   <!-- Main Portfolio Grid -->
   <section class="py-10 bg-gradient-to-b from-white to-slate-50">
     <div class="container mx-auto px-4 lg:px-8">
+      <h2 class="font-display text-3xl lg:text-4xl font-bold text-slate-900 mb-4 text-center">
+        Portfolio realizacji — mieszkania, domy i lokale użytkowe
+      </h2>
+      <p class="text-slate-600 text-center max-w-3xl mx-auto mb-12 leading-relaxed">
+        Każdy projekt powstawał w Toruniu lub okolicach, we współpracy z konkretną
+        rodziną albo firmą. Za realizację części z nich odpowiadają
+        <a href="/architekci-wnetrz/" class="text-amber-500 hover:text-amber-600 underline">architekci wnętrz</a>
+        z naszego zespołu — od koncepcji, przez dokumentację, po nadzór nad wykonaniem.
+      </p>
       <!-- Projects Grid/List -->
       <div id="projects-container" class="grid-view">
         <!-- Grid View -->
@@ -587,61 +629,21 @@ const styles = [...new Set(projects.map(p => p.style))];
         </div>
 
         <div class="space-y-4">
-          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Jak długo trwa realizacja typowego projektu?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Czas realizacji zależy od zakresu projektu. Typowe mieszkanie (50-80m²) zajmuje 2-3 miesiące, dom jednorodzinny 4-6 miesięcy, a przestrzenie komercyjne 3-5 miesięcy. Dokładny harmonogram ustalamy indywidualnie.</p>
-            </div>
-          </details>
-
-          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Czy mogę zobaczyć więcej zdjęć z realizacji?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Oczywiście! Podczas spotkania prezentujemy pełne portfolio z setkami zdjęć. Możemy też umówić wizytę w wybranych, zrealizowanych przez nas wnętrzach (za zgodą właścicieli).</p>
-            </div>
-          </details>
-
-          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Jaki jest koszt realizacji projektu?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Koszt zależy od powierzchni, zakresu prac i standardu wykończenia. Przygotowujemy projekty w różnych budżetach - od ekonomicznych po luksusowe. Pierwsza konsultacja i wycena są bezpłatne.</p>
-            </div>
-          </details>
-
-          <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Czy zajmujecie się także realizacją projektu?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Tak, oferujemy kompleksową realizację projektów "pod klucz". Współpracujemy ze sprawdzonymi wykonawcami i dostawcami, nadzorujemy wszystkie etapy prac i gwarantujemy najwyższą jakość wykonania.</p>
-            </div>
-          </details>
+          {faqItems.map((item) => (
+            <details class="group bg-white rounded-xl shadow-lg overflow-hidden">
+              <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+                <h3 class="font-display text-lg font-bold text-slate-900">
+                  {item.question}
+                </h3>
+                <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-slate-600">
+                <p>{item.answer}</p>
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </div>

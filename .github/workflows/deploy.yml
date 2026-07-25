@@ -31,7 +31,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      # Bez tej zmiennej build nie pobiera opinii z wizytówki Google — sekcja opinii
+      # i aggregateRating w JSON-LD zostaja wtedy pominiete (nigdy podmienione atrapa).
       - run: npm run build
+        env:
+          PUBLIC_REVIEWS_API_ENDPOINT: ${{ secrets.PUBLIC_REVIEWS_API_ENDPOINT }}
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}

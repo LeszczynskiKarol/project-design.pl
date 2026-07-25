@@ -5,12 +5,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
+import { breadcrumb } from '../lib/schema';
 
 const seoData = {
   title: 'Projektowanie Mebli Toruń - Meble na Wymiar',
   description: 'Projektowanie mebli na wymiar w Toruniu. Indywidualne projekty mebli dopasowane do Twojego wnętrza. Szafy, kuchnie, garderoby, meble biurowe.',
-  keywords: 'projektowanie mebli Toruń, projektowanie mebli na wymiar Toruń, projekty mebli Toruń, meble na wymiar, Project Design',
-  canonical: 'https://www.project-design.pl/projektowanie-mebli'
+  keywords: 'projektowanie mebli Toruń, projektowanie mebli na wymiar Toruń, projekty mebli Toruń, meble na wymiar, Project Design'
 };
 
 const furnitureTypes = [
@@ -85,9 +85,11 @@ const materials = [
   
   'Kompozyty'
 ];
+const breadcrumbSchema = breadcrumb('Projektowanie mebli na wymiar', '/projektowanie-mebli/');
+
 ---
 
-<BaseLayout {...seoData}>
+<BaseLayout {...seoData} schemas={[breadcrumbSchema]}>
   <!-- Hero Section -->
   <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-amber-50 to-white">
     <div class="absolute inset-0 opacity-10">
@@ -98,7 +100,7 @@ const materials = [
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div class="animate-fade-in">
           <h1 class="font-display text-5xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            Projektowanie <span class="text-amber-500">mebli</span> na wymiar
+            Projektowanie <span class="text-amber-500">mebli</span> na wymiar — Toruń
           </h1>
           <p class="text-xl text-slate-600 mb-8 leading-relaxed">
             Tworzymy unikalne projekty mebli idealnie dopasowane do Twojego wnętrza. 
@@ -162,7 +164,8 @@ const materials = [
           Dlaczego meble <span class="text-amber-500">na wymiar</span>?
         </h2>
         <p class="text-lg text-slate-600">
-          Meble na wymiar to inwestycja w komfort, funkcjonalność i unikalny charakter wnętrza
+          Meble na wymiar to inwestycja w komfort, funkcjonalność i unikalny charakter wnętrza —
+          <a href="/realizacje/" class="text-amber-500 hover:text-amber-600 underline">zobacz meble na wymiar w naszych realizacjach</a>
         </p>
       </div>
 

@@ -6,12 +6,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Team from '../components/Team.astro';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
+import { breadcrumb } from '../lib/schema';
 
 const seoData = {
   title: 'Studio Projektowania Wnętrz Toruń - Biuro Projektowania',
   description: 'Profesjonalne studio projektowania wnętrz w Toruniu. Doświadczeni projektanci wnętrz, nowoczesne biuro projektowe, indywidualne podejście do każdego klienta.',
-  keywords: 'studio projektowania wnętrz Toruń, biuro projektowania wnętrz Toruń, projektanci wnętrz Toruń, Project Design studio',
-  canonical: 'https://www.project-design.pl/studio-projektowania-wnetrz'
+  keywords: 'studio projektowania wnętrz Toruń, biuro projektowania wnętrz Toruń, projektanci wnętrz Toruń, Project Design studio'
 };
 
 const values = [
@@ -55,9 +55,11 @@ const capabilities = [
   'Konsultacje projektowe',
   'Home staging'
 ];
+const breadcrumbSchema = breadcrumb('Studio projektowania wnętrz', '/studio-projektowania-wnetrz/');
+
 ---
 
-<BaseLayout {...seoData}>
+<BaseLayout {...seoData} schemas={[breadcrumbSchema]}>
   <!-- Hero Section -->
 <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0">
@@ -69,7 +71,7 @@ const capabilities = [
       <!-- Left Content -->
       <div class="max-w-2xl">
         <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 animate-fade-in">
-          Studio projektowania <span class="text-amber-500">wnętrz</span>
+          Studio projektowania <span class="text-amber-500">wnętrz</span> Toruń
         </h1>
         <p class="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
           Nasze biuro aranżacji wnętrz w Toruniu to miejsce, gdzie rodzą się wyjątkowe koncepcje. 
@@ -93,10 +95,14 @@ const capabilities = [
           
           <!-- Main image container -->
           <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group-hover:border-white/20 transition-all duration-500">
-            <img 
-              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp" 
-              
+            <img
+              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp"
+              alt="Salon z aneksem kuchennym zaprojektowany przez studio projektowania wnętrz Project Design w Toruniu"
+              width="1200"
+              height="800"
               loading="eager"
+              fetchpriority="high"
+              decoding="async"
             />
             <!-- Overlay gradient -->
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -118,8 +124,10 @@ const capabilities = [
             O naszym <span class="text-amber-500">studio</span>
           </h2>
           <p class="text-lg text-slate-600 mb-6 leading-relaxed">
-            Project Design to więcej niż studio projektowania wnętrz - to kreatywna przestrzeń, 
-            gdzie łączymy doświadczenie z innowacyjnym podejściem do designu.
+            Project Design to więcej niż studio projektowania wnętrz - to kreatywna przestrzeń,
+            gdzie łączymy doświadczenie z innowacyjnym podejściem do designu. Prowadzimy
+            <a href="/aranzacje-wnetrz/" class="text-amber-500 hover:text-amber-600 underline">kompleksowe aranżacje wnętrz</a>
+            mieszkań, domów i lokali użytkowych.
           </p>
           <p class="text-slate-600 mb-8 leading-relaxed">
             Nasze biuro projektowania wnętrz w Toruniu specjalizuje się w tworzeniu kompleksowych 
@@ -147,11 +155,14 @@ const capabilities = [
         </div>
         <div class="fade-in-observe">
           <div class="relative">
-            <img 
-              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp" 
-              
+            <img
+              src="https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp"
+              alt="Wnętrze mieszkania zaprojektowane w biurze projektowym Project Design"
               class="rounded-2xl shadow-2xl"
+              width="1200"
+              height="800"
               loading="lazy"
+              decoding="async"
             />
             <div class="absolute -bottom-6 -right-6 bg-amber-500 text-white p-6 rounded-2xl shadow-xl">
               <div class="font-display text-2xl font-bold mb-2">Project Design</div>

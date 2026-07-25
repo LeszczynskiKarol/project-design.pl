@@ -11,15 +11,17 @@ export interface Props {
   keywords?: string;
   ogImage?: string;
   canonical?: string;
+  /** Dodatkowe bloki JSON-LD (FAQPage, BreadcrumbList) przekazywane do <SEO>. */
+  schemas?: Record<string, unknown>[];
+  /** URL obrazu LCP do wstępnego pobrania — ustawiać tylko tam, gdzie obraz jest nad zgięciem. */
+  preloadImage?: string;
 }
 
-const {
-  title,
-  description,
-  keywords,
-  ogImage = "/og-default.jpg",
-  canonical,
-} = Astro.props;
+const { title, description, ogImage, canonical, schemas, preloadImage } =
+  Astro.props;
+
+const FONTS_HREF =
+  "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700;900&display=swap";
 ---
 
 <!doctype html>
@@ -86,20 +88,32 @@ const {
     <SEO
       title={title}
       description={description}
-      keywords={keywords}
       ogImage={ogImage}
       canonical={canonical}
+      schemas={schemas}
     />
 
+    <!-- media.meblesystem.pl serwuje wszystkie zdjęcia realizacji, w tym element LCP -->
+    <link rel="preconnect" href="https://media.meblesystem.pl" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.google-analytics.com" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700;900&display=swap"
-      rel="stylesheet"
-    />
+    {
+      preloadImage && (
+        <link
+          rel="preload"
+          as="image"
+          fetchpriority="high"
+          href={preloadImage}
+        />
+      )
+    }
+
+    <!-- Fonty nie mogą blokować renderowania (PSI: ~1,8 s oszczędności) -->
+    <link rel="stylesheet" href={FONTS_HREF} media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href={FONTS_HREF} /></noscript>
 
     <style>
       /* Critical CSS */

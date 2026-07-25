@@ -1,95 +1,137 @@
 ---
 // src/components/SEO.astro
+import { getReviews } from '../lib/reviews';
+
 export interface Props {
   title: string;
   description: string;
   keywords?: string;
   ogImage?: string;
   canonical?: string;
+  /** Dodatkowe bloki JSON-LD (FAQPage, BreadcrumbList itp.) doklejane po LocalBusiness. */
+  schemas?: Record<string, unknown>[];
 }
 
-const { 
-  title, 
-  description, 
-  keywords = 'projektowanie wnętrz Toruń, aranżacje wnętrz, architekci wnętrz, Project Design, meble na wymiar',
-  ogImage = '/og-default.jpg',
-  canonical = Astro.url.href
+const SITE = "https://www.project-design.pl";
+const DEFAULT_OG_IMAGE =
+  "https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp";
+
+const {
+  title,
+  description,
+  ogImage = DEFAULT_OG_IMAGE,
+  canonical = Astro.url.href,
+  schemas = [],
 } = Astro.props;
 
-const siteTitle = `${title}`;
+// og:image i twitter:image muszą być URL-ami bezwzględnymi (wymóg protokołu Open Graph).
+const absoluteOgImage = new URL(ogImage, Astro.site ?? SITE).href;
+
+// aggregateRating tylko z realnych opinii z wizytówki Google — nigdy z wartości domyślnych.
+const { rating, totalReviews } = await getReviews();
+const aggregateRating =
+  rating !== null && totalReviews !== null && totalReviews > 0
+    ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: rating,
+          reviewCount: totalReviews,
+          bestRating: 5,
+          worstRating: 1,
+        },
+      }
+    : {};
+
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "InteriorDesignBusiness",
+  "@id": `${SITE}/#organization`,
+  name: "Project Design",
+  description:
+    "Profesjonalne projektowanie wnętrz w Toruniu. Aranżacje mieszkań, domów i biur. Meble na wymiar.",
+  url: SITE,
+  telephone: "+48576060832",
+  email: "kontakt@project-design.pl",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "ul. Polna 134, hala nr 3",
+    addressLocality: "Toruń",
+    addressRegion: "kujawsko-pomorskie",
+    postalCode: "87-100",
+    addressCountry: "PL",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 53.0138,
+    longitude: 18.5984,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "07:00",
+    closes: "16:30",
+  },
+  priceRange: "$$",
+  image: absoluteOgImage,
+  ...aggregateRating,
+  areaServed: {
+    "@type": "City",
+    name: "Toruń",
+  },
+  employee: [
+    {
+      "@type": "Person",
+      name: "Dorota Stefańska",
+      jobTitle: "Projektantka wnętrz",
+      worksFor: { "@id": `${SITE}/#organization` },
+    },
+    {
+      "@type": "Person",
+      name: "Cezary Mazurkiewicz",
+      jobTitle: "Projektant wnętrz",
+      worksFor: { "@id": `${SITE}/#organization` },
+    },
+  ],
+  sameAs: [
+    "https://www.facebook.com/PRFInterior",
+    "https://www.instagram.com/prf.interior/",
+  ],
+};
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <!-- Primary Meta Tags -->
-<title>{siteTitle}</title>
-<meta name="title" content={siteTitle} />
+<title>{title}</title>
 <meta name="description" content={description} />
-<meta name="keywords" content={keywords} />
 <meta name="author" content="Project Design Toruń" />
 <meta name="robots" content="index, follow" />
-<meta name="language" content="Polish" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonical} />
-<meta property="og:title" content={siteTitle} />
+<meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:image" content={absoluteOgImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:locale" content="pl_PL" />
 <meta property="og:site_name" content="Project Design" />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={canonical} />
-<meta property="twitter:title" content={siteTitle} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteOgImage} />
 
 <!-- Canonical -->
 <link rel="canonical" href={canonical} />
 
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
 <!-- Schema.org JSON-LD -->
-<script type="application/ld+json">
+<script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
 {
-  "@context": "https://schema.org",
-  "@type": "InteriorDesignBusiness",
-  "name": "Project Design",
-  "description": "Profesjonalne projektowanie wnętrz w Toruniu. Aranżacje mieszkań, domów i biur. Meble na wymiar.",
-  "url": "https://www.project-design.pl",
-  "telephone": "+48 XXX XXX XXX",
-  "email": "kontakt@projectdesign.pl",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Toruń",
-    "addressRegion": "kujawsko-pomorskie",
-    "postalCode": "87-100",
-    "addressCountry": "PL"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 53.0138,
-    "longitude": 18.5984
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  },
-  "priceRange": "$$",
-  "image": "/logo.png",
-  "sameAs": [
-    "https://www.facebook.com/projectdesign",
-    "https://www.instagram.com/projectdesign",
-    "https://www.linkedin.com/company/projectdesign"
-  ]
+  schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
 }
-</script>

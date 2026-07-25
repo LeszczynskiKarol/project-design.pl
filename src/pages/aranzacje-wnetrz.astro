@@ -6,12 +6,12 @@ import Team from '../components/Team.astro';
 import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
+import { breadcrumb } from '../lib/schema';
 
 const seoData = {
   title: 'Aranżacje Wnętrz Toruń - Mieszkań, Domów | Project Design',
-  description: 'Profesjonalne aranżacje wnętrz w Toruniu. Kompleksowe aranżacje mieszkań i domów jednorodzinnych. Indywidualne projekty aranżacji dopasowane do Twoich potrzeb. Darmowa konsultacja.',
-  keywords: 'aranżacje wnętrz Toruń, aranżacje mieszkań Toruń, aranżacje domów Toruń, aranżacja wnętrz, projekt aranżacji, Project Design',
-  canonical: 'https://www.project-design.pl/aranazacje-wnetrz'
+  description: 'Aranżacje wnętrz Toruń — mieszkania, domy jednorodzinne i lokale. Projekt dopasowany do Twoich potrzeb, wizualizacje 3D, darmowa konsultacja.',
+  keywords: 'aranżacje wnętrz Toruń, aranżacje mieszkań Toruń, aranżacje domów Toruń, aranżacja wnętrz, projekt aranżacji, Project Design'
 };
 
 const apartmentTypes = [
@@ -171,9 +171,42 @@ const styles = [
     characteristics: ['Cegła', 'Metal', 'Beton', 'Otwartość']
   }
 ];
+// FAQ — jedno zrodlo prawdy: ta sama tresc trafia do markupu i do FAQPage w JSON-LD.
+// Google wymaga zgodnosci danych strukturalnych z tresci widoczna na stronie.
+const faqItems = [
+  {
+    "question": "Jak długo trwa proces aranżacji?",
+    "answer": "Projekt koncepcyjny zajmuje 1-2 tygodnie, projekt wykonawczy 2-4 tygodnie. Realizacja (wykończenie) mieszkania 50-70m² trwa około 2-3 miesiące, domu 150-200m² około 4-6 miesięcy. Dokładny harmonogram ustalamy indywidualnie na pierwszym spotkaniu."
+  },
+  {
+    "question": "Czy mogę wprowadzać zmiany w projekcie aranżacji?",
+    "answer": "Oczywiście! Proces projektowania jest iteracyjny. Na etapie koncepcji możesz wprowadzać nieograniczoną liczbę poprawek. Po zatwierdzeniu koncepcji i przejściu do projektu wykonawczego, dodatkowe zmiany wyceniamy indywidualnie. Zależy nam na Twojej satysfakcji z finalnego rezultatu."
+  },
+  {
+    "question": "Czy zajmujecie się również realizacją aranżacji?",
+    "answer": "Tak, oferujemy kompleksową realizację projektów we współpracy z Meble System. Zajmujemy się koordynacją wykonawców, zakupem materiałów i mebli, nadzorem budowlanym oraz odbiorem prac. Możesz również wybrać opcję \"tylko projekt\" i samodzielnie zająć się realizacją."
+  },
+  {
+    "question": "Jakie dokumenty otrzymam po zakończeniu projektu?",
+    "answer": "Otrzymasz komplet dokumentacji: rzuty z rozmieszczeniem mebli, projekt oświetlenia i elektryki, wizualizacje 3D wszystkich pomieszczeń, zestawienie materiałów wykończeniowych, specyfikację mebli i wyposażenia, oraz kosztorys inwestorski. Wszystko w wersji cyfrowej i opcjonalnie drukowanej."
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const breadcrumbSchema = breadcrumb('Aranżacje wnętrz', '/aranzacje-wnetrz/');
+
 ---
 
-<BaseLayout {...seoData}>
+<BaseLayout {...seoData} schemas={[breadcrumbSchema, faqSchema]}>
   <!-- Hero Section -->
   <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
@@ -233,9 +266,11 @@ const styles = [
             Czym są <span class="text-amber-500">aranżacje wnętrz</span>?
           </h2>
           <p class="text-lg text-slate-600 leading-relaxed">
-            Aranżacja wnętrz to sztuka harmonijnego łączenia funkcjonalności z estetyką. 
-            To proces tworzenia przestrzeni, która nie tylko pięknie wygląda, ale przede wszystkim 
-            doskonale służy swoim mieszkańcom.
+            Aranżacja wnętrz to sztuka harmonijnego łączenia funkcjonalności z estetyką.
+            To proces tworzenia przestrzeni, która nie tylko pięknie wygląda, ale przede wszystkim
+            doskonale służy swoim mieszkańcom. Jej naturalnym dopełnieniem są
+            <a href="/projektowanie-mebli/" class="text-amber-500 hover:text-amber-600 underline">meble na wymiar do zaaranżowanego wnętrza</a>,
+            projektowane pod konkretne wymiary pomieszczenia.
           </p>
         </div>
 
@@ -661,61 +696,21 @@ const styles = [
 
         <div class="space-y-4">
           
-          <details class="group bg-slate-50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Jak długo trwa proces aranżacji?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Projekt koncepcyjny zajmuje 1-2 tygodnie, projekt wykonawczy 2-4 tygodnie. Realizacja (wykończenie) mieszkania 50-70m² trwa około 2-3 miesiące, domu 150-200m² około 4-6 miesięcy. Dokładny harmonogram ustalamy indywidualnie na pierwszym spotkaniu.</p>
-            </div>
-          </details>
-
-          <details class="group bg-slate-50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Czy mogę wprowadzać zmiany w projekcie aranżacji?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Oczywiście! Proces projektowania jest iteracyjny. Na etapie koncepcji możesz wprowadzać nieograniczoną liczbę poprawek. Po zatwierdzeniu koncepcji i przejściu do projektu wykonawczego, dodatkowe zmiany wyceniamy indywidualnie. Zależy nam na Twojej satysfakcji z finalnego rezultatu.</p>
-            </div>
-          </details>
-
-          <details class="group bg-slate-50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Czy zajmujecie się również realizacją aranżacji?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Tak, oferujemy kompleksową realizację projektów we współpracy z Meble System. Zajmujemy się koordynacją wykonawców, zakupem materiałów i mebli, nadzorem budowlanym oraz odbiorem prac. Możesz również wybrać opcję "tylko projekt" i samodzielnie zająć się realizacją.</p>
-            </div>
-          </details>
-
-          <details class="group bg-slate-50 rounded-xl overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
-              <h3 class="font-display text-lg font-bold text-slate-900">
-                Jakie dokumenty otrzymam po zakończeniu projektu?
-              </h3>
-              <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600">
-              <p>Otrzymasz komplet dokumentacji: rzuty z rozmieszczeniem mebli, projekt oświetlenia i elektryki, wizualizacje 3D wszystkich pomieszczeń, zestawienie materiałów wykończeniowych, specyfikację mebli i wyposażenia, oraz kosztorys inwestorski. Wszystko w wersji cyfrowej i opcjonalnie drukowanej.</p>
-            </div>
-          </details>
+          {faqItems.map((item) => (
+            <details class="group bg-slate-50 rounded-xl overflow-hidden">
+              <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+                <h3 class="font-display text-lg font-bold text-slate-900">
+                  {item.question}
+                </h3>
+                <svg class="w-5 h-5 text-amber-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-slate-600">
+                <p>{item.answer}</p>
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </div>

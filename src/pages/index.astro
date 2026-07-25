@@ -12,12 +12,16 @@ import Contact from '../components/Contact.astro';
 
 const seoData = {
   title: 'Projektowanie Wnętrz Toruń - Projekty Wnętrz',
-  description: 'Profesjonalne projektowanie wnętrz w Toruniu. Tworzymy unikalne projekty wnętrz mieszkań, domów i biur. Doświadczeni projektanci, indywidualne podejście. Darmowa wycena.',
+  description: 'Profesjonalne projektowanie wnętrz w Toruniu. Projekty mieszkań, domów i biur, meble na wymiar. Doświadczeni projektanci, darmowa wycena.',
   keywords: 'projektowanie wnętrz Toruń, projekty wnętrz Toruń, projektant wnętrz Toruń, aranżacja wnętrz Toruń, Project Design'
 };
+
+// Obraz LCP sekcji hero — pobierany z wyprzedzeniem (PSI: LCP 11,9 s na mobile).
+const heroImage =
+  'https://media.meblesystem.pl/meble-bydgoszcz.pl/realizacje-legacy/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp';
 ---
 
-<BaseLayout {...seoData}>
+<BaseLayout {...seoData} preloadImage={heroImage}>
   <Hero />
   
   <!-- About Section -->
