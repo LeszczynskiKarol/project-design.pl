@@ -125,7 +125,10 @@ const FONTS_HREF =
       )
     }
 
-    <!-- Fonty nie mogą blokować renderowania (PSI: ~1,8 s oszczędności) -->
+    <!-- Fonty nie mogą blokować renderowania (PSI: ~1,8 s oszczędności), ale muszą
+         ruszyć wcześnie — bez preloadu arkusz z media="print" ma niski priorytet,
+         font wchodzi późno i LCP tekstowy (H1 w Playfair) czeka na swap. -->
+    <link rel="preload" as="style" href={FONTS_HREF} />
     <link rel="stylesheet" href={FONTS_HREF} media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href={FONTS_HREF} /></noscript>
 
