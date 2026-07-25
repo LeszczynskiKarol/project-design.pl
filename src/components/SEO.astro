@@ -54,19 +54,19 @@ const localBusiness = {
   email: "kontakt@project-design.pl",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "ul. Polna 134, hala nr 3",
+    streetAddress: "ul. Stefana Batorego 92F",
     addressLocality: "Toruń",
     addressRegion: "kujawsko-pomorskie",
     postalCode: "87-100",
     addressCountry: "PL",
   },
-  // Wspolrzedne ul. Polna 134 (Katarzynka) wg geokodowania OpenStreetMap/Nominatim.
-  // Poprzednie wartosci (53.0138, 18.5984) wskazywaly centrum Torunia — ok. 4 km obok.
-  // Do potwierdzenia z pinezka w Google Business Profile.
+  // Wspolrzedne ul. Stefana Batorego 92F (Mokre/Debowa Gora) wg geokodowania
+  // OpenStreetMap/Nominatim. Musza zgadzac sie z pinezka w Google Business Profile
+  // — rozjazd address vs geo oslabia dopasowanie do zapytan lokalnych.
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 53.03786,
-    longitude: 18.64486,
+    latitude: 53.03906,
+    longitude: 18.62219,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
