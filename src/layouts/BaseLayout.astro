@@ -393,5 +393,25 @@ const FONTS_HREF =
         );
       }
     </script>
+
+    <!-- Konwersje kontaktowe: klik w tel:/mailto: -> dataLayer -> GTM
+         (triggery CE - phone_click / CE - email_click -> eventy GA4).
+         Delegacja na document: dziala tez dla linkow dodanych pozniej. -->
+    <script is:inline>
+      document.addEventListener("click", function (e) {
+        var a =
+          e.target && e.target.closest
+            ? e.target.closest("a[href^='tel:'],a[href^='mailto:']")
+            : null;
+        if (!a) return;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event:
+            a.getAttribute("href").indexOf("tel:") === 0
+              ? "phone_click"
+              : "email_click",
+        });
+      });
+    </script>
   </body>
 </html>
