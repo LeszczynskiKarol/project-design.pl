@@ -33,10 +33,13 @@ const contactInfo = {
       <!-- Contact Form -->
       <div class="fade-in-observe">
         <form class="space-y-6" id="contact-form">
-          <!-- Honeypot antyspamowy — ukryte pole, wypełniają tylko boty -->
+          <!-- Honeypot antyspamowy — ukryte pole, wypełniają tylko boty.
+               Nazwa MUSI być bez znaczenia: pole "company" było autouzupełniane przez
+               przeglądarkę mimo autocomplete="off" i odrzucało prawdziwych klientów
+               (04.08.2026). Nie zmieniaj z powrotem na nazwę realnego pola. -->
           <div style="position:absolute; left:-9999px;" aria-hidden="true">
-            <label for="company">Firma</label>
-            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+            <label for="cf-extra">Pozostaw to pole puste</label>
+            <input type="text" id="cf-extra" name="cf_extra" tabindex="-1" autocomplete="off" />
           </div>
           <div class="grid md:grid-cols-2 gap-6">
             <div>
@@ -435,7 +438,7 @@ const contactInfo = {
         const res = await fetch(CONTACT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
           domain:"project-design.pl", name: formData.get('user_name'), email: formData.get('user_email'),
           phone: formData.get('user_phone')||"", message: formData.get('message')||"",
-          company: formData.get('company')||"", // honeypot
+          cf_extra: formData.get('cf_extra')||"", // honeypot
           attachments: __atts, source: __leadSource(),
           referrer: document.referrer || "",
           utm_source: __params.get('utm_source') || "",
